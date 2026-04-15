@@ -1,0 +1,12 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "portfolio-v2",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": ["-c", "cd /Users/Nagel/Downloads/Derek_Nagel_Portfolio_v2 && exec python3 -m http.server ${PORT:-8765}"],
+      "port": 8765,
+      "autoPort": false
+    }
+  ]
+}

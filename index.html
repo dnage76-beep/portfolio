@@ -1,0 +1,2318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Derek Nagel</title>
+<meta name="description" content="Mechanical Engineering student at George Mason University. Tesla intern, licensed pilot, Division I athlete.">
+<meta name="author" content="Derek Nagel">
+<meta property="og:title" content="Derek Nagel — Mechanical Engineering Portfolio">
+<meta property="og:description" content="Mechanical Engineering student at George Mason University concentrating in Aerospace. Tesla intern, licensed pilot, Division I athlete.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#0a192f">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect rx='12' width='100' height='100' fill='%230a192f'/><text x='50' y='68' font-family='monospace' font-size='48' font-weight='700' fill='%2364ffda' text-anchor='middle'>DN</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"></noscript>
+<style>
+
+/* ====== RESET + ROOT ====== */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --navy:        #0a192f;
+  --navy-light:  #112240;
+  --navy-lighter:#233554;
+  --slate:       #8892b0;
+  --slate-light: #a8b2d8;
+  --slate-bright:#ccd6f6;
+  --white:       #e6f1ff;
+  --green:       #64ffda;
+  --green-tint:  rgba(100,255,218,0.07);
+  --green-glow:  rgba(100,255,218,0.15);
+  --font-mono:   'Space Mono', monospace;
+  --font-sans:   'Inter', -apple-system, sans-serif;
+  --nav-height:  70px;
+  --border:      rgba(100,255,218,0.1);
+  --transition:  all 0.25s cubic-bezier(0.645,0.045,0.355,1);
+}
+
+html {
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: var(--navy-lighter) var(--navy);
+}
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--navy); }
+::-webkit-scrollbar-thumb { background: var(--navy-lighter); border-radius: 3px; }
+
+body {
+  font-family: var(--font-sans);
+  background: var(--navy);
+  color: var(--slate);
+  line-height: 1.6;
+  overflow-x: hidden;
+  counter-reset: section;
+}
+
+/* ====== SCROLL PROGRESS ====== */
+.scroll-progress {
+  position: fixed; top: 0; left: 0; height: 2px; z-index: 9999;
+  background: var(--green); width: 0%;
+  pointer-events: none;
+  box-shadow: 0 0 8px var(--green);
+  will-change: width;
+}
+
+/* ====== NAV ====== */
+nav {
+  position: fixed; top: 0; width: 100%; z-index: 100;
+  height: var(--nav-height);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 3rem;
+  background: rgba(10,25,47,0); backdrop-filter: blur(0);
+  transition: var(--transition);
+}
+nav.scrolled {
+  background: rgba(10,25,47,0.9);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 4px 30px rgba(2,12,27,0.7);
+}
+/* Hamburger menu button */
+.nav-burger {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 2px;
+  z-index: 102;
+}
+.nav-burger span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: var(--green);
+  border-radius: 2px;
+  transition: var(--transition);
+}
+.nav-burger.open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.nav-burger.open span:nth-child(2) {
+  opacity: 0;
+}
+.nav-burger.open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Mobile menu overlay */
+.nav-menu {
+  position: fixed;
+  top: 0; right: -100%;
+  width: min(75vw, 320px);
+  height: 100vh;
+  background: var(--navy-light);
+  z-index: 101;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: -10px 0 30px rgba(2,12,27,0.7);
+}
+.nav-menu.open {
+  right: 0;
+}
+.nav-menu-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(10,25,47,0.7);
+  backdrop-filter: blur(4px);
+  z-index: 100;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.nav-menu-backdrop.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+.nav-menu a {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  color: var(--slate-light);
+  text-decoration: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 4px;
+  transition: var(--transition);
+  text-align: center;
+}
+.nav-menu a .num {
+  display: block;
+  color: var(--green);
+  font-size: 0.72rem;
+  margin-bottom: 0.3rem;
+}
+.nav-menu a:hover {
+  color: var(--green);
+  background: var(--green-tint);
+}
+.nav-menu .nav-resume-mobile {
+  color: var(--green);
+  border: 1px solid var(--green);
+  padding: 0.7rem 2rem;
+  border-radius: 4px;
+  margin-top: 1rem;
+}
+.nav-resume {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--green);
+  border: 1px solid var(--green);
+  padding: 0.55rem 1rem;
+  border-radius: 4px;
+  text-decoration: none;
+  margin-left: 0.5rem;
+  transition: var(--transition);
+}
+.nav-resume:hover { background: var(--green-tint); }
+
+/* ====== SIDEBAR SOCIALS ====== */
+.sidebar {
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+}
+.sidebar::after {
+  content: '';
+  width: 1px;
+  height: 90px;
+  background: var(--slate);
+  display: block;
+}
+.sidebar-left { left: 2.5rem; }
+.sidebar-right { right: 2.5rem; }
+.sidebar-right a {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  color: var(--slate);
+  text-decoration: none;
+  writing-mode: vertical-rl;
+  transition: var(--transition);
+}
+.sidebar-right a:hover { color: var(--green); transform: translateY(-3px); }
+.sidebar-left a {
+  color: var(--slate);
+  transition: var(--transition);
+  display: flex;
+}
+.sidebar-left a:hover { color: var(--green); transform: translateY(-3px); }
+.sidebar-left svg { width: 18px; height: 18px; }
+
+/* ====== MAIN CONTENT ====== */
+main {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 6rem;
+}
+
+/* ====== SECTION COMMON ====== */
+section {
+  padding: 100px 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+section:not(#hero) {
+  min-height: unset;
+}
+
+.section-heading {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+  white-space: nowrap;
+}
+.section-heading h2 {
+  font-family: var(--font-sans);
+  font-size: 1.65rem;
+  font-weight: 600;
+  color: var(--slate-bright);
+  white-space: nowrap;
+}
+.section-heading .num {
+  font-family: var(--font-mono);
+  font-size: 1.1rem;
+  color: var(--green);
+  font-weight: 400;
+}
+.section-heading::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: var(--navy-lighter);
+  flex-shrink: 1;
+}
+
+/* ====== HERO ====== */
+#hero {
+  padding-top: var(--nav-height);
+  position: relative;
+}
+.hero-inner {
+  max-width: 800px;
+}
+.hero-greeting {
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  color: var(--green);
+  margin-bottom: 1.2rem;
+  opacity: 0;
+  animation: fadeUp 0.5s ease 0.1s both;
+}
+.hero-name {
+  font-size: clamp(2.6rem, 7vw, 5rem);
+  font-weight: 700;
+  color: var(--slate-bright);
+  line-height: 1.1;
+  letter-spacing: -1px;
+  margin-bottom: 0.4rem;
+  opacity: 0;
+  animation: fadeUp 0.5s ease 0.2s both;
+}
+.hero-tagline {
+  font-size: clamp(1.6rem, 4.5vw, 3rem);
+  font-weight: 600;
+  color: var(--slate);
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+  margin-bottom: 1.6rem;
+  opacity: 0;
+  animation: fadeUp 0.5s ease 0.3s both;
+}
+.hero-desc {
+  max-width: 520px;
+  font-size: 1rem;
+  color: var(--slate);
+  line-height: 1.75;
+  margin-bottom: 2.5rem;
+  opacity: 0;
+  animation: fadeUp 0.5s ease 0.4s both;
+}
+.hero-desc a {
+  color: var(--green);
+  text-decoration: none;
+}
+.hero-desc a:hover { text-decoration: underline; }
+.hero-cta {
+  display: flex; gap: 1rem; flex-wrap: wrap;
+  opacity: 0;
+  animation: fadeUp 0.5s ease 0.5s both;
+}
+.btn {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  padding: 0.85rem 1.6rem;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: var(--transition);
+  display: inline-flex; align-items: center; gap: 0.5rem;
+}
+.btn-primary {
+  color: var(--green);
+  border: 1px solid var(--green);
+  background: transparent;
+}
+.btn-primary:hover { background: var(--green-tint); transform: translate(-2px,-2px); box-shadow: 4px 4px 0 var(--green); }
+.btn-secondary {
+  color: var(--slate-bright);
+  border: 1px solid var(--navy-lighter);
+  background: transparent;
+}
+.btn-secondary:hover { border-color: var(--green); color: var(--green); transform: translate(-2px,-2px); box-shadow: 4px 4px 0 var(--navy-lighter); }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Scroll hint */
+.scroll-hint {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  opacity: 0;
+  animation: fadeUp 0.6s ease 1.2s both;
+  cursor: pointer;
+  text-decoration: none;
+}
+.scroll-hint-mouse {
+  width: 24px;
+  height: 40px;
+  border: 2px solid rgba(100,255,218,0.4);
+  border-radius: 12px;
+  position: relative;
+  transition: border-color 0.3s ease;
+}
+.scroll-hint:hover .scroll-hint-mouse { border-color: var(--green); }
+.scroll-hint-wheel {
+  width: 3px;
+  height: 8px;
+  background: var(--green);
+  border-radius: 2px;
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  transform: translateX(-50%) translateY(14px);
+  animation: scrollWheel 2s ease-in-out infinite;
+}
+@keyframes scrollWheel {
+  0% { opacity: 1; transform: translateX(-50%) translateY(14px); }
+  60% { opacity: 0; transform: translateX(-50%) translateY(0); }
+  61% { opacity: 0; transform: translateX(-50%) translateY(14px); }
+  100% { opacity: 1; transform: translateX(-50%) translateY(14px); }
+}
+
+/* ====== ABOUT ====== */
+.about-grid {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 3rem;
+  align-items: start;
+}
+.about-text p {
+  font-size: 0.95rem;
+  line-height: 1.8;
+  margin-bottom: 1rem;
+  color: var(--slate);
+}
+.about-text a { color: var(--green); text-decoration: none; }
+.about-text a:hover { text-decoration: underline; }
+.skills-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.4rem 1rem;
+  list-style: none;
+  margin-top: 1rem;
+}
+.skills-list li {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--slate);
+  display: flex; align-items: center; gap: 0.5rem;
+}
+.skills-list li::before {
+  content: '▸';
+  color: var(--green);
+  font-size: 0.7rem;
+  flex-shrink: 0;
+}
+.about-photo {
+  position: relative;
+}
+.about-photo-inner {
+  position: relative;
+  width: 100%;
+  max-width: 260px;
+  border-radius: 6px;
+  cursor: default;
+}
+.about-photo-inner::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 6px;
+  background: var(--green);
+  opacity: 0.05;
+  transition: var(--transition);
+}
+.about-photo-inner:hover::after { opacity: 0; }
+.about-photo-inner img {
+  width: 100%;
+  border-radius: 6px;
+  display: block;
+  filter: grayscale(10%);
+  transition: var(--transition);
+}
+.about-photo-inner:hover img { filter: none; }
+.about-photo-border {
+  position: absolute;
+  top: 14px; left: 14px;
+  width: 100%; max-width: 260px;
+  height: calc(100% - 0px);
+  border: 2px solid var(--green);
+  border-radius: 6px;
+  z-index: -1;
+  transition: var(--transition);
+}
+.about-photo-inner:hover ~ .about-photo-border {
+  top: 8px; left: 8px;
+}
+
+/* ====== EXPERIENCE ====== */
+.exp-layout {
+  display: flex;
+  gap: 0;
+}
+.exp-tabs {
+  flex-shrink: 0;
+  width: 140px;
+  display: flex;
+  flex-direction: column;
+  border-left: 2px solid var(--navy-lighter);
+}
+.exp-tab {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--slate);
+  padding: 0.85rem 1.2rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: var(--transition);
+  border-left: 2px solid transparent;
+  margin-left: -2px;
+  white-space: nowrap;
+}
+.exp-tab:hover {
+  color: var(--green);
+  background: var(--green-tint);
+}
+.exp-tab.active {
+  color: var(--green);
+  border-left-color: var(--green);
+  background: var(--green-tint);
+}
+.exp-panels {
+  flex: 1;
+  padding: 0 0 0 2rem;
+  min-height: 240px;
+}
+.exp-panel { display: none; }
+.exp-panel.active { display: block; }
+.exp-panel h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--slate-bright);
+  margin-bottom: 0.15rem;
+}
+.exp-panel h3 .company {
+  color: var(--green);
+}
+.exp-panel .exp-date {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--slate);
+  margin-bottom: 1.1rem;
+  display: flex; align-items: center; gap: 0.5rem;
+}
+.exp-panel .exp-date .logo-inline {
+  width: 20px; height: 20px; object-fit: contain;
+  border-radius: 3px; background: #fff;
+  padding: 2px;
+}
+.exp-panel ul { list-style: none; }
+.exp-panel li {
+  font-size: 0.9rem;
+  color: var(--slate);
+  line-height: 1.7;
+  padding: 0.25rem 0;
+  display: flex; gap: 0.8rem;
+}
+.exp-panel li::before {
+  content: '▸';
+  color: var(--green);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* ====== PROJECTS ====== */
+.featured-project {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 2rem;
+  align-items: start;
+  margin-bottom: 3rem;
+  position: relative;
+}
+.featured-project.flip {
+  direction: rtl;
+}
+.featured-project.flip > * {
+  direction: ltr;
+}
+.proj-img-wrap {
+  position: relative;
+  border-radius: 6px;
+  overflow: hidden;
+}
+/* overlay only on Plane Pointer placeholder */
+.proj-img-wrap.with-overlay::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--navy);
+  opacity: 0.25;
+  transition: var(--transition);
+  border-radius: 6px;
+}
+.proj-img-wrap.with-overlay:hover::after { opacity: 0.05; }
+/* Stacked image column */
+.proj-img-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.proj-img-top {
+  position: relative;
+  border-radius: 6px;
+  overflow: hidden;
+  cursor: pointer;
+}
+.proj-img-top img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  object-position: center 60%;
+  display: block;
+  border-radius: 6px;
+  transition: var(--transition);
+  filter: grayscale(10%);
+}
+.proj-img-top:hover img { filter: none; transform: scale(1.02); }
+.proj-img-top::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(10,25,47,0.4) 0%, transparent 60%);
+  border-radius: 6px;
+  pointer-events: none;
+}
+
+/* Tesla section wrapper with wireframe car */
+.tesla-section {
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 3rem;
+  transition: padding-top 0.8s ease-out, max-height 0.8s ease-out;
+}
+
+/* Wireframe car container */
+.wireframe-car {
+  position: relative;
+  width: 70%;
+  max-width: 500px;
+  margin: 1.5rem auto 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0;
+  transform: translateX(0);
+  transition: opacity 0.8s ease;
+}
+.tesla-section.vis .wireframe-car {
+  opacity: 0.22;
+}
+.wireframe-car.drive-off {
+  opacity: 0 !important;
+  transform: translateX(120vw);
+  transition: transform 1.8s cubic-bezier(0.4, 0, 0.9, 1), opacity 1.6s ease 0.3s;
+}
+.wireframe-car img {
+  width: 100%;
+  display: block;
+  filter: invert(1) sepia(1) saturate(2) hue-rotate(120deg);
+}
+
+/* Wireframe return */
+.wireframe-car.drive-back {
+  opacity: 0;
+  transform: translateX(-60vw);
+  transition: none;
+}
+.wireframe-car.drive-back.arriving {
+  opacity: 0.22;
+  transform: translateX(0);
+  transition: transform 0.8s cubic-bezier(0, 0, 0.2, 1), opacity 0.5s ease;
+}
+.tesla-section .featured-project {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 0;
+}
+.proj-tech-wide {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  list-style: none;
+  padding: 1rem 0;
+  margin: 0;
+  border-top: 1px solid var(--navy-lighter);
+  border-bottom: 1px solid var(--navy-lighter);
+}
+
+/* ====== CHARGE TO LAUNCH ====== */
+.charge-runway {
+  position: relative;
+  overflow: clip;
+}
+.charge-runway .tesla-section {
+  position: sticky;
+  top: 15vh;
+  overflow: visible;
+  z-index: 2;
+}
+.charge-runway.charge-complete {
+  overflow: visible;
+}
+.charge-runway.charge-complete .tesla-section {
+  position: relative;
+  top: 0;
+}
+
+/* During charging, maintain the car's natural placement */
+.tesla-section.charging {
+  padding-top: 2rem;
+  max-height: 100vh;
+  overflow: clip;
+}
+
+/* During charging, brighten the car */
+.tesla-section.charging .wireframe-car {
+  z-index: 2;
+}
+
+/* During charging, hide the project content completely */
+.tesla-section.charging .featured-project,
+.tesla-section.charging .proj-tech-wide {
+  opacity: 0;
+  filter: blur(4px);
+  transition: opacity 0.3s ease, filter 0.3s ease;
+}
+/* Restore on charge complete */
+.tesla-section .featured-project,
+.tesla-section .proj-tech-wide {
+  transition: opacity 0.8s ease, filter 0.8s ease;
+}
+
+/* Battery gauge: in normal flow below the car, hidden until charge */
+.charge-gauge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  position: relative;
+  z-index: 2;
+  padding: 1rem 0 1.5rem;
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: opacity 0.4s ease, max-height 0.4s ease;
+}
+.tesla-section.charging .charge-gauge {
+  opacity: 1;
+  max-height: 300px;
+}
+
+/* Battery pack container */
+.battery-pack {
+  display: flex;
+  align-items: center;
+  width: clamp(240px, 55vw, 400px);
+  height: 44px;
+}
+.battery-terminal {
+  width: 6px;
+  height: 28px;
+  background: var(--navy-lighter);
+  border: 1px solid rgba(100, 255, 218, 0.2);
+}
+.battery-terminal-left {
+  border-radius: 3px 0 0 3px;
+  border-right: none;
+}
+.battery-terminal-right {
+  border-radius: 0 3px 3px 0;
+  border-left: none;
+  position: relative;
+}
+.battery-terminal-right::after {
+  content: '';
+  position: absolute;
+  right: -5px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 5px;
+  height: 14px;
+  background: var(--navy-lighter);
+  border: 1px solid rgba(100, 255, 218, 0.2);
+  border-left: none;
+  border-radius: 0 2px 2px 0;
+}
+.battery-cells {
+  flex: 1;
+  display: flex;
+  gap: 2px;
+  padding: 5px;
+  background: var(--navy-light);
+  border: 1px solid rgba(100, 255, 218, 0.15);
+  height: 100%;
+  align-items: stretch;
+}
+.battery-cell {
+  flex: 1;
+  background: var(--navy-lighter);
+  border-radius: 1px;
+  transition: background 0.12s ease, box-shadow 0.12s ease;
+}
+.battery-cell.charged {
+  background: var(--green);
+  box-shadow: 0 0 6px rgba(100, 255, 218, 0.35);
+}
+.battery-cell.charging {
+  background: linear-gradient(to top, var(--green) var(--fill, 0%), var(--navy-lighter) var(--fill, 0%));
+}
+
+/* Percentage display */
+.charge-pct {
+  font-family: var(--font-mono);
+  font-size: clamp(1.8rem, 5vw, 3rem);
+  font-weight: 700;
+  color: var(--green);
+  line-height: 1;
+  text-shadow: 0 0 20px rgba(100, 255, 218, 0.25);
+}
+.charge-pct-sign {
+  font-size: 0.6em;
+  opacity: 0.7;
+}
+
+/* Label */
+.charge-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--slate);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* Scroll hint arrow */
+.charge-hint-arrow {
+  color: var(--green);
+  opacity: 0.5;
+  animation: chargeArrowBounce 1.5s ease-in-out infinite;
+}
+@keyframes chargeArrowBounce {
+  0%, 100% { transform: translateY(0); opacity: 0.5; }
+  50% { transform: translateY(8px); opacity: 0.9; }
+}
+
+/* "CHARGED" burst -- overlays the whole tesla-section */
+.charge-burst {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+  pointer-events: none;
+}
+.charge-burst-text {
+  font-family: var(--font-mono);
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  font-weight: 700;
+  color: var(--green);
+  letter-spacing: 6px;
+  text-shadow: 0 0 40px var(--green), 0 0 80px rgba(100, 255, 218, 0.4);
+  opacity: 0;
+  transform: scale(0.8);
+}
+.charge-burst-text.flash {
+  animation: burstFlash 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+@keyframes burstFlash {
+  0%   { opacity: 0; transform: scale(0.8); }
+  30%  { opacity: 1; transform: scale(1.1); }
+  70%  { opacity: 1; transform: scale(1.05); }
+  100% { opacity: 0; transform: scale(1.2); }
+}
+
+.proj-img-wrap img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  display: block;
+  border-radius: 6px;
+  transition: var(--transition);
+}
+.proj-content {
+  position: relative;
+  z-index: 2;
+}
+.featured-project:nth-child(even) .proj-content {
+  padding: 0;
+}
+.proj-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--green);
+  margin-bottom: 0.6rem;
+}
+.proj-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--slate-bright);
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+.proj-desc-card {
+  background: var(--navy-light);
+  border-radius: 4px;
+  padding: 1.1rem 1.3rem;
+  font-size: 0.88rem;
+  line-height: 1.75;
+  color: var(--slate);
+  margin-bottom: 1rem;
+  box-shadow: 0 10px 30px rgba(2,12,27,0.7);
+}
+.proj-tech {
+  display: flex; flex-wrap: wrap; gap: 0.6rem;
+  list-style: none;
+  margin-bottom: 0.75rem;
+}
+.proj-tech li {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--slate);
+}
+.proj-video-link {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--green);
+  text-decoration: none;
+  margin-top: 0.25rem;
+  transition: var(--transition);
+  opacity: 0.8;
+}
+.proj-video-link:hover { opacity: 1; gap: 0.7rem; }
+
+/* Other small projects */
+.other-projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 2.5rem;
+}
+.small-proj {
+  background: var(--navy-light);
+  border-radius: 6px;
+  padding: 1.8rem 1.5rem;
+  display: flex; flex-direction: column;
+  transition: var(--transition);
+  cursor: default;
+  border: 1px solid transparent;
+}
+.small-proj:hover {
+  transform: translateY(-5px);
+  border-color: var(--border);
+  box-shadow: 0 10px 30px rgba(2,12,27,0.5);
+}
+.small-proj-top {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  margin-bottom: 1.2rem;
+}
+.folder-icon svg { width: 36px; height: 36px; color: var(--green); }
+.small-proj-links { display: flex; gap: 0.75rem; }
+.small-proj-links a { color: var(--slate); transition: var(--transition); display: flex; }
+.small-proj-links a:hover { color: var(--green); }
+.small-proj-links svg { width: 18px; height: 18px; }
+.small-proj h4 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--slate-bright);
+  margin-bottom: 0.5rem;
+}
+.small-proj p {
+  font-size: 0.82rem;
+  color: var(--slate);
+  line-height: 1.65;
+  flex: 1;
+  margin-bottom: 1rem;
+}
+.small-proj-tech {
+  display: flex; flex-wrap: wrap; gap: 0.5rem;
+  list-style: none;
+}
+.small-proj-tech li {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--slate);
+}
+
+/* ====== EDUCATION ====== */
+.edu-items { display: flex; flex-direction: column; gap: 1.5rem; }
+.edu-item {
+  background: var(--navy-light);
+  border-radius: 6px;
+  padding: 1.5rem 1.8rem;
+  border: 1px solid transparent;
+  transition: var(--transition);
+}
+.edu-item:hover {
+  border-color: var(--border);
+  transform: translateX(4px);
+}
+.edu-item h3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--slate-bright);
+  margin-bottom: 0.25rem;
+}
+.edu-item .edu-sub {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--green);
+  margin-bottom: 0.6rem;
+}
+.edu-item p {
+  font-size: 0.87rem;
+  color: var(--slate);
+  line-height: 1.65;
+}
+.edu-item .cw {
+  margin-top: 0.5rem;
+  font-size: 0.82rem;
+  color: var(--slate);
+  border-top: 1px solid var(--navy-lighter);
+  padding-top: 0.5rem;
+}
+
+/* ====== AVIATION PHOTOS ====== */
+.photo-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 1.5rem;
+}
+.photo-item {
+  position: relative;
+  border-radius: 6px;
+  overflow: hidden;
+  cursor: pointer;
+}
+.photo-item img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+  transition: var(--transition);
+  filter: grayscale(15%);
+}
+.photo-item:hover img { filter: none; transform: scale(1.03); }
+.photo-item .cap {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 0.7rem 0.9rem;
+  background: linear-gradient(to top, rgba(10,25,47,0.9) 0%, transparent 100%);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--slate-light);
+  opacity: 0;
+  transition: var(--transition);
+}
+.photo-item:hover .cap { opacity: 1; }
+
+/* ====== CONTACT ====== */
+#contact {
+  text-align: center;
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 80px 0 160px;
+}
+.contact-overline {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--green);
+  margin-bottom: 1.2rem;
+}
+.contact-overline .num { margin-right: 0.3rem; }
+#contact h2 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  color: var(--slate-bright);
+  margin-bottom: 1.2rem;
+  line-height: 1.1;
+}
+#contact p {
+  font-size: 0.95rem;
+  color: var(--slate);
+  line-height: 1.8;
+  margin-bottom: 2.5rem;
+}
+.contact-links {
+  display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+/* ====== FOOTER ====== */
+footer {
+  text-align: center;
+  padding: 1.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--slate);
+  line-height: 1.8;
+}
+footer a { color: var(--green); text-decoration: none; }
+footer a:hover { text-decoration: underline; }
+
+/* ====== LIGHTBOX ====== */
+.lb {
+  display: none; position: fixed; inset: 0;
+  background: rgba(2,12,27,0.95); backdrop-filter: blur(12px);
+  z-index: 9999; align-items: center; justify-content: center;
+  cursor: zoom-out;
+}
+.lb.on { display: flex; }
+.lb img {
+  max-width: 90vw; max-height: 85vh;
+  border-radius: 4px;
+  box-shadow: 0 20px 80px rgba(0,0,0,0.8);
+  animation: lbIn 0.3s ease;
+}
+@keyframes lbIn {
+  from { opacity: 0; transform: scale(0.92); }
+  to   { opacity: 1; transform: scale(1); }
+}
+.lb-cap {
+  position: fixed; bottom: 1.5rem; left: 50%; transform: translateX(-50%);
+  font-family: var(--font-mono); font-size: 0.75rem;
+  color: var(--slate); text-align: center; pointer-events: none;
+}
+.lb-x {
+  position: fixed; top: 1.2rem; right: 1.5rem;
+  font-family: var(--font-mono); font-size: 1rem;
+  color: var(--slate-light); background: none; border: 1px solid var(--navy-lighter);
+  width: 38px; height: 38px; border-radius: 4px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: var(--transition);
+}
+.lb-x:hover { color: var(--green); border-color: var(--green); }
+.lb-nav {
+  position: fixed; top: 50%; transform: translateY(-50%);
+  font-family: var(--font-mono); font-size: 1.4rem;
+  color: var(--slate); background: none;
+  border: 1px solid var(--navy-lighter); width: 42px; height: 42px;
+  border-radius: 4px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: var(--transition);
+}
+.lb-nav:hover { color: var(--green); border-color: var(--green); }
+.lb-prev { left: 1.5rem; }
+.lb-next { right: 1.5rem; }
+
+/* ====== SCROLL REVEAL ====== */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px) translateZ(0);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  will-change: opacity, transform;
+}
+.reveal.vis { opacity: 1; transform: translateY(0) translateZ(0); will-change: auto; }
+.reveal.d1 { transition-delay: 0.1s; }
+.reveal.d2 { transition-delay: 0.2s; }
+.reveal.d3 { transition-delay: 0.3s; }
+
+/* ====== BACK TO TOP ====== */
+.btt {
+  position: fixed; bottom: 2rem; right: 4.5rem; z-index: 99;
+  font-family: var(--font-mono); font-size: 0.7rem;
+  color: var(--green); border: 1px solid var(--green);
+  background: transparent;
+  width: 40px; height: 40px; border-radius: 4px;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none;
+  transition: var(--transition);
+}
+.btt.visible { opacity: 1; pointer-events: all; }
+.btt:hover { background: var(--green-tint); transform: translateY(-3px); }
+.btt svg { width: 18px; height: 18px; }
+
+/* ====== VIDEO CARDS ====== */
+.video-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 1.2rem;
+}
+.yt-card {
+  position: relative; border-radius: 6px; overflow: hidden;
+  background: #000; border: 1px solid var(--navy-lighter);
+  cursor: pointer; transition: var(--transition);
+}
+.yt-card:hover { border-color: var(--green); }
+.yt-thumb { position: relative; padding-top: 56.25%; }
+.yt-thumb img {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  object-fit: cover; transition: var(--transition); filter: brightness(0.8);
+}
+.yt-card:hover .yt-thumb img { filter: brightness(0.6); }
+.yt-play {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+}
+.yt-play-btn {
+  width: 52px; height: 52px; border-radius: 50%;
+  background: rgba(255,0,0,0.9);
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+  transition: var(--transition);
+}
+.yt-card:hover .yt-play-btn { transform: scale(1.1); }
+.yt-play-btn svg { width: 22px; height: 22px; color: white; margin-left: 3px; }
+.yt-label {
+  padding: 0.6rem 0.9rem;
+  background: var(--navy-light);
+  display: flex; align-items: center; gap: 0.5rem;
+  font-family: var(--font-mono); font-size: 0.72rem; color: var(--slate);
+}
+.yt-dot { width: 6px; height: 6px; border-radius: 50%; background: #ef4444; flex-shrink: 0; }
+.yt-card.playing .yt-dot { background: #22c55e; }
+.yt-card iframe {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;
+}
+
+/* ====== STATS ROW ====== */
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  padding: 1rem 0;
+  border-top: 1px solid var(--navy-lighter);
+  border-bottom: 1px solid var(--navy-lighter);
+  margin-bottom: 1.2rem;
+}
+.stat {
+  text-align: center;
+}
+.stat-num {
+  font-family: var(--font-mono);
+  font-size: clamp(1rem, 2.5vw, 1.4rem); font-weight: 700;
+  color: var(--green);
+}
+.stat-lbl {
+  font-size: 0.7rem; color: var(--slate);
+  text-transform: uppercase; letter-spacing: 1px;
+  margin-top: 0.2rem;
+}
+
+/* ====== SLIDESHOW ====== */
+.slideshow {
+  position: relative;
+  border-radius: 6px;
+  overflow: hidden;
+  margin-top: 1rem;
+}
+.slideshow-track {
+  display: flex;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+.slideshow-slide {
+  min-width: 100%;
+  position: relative;
+  cursor: pointer;
+}
+.slideshow-slide img {
+  width: 100%;
+  height: 420px;
+  object-fit: contain;
+  display: block;
+  filter: grayscale(15%);
+  transition: filter 0.3s ease;
+  background: var(--navy-light);
+}
+.slideshow-slide:hover img { filter: none; }
+.slideshow-slide .slide-cap {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 1rem 1.2rem;
+  background: linear-gradient(to top, rgba(2,12,27,0.9) 0%, transparent 100%);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--slate-light);
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+}
+.slideshow-slide:hover .slide-cap { transform: translateY(0); }
+.slideshow-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 36px; height: 36px;
+  border-radius: 4px;
+  border: 1px solid rgba(100,255,218,0.2);
+  background: rgba(10,25,47,0.7);
+  backdrop-filter: blur(8px);
+  color: var(--slate-light);
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: var(--transition);
+  z-index: 3;
+}
+.slideshow-btn:hover {
+  border-color: var(--green);
+  color: var(--green);
+  background: rgba(10,25,47,0.9);
+}
+.slideshow-btn.prev { left: 0.75rem; }
+.slideshow-btn.next { right: 0.75rem; }
+.slideshow-dots {
+  display: flex; justify-content: center; gap: 0.5rem;
+  padding: 0.75rem 0 0;
+}
+.slideshow-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--navy-lighter);
+  border: none; cursor: pointer;
+  transition: var(--transition);
+  padding: 0;
+}
+.slideshow-dot.active {
+  background: var(--green);
+  box-shadow: 0 0 6px rgba(100,255,218,0.4);
+}
+.slideshow-dot:hover { background: var(--slate); }
+.slideshow-hint {
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  color: var(--slate);
+  opacity: 0.6;
+  padding: 0.5rem 0 0.25rem;
+}
+
+/* Legacy gallery for photo-grid items */
+.gal-item {
+  position: relative; overflow: hidden;
+  border-radius: 4px; cursor: pointer;
+}
+.gal-item img {
+  width: 100%; height: 230px; object-fit: cover;
+  transition: var(--transition);
+  filter: grayscale(15%);
+}
+.gal-item:hover img { transform: scale(1.04); filter: none; }
+.gal-item .cap {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(2,12,27,0.85) 0%, transparent 55%);
+  opacity: 0; transition: var(--transition);
+  display: flex; align-items: flex-end; padding: 0.8rem;
+}
+.gal-item:hover .cap { opacity: 1; }
+.gal-item .cap span {
+  font-family: var(--font-mono); font-size: 0.72rem; color: var(--slate-light);
+}
+
+/* Creative small video */
+.creative-yt {
+  position: relative; border-radius: 6px; overflow: hidden;
+  cursor: pointer; background: #000;
+  border: 1px solid var(--navy-lighter);
+  margin-bottom: 0.75rem;
+}
+.creative-yt .yt-thumb { position: relative; padding-top: 56.25%; }
+.creative-yt .yt-thumb img {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  object-fit: cover; transition: var(--transition); filter: brightness(0.8);
+}
+.creative-yt:hover .yt-thumb img { filter: brightness(0.5); }
+.creative-yt .yt-play { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+.creative-yt .yt-play-btn {
+  width: 44px; height: 44px; border-radius: 50%;
+  background: rgba(255,0,0,0.9);
+  display: flex; align-items: center; justify-content: center;
+  transition: var(--transition);
+}
+.creative-yt:hover .yt-play-btn { transform: scale(1.1); }
+.creative-yt iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+
+/* Pill tags */
+.pill {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--green);
+  background: var(--green-tint);
+  border: 1px solid rgba(100,255,218,0.15);
+  padding: 0.25rem 0.65rem;
+  border-radius: 3px;
+  transition: var(--transition);
+}
+.pill:hover { background: var(--green-glow); }
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 900px) {
+  main { padding: 0 3rem; }
+  .sidebar { display: none; }
+  .about-grid { grid-template-columns: 1fr; }
+  .about-photo-inner { max-width: 200px; }
+}
+@media (max-width: 700px) {
+  .featured-project { grid-template-columns: 1fr; gap: 1.5rem; }
+  .featured-project.flip { direction: ltr; }
+  .proj-content { padding: 1.5rem 0 0 0 !important; }
+  .other-projects-grid { grid-template-columns: 1fr 1fr; }
+  .video-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  nav { padding: 0 1.5rem; }
+  main { padding: 0 1.5rem; }
+  section { padding: 70px 0; }
+  .other-projects-grid { grid-template-columns: 1fr; }
+  .photo-grid, .gallery-grid.g2 { grid-template-columns: 1fr; }
+  .stats-row { flex-direction: column; gap: 1rem; }
+  .proj-tech-wide { flex-wrap: wrap; justify-content: center; }
+  .exp-layout { flex-direction: column; }
+  .exp-tabs { flex-direction: row; width: 100%; border-left: none; border-bottom: 2px solid var(--navy-lighter); overflow-x: auto; }
+  .exp-tab { border-left: none; border-bottom: 2px solid transparent; margin-left: 0; margin-bottom: -2px; }
+  .exp-tab.active { border-left: none; border-bottom-color: var(--green); }
+  .exp-panels { padding: 1.5rem 0 0; }
+  .battery-pack { height: 36px; }
+  .battery-cells { gap: 2px; padding: 4px; }
+  .charge-pct { font-size: clamp(1.4rem, 8vw, 2.2rem); }
+}
+
+/* ====== REDUCED MOTION ====== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+  .reveal { opacity: 1; transform: none; }
+  .hero-greeting, .hero-name, .hero-tagline, .hero-desc, .hero-cta, .scroll-hint { opacity: 1; }
+  .charge-runway { height: auto !important; }
+  .charge-runway .tesla-section { position: relative !important; }
+  .charge-overlay { display: none !important; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- SCROLL PROGRESS -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- LIGHTBOX -->
+<div class="lb" id="lb">
+  <img id="lbImg" src="" alt="">
+  <p class="lb-cap" id="lbCap"></p>
+  <button class="lb-x" onclick="closeLb()">&times;</button>
+  <button class="lb-nav lb-prev" onclick="navLb(-1)">&#8249;</button>
+  <button class="lb-nav lb-next" onclick="navLb(1)">&#8250;</button>
+</div>
+
+<!-- NAV -->
+<nav id="nav">
+  <button class="nav-burger" id="navBurger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+  <a href="Derek_Nagel_Resume.pdf" target="_blank" class="nav-resume">Resume</a>
+</nav>
+<div class="nav-menu-backdrop" id="navBackdrop"></div>
+<div class="nav-menu" id="navMenu">
+  <a href="#about"><span class="num">01.</span>About</a>
+  <a href="#experience"><span class="num">02.</span>Experience</a>
+  <a href="#projects"><span class="num">03.</span>Projects</a>
+  <a href="#education"><span class="num">04.</span>Education</a>
+  <a href="#contact"><span class="num">05.</span>Contact</a>
+  <a href="Derek_Nagel_Resume.pdf" target="_blank" class="nav-resume-mobile">Resume</a>
+</div>
+
+<!-- LEFT SIDEBAR -->
+<div class="sidebar sidebar-left">
+  <a href="https://www.linkedin.com/in/derek-nagel-002b86334" target="_blank" aria-label="LinkedIn">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+  </a>
+  <a href="mailto:dnagel@gmu.edu" aria-label="Email">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+  </a>
+  <a href="tel:8476244222" aria-label="Phone">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.5 19.79 19.79 0 0 1 1.61 4.9 2 2 0 0 1 3.59 2.72h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.06 6.06l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+  </a>
+</div>
+
+<!-- RIGHT SIDEBAR -->
+<div class="sidebar sidebar-right">
+  <a href="mailto:dnagel@gmu.edu">dnagel@gmu.edu</a>
+</div>
+
+<!-- BACK TO TOP -->
+<button class="btt" id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+
+<!-- MAIN -->
+<main>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-inner">
+      <p class="hero-greeting">Hi, my name is</p>
+      <h1 class="hero-name">Derek Nagel.</h1>
+      <h2 class="hero-tagline">See what I've been working on.</h2>
+      <p class="hero-desc">
+        I&rsquo;m a Mechanical Engineering student at <a href="https://www.gmu.edu" target="_blank">George Mason University</a> concentrating in Aerospace. Scroll through to see what I&rsquo;ve been building, where I&rsquo;ve worked, and what&rsquo;s next.
+      </p>
+      <div class="hero-cta">
+        <a href="#projects" class="btn btn-primary">See my work</a>
+        <a href="Derek_Nagel_Resume.pdf" target="_blank" class="btn btn-secondary">Resume &rarr;</a>
+      </div>
+    </div>
+    <a href="#about" class="scroll-hint" aria-label="Scroll down">
+      <div class="scroll-hint-mouse">
+        <div class="scroll-hint-wheel"></div>
+      </div>
+    </a>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-heading reveal">
+      <span class="num">01.</span>
+      <h2>About Me</h2>
+    </div>
+    <div class="about-grid reveal">
+      <div class="about-text">
+        <p>
+          I&rsquo;m a Mechanical Engineering student at George Mason University with a concentration in Aerospace and a minor in Aviation Flight Training and Management. I&rsquo;m driven by hands-on problem solving&mdash;whether that&rsquo;s rebuilding a 260,000-mile Tesla battery pack, designing an ADS-B aircraft tracking system, or building custom electronics from scratch.
+        </p>
+        <p>
+          During summer 2025 I interned at <a href="https://www.tesla.com" target="_blank">Tesla</a>, supporting EV delivery operations and shadowing manufacturing at Tesla&rsquo;s Elgin facility. I hold a Private Pilot certificate (single and multi-engine) and compete on George Mason&rsquo;s Division I Men&rsquo;s Volleyball team. I&rsquo;m actively seeking a summer 2026 Mechanical Engineering internship.
+        </p>
+        <p>Here are a few technologies and tools I work with:</p>
+        <ul class="skills-list">
+          <li>SolidWorks</li>
+          <li>MATLAB</li>
+          <li>Autodesk Inventor</li>
+          <li>Embedded Systems</li>
+          <li>Mechanical Design</li>
+          <li>3D Printing</li>
+          <li>HV Electrical Systems</li>
+          <li>Microsoft Office</li>
+        </ul>
+      </div>
+      <div class="about-photo">
+        <div class="about-photo-inner">
+          <img src="images/headshot.jpg" alt="Derek Nagel" loading="eager">
+        </div>
+        <div class="about-photo-border"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="section-heading reveal">
+      <span class="num">02.</span>
+      <h2>Where I&rsquo;ve Worked</h2>
+    </div>
+    <div class="exp-layout reveal">
+      <div class="exp-tabs">
+        <button class="exp-tab active" data-panel="tesla">Tesla</button>
+        <button class="exp-tab" data-panel="pipeline">Pipeline VB</button>
+        <button class="exp-tab" data-panel="saltcreek">Salt Creek</button>
+      </div>
+      <div class="exp-panels">
+
+        <div class="exp-panel active" id="panel-tesla">
+          <h3>Summer Intern &nbsp;<span class="company">@ Tesla</span></h3>
+          <p class="exp-date">
+            <img src="Tesla_logo.png" alt="Tesla" class="logo-inline">
+            May 2025 &ndash; Aug 2025
+          </p>
+          <ul>
+            <li>Supported end-to-end EV delivery operations including vehicle staging, quality checks, and final inspection</li>
+            <li>Communicated technical EV systems (battery, drivetrain, charging, software) to customers, translating complex engineering concepts into clear explanations</li>
+            <li>Shadowed operations at Tesla&rsquo;s Elgin manufacturing facility, observing battery production, electric motor assembly, and manufacturing workflows</li>
+          </ul>
+        </div>
+
+        <div class="exp-panel" id="panel-pipeline">
+          <h3>Volleyball Coach &nbsp;<span class="company">@ Pipeline Volleyball</span></h3>
+          <p class="exp-date">
+            <img src="pipeline logo.png" alt="Pipeline Volleyball" class="logo-inline" style="background:transparent;padding:0">
+            May 2024 &ndash; Aug 2024 &bull; Schaumburg, IL
+          </p>
+          <ul>
+            <li>Coached youth volleyball athletes on technique, positioning, and game strategy</li>
+            <li>Planned and led practices, drills, and scrimmages for players at varying skill levels</li>
+            <li>Developed communication and leadership skills through daily mentorship and team management</li>
+          </ul>
+        </div>
+
+        <div class="exp-panel" id="panel-saltcreek">
+          <h3>Event Coordinator &nbsp;<span class="company">@ Salt Creek Park District</span></h3>
+          <p class="exp-date">
+            <img src="Salt creek logo.png" alt="Salt Creek Park District" class="logo-inline">
+            May 2023 &ndash; Aug 2023
+          </p>
+          <ul>
+            <li>Coordinated and executed community events, managing logistics, scheduling, and on-site operations</li>
+            <li>Collaborated with staff and vendors to ensure smooth event setup, execution, and teardown</li>
+            <li>Communicated with community members and stakeholders to promote programming and gather feedback</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <!-- FEATURED: Tesla -->
+    <div class="charge-runway">
+    <div class="tesla-section reveal" style="padding-top:2rem;">
+      <div class="section-heading reveal" style="margin-top:-2rem;">
+        <span class="num">03.</span>
+        <h2>Things I&rsquo;ve Built</h2>
+      </div>
+      <div class="wireframe-car" aria-hidden="true">
+        <img src="images/tesla-wireframe.png" alt="" loading="lazy">
+      </div>
+      <!-- Charge gauge: sits in normal flow right below the wireframe car -->
+      <div class="charge-gauge" aria-hidden="true">
+        <div class="battery-pack">
+          <div class="battery-terminal battery-terminal-left"></div>
+          <div class="battery-cells">
+            <div class="battery-cell"></div><div class="battery-cell"></div><div class="battery-cell"></div><div class="battery-cell"></div>
+            <div class="battery-cell"></div><div class="battery-cell"></div><div class="battery-cell"></div><div class="battery-cell"></div>
+            <div class="battery-cell"></div><div class="battery-cell"></div><div class="battery-cell"></div><div class="battery-cell"></div>
+            <div class="battery-cell"></div><div class="battery-cell"></div><div class="battery-cell"></div><div class="battery-cell"></div>
+          </div>
+          <div class="battery-terminal battery-terminal-right"></div>
+        </div>
+        <div class="charge-pct"><span class="charge-pct-num">0</span><span class="charge-pct-sign">%</span></div>
+        <div class="charge-label">Scroll to charge</div>
+        <div class="charge-hint-arrow">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+        </div>
+        <div class="charge-burst"><div class="charge-burst-text">CHARGED</div></div>
+      </div>
+      <div class="featured-project">
+        <div class="proj-content">
+          <p class="proj-label">Featured Project</p>
+          <h3 class="proj-title">Tesla Model S P85 &mdash; Battery &amp; Drivetrain Rebuild</h3>
+          <div class="proj-desc-card">
+            Complete disassembly, refurbishment, and reassembly of the 85&nbsp;kWh high-voltage battery pack and drivetrain on a 2014 Model S with 260,000 miles. Individual module-level teardown, corrosion treatment, and rebuild with full HV safety protocols throughout. The car is back on the road.
+          </div>
+          <div class="stats-row">
+            <div class="stat"><div class="stat-num" data-target="260000">0</div><div class="stat-lbl">Miles</div></div>
+            <div class="stat"><div class="stat-num" data-target="16">0</div><div class="stat-lbl">Modules</div></div>
+            <div class="stat"><div class="stat-num" data-target="85" data-suffix=" kWh">0</div><div class="stat-lbl">Capacity</div></div>
+            <div class="stat"><div class="stat-num" data-target="400" data-suffix="V+">0</div><div class="stat-lbl">HV System</div></div>
+          </div>
+          <a href="#teslaVideos" class="proj-video-link" onclick="event.preventDefault(); document.getElementById('teslaVideos').scrollIntoView({behavior:'smooth'})">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M8 5v14l11-7z"/></svg>
+            Watch build videos
+          </a>
+        </div>
+        <div class="proj-img-stack">
+          <div class="proj-img-top" onclick="openLbStack(this)">
+            <img src="images/tesla-car.jpg" alt="2014 Tesla Model S P85" loading="lazy">
+          </div>
+        </div>
+      </div>
+      <ul class="proj-tech proj-tech-wide">
+        <li>HV Electrical</li><li>&nbsp;·&nbsp;</li>
+        <li>Mechanical Disassembly</li><li>&nbsp;·&nbsp;</li>
+        <li>Corrosion Treatment</li><li>&nbsp;·&nbsp;</li>
+        <li>Systems Integration</li>
+      </ul>
+    </div>
+    </div>
+
+    <!-- Gallery slideshow + videos for Tesla -->
+    <div class="reveal" style="margin-top:-1rem;margin-bottom:4rem">
+      <div class="slideshow" id="teslaSlideshow">
+        <div class="slideshow-track">
+          <div class="slideshow-slide" onclick="openLbFromSlide(this)">
+            <img src="images/tesla-1.jpg" alt="Battery pack open — 85 kWh, 16 modules" loading="lazy">
+            <div class="slide-cap">Battery pack open — 85 kWh, 16 modules</div>
+          </div>
+          <div class="slideshow-slide" onclick="openLbFromSlide(this)">
+            <img src="images/tesla-4.jpg" alt="Corrosion treatment — all 16 modules staged" loading="lazy">
+            <div class="slide-cap">Corrosion treatment — all 16 modules staged</div>
+          </div>
+          <div class="slideshow-slide" onclick="openLbFromSlide(this)">
+            <img src="images/tesla-3.jpg" alt="Balancing cells and module testing" loading="lazy">
+            <div class="slide-cap">Balancing cells and module testing</div>
+          </div>
+          <div class="slideshow-slide" onclick="openLbFromSlide(this)">
+            <img src="images/tesla-2.jpg" alt="Drivetrain assembly" loading="lazy">
+            <div class="slide-cap">Drivetrain assembly</div>
+          </div>
+          <div class="slideshow-slide" onclick="openLbFromSlide(this)">
+            <img src="images/tesla-5.jpg" alt="Final product — back on the road" loading="lazy">
+            <div class="slide-cap">Final product — back on the road</div>
+          </div>
+        </div>
+        <button class="slideshow-btn prev" onclick="event.stopPropagation();slideshowNav('teslaSlideshow',-1)">&#8249;</button>
+        <button class="slideshow-btn next" onclick="event.stopPropagation();slideshowNav('teslaSlideshow',1)">&#8250;</button>
+        <div class="slideshow-dots" id="teslaSlideshow-dots"></div>
+        <p class="slideshow-hint">click any photo to expand</p>
+      </div>
+      <div class="video-grid" id="teslaVideos" style="margin-top:12px">
+        <div class="yt-card" onclick="playYT(this,'VotSTxkuPA8')">
+          <div class="yt-thumb"><img src="https://img.youtube.com/vi/VotSTxkuPA8/hqdefault.jpg" alt="Drivetrain timelapse" loading="lazy"><div class="yt-play"><div class="yt-play-btn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div></div></div>
+          <div class="yt-label"><div class="yt-dot"></div><span>Drivetrain Install Timelapse</span></div>
+        </div>
+        <div class="yt-card" onclick="playYT(this,'UaJRdCN-7l0')">
+          <div class="yt-thumb"><img src="https://img.youtube.com/vi/UaJRdCN-7l0/hqdefault.jpg" alt="First drive" loading="lazy"><div class="yt-play"><div class="yt-play-btn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div></div></div>
+          <div class="yt-label"><div class="yt-dot"></div><span>First Drive After Rebuild</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FEATURED: Plane Pointer -->
+    <div class="featured-project flip reveal">
+      <div class="proj-img-wrap">
+        <img src="images/plane-pointer.jpg" alt="Plane Pointer — automated aircraft tracking device" loading="lazy">
+      </div>
+      <div class="proj-content">
+        <p class="proj-label">In Progress</p>
+        <h3 class="proj-title">Plane Pointer &mdash; Automated Aircraft Tracking System</h3>
+        <div class="proj-desc-card">
+          A 2-axis automated pointing system that physically tracks live aircraft in real time using ADS-B transponder data. Servo-driven azimuth &amp; elevation axes aim at the target while a companion display shows flight ID, GPS position, altitude, speed, and heading.
+        </div>
+        <ul class="proj-tech">
+          <li>Embedded Systems</li><li>&nbsp;·&nbsp;</li>
+          <li>Servo Control</li><li>&nbsp;·&nbsp;</li>
+          <li>ADS-B / RF</li><li>&nbsp;·&nbsp;</li>
+          <li>Mechanical Design</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- OTHER / CREATIVE PROJECTS -->
+    <div class="reveal" style="margin-top:1rem">
+      <p style="font-family:var(--font-mono);font-size:0.82rem;color:var(--slate-light);text-align:center;margin-bottom:1.5rem">
+        <span style="color:var(--green)">03.1</span> &nbsp; Creative &amp; Robotics
+      </p>
+      <div class="other-projects-grid">
+
+        <!-- LED Display -->
+        <div class="small-proj">
+          <div class="small-proj-top">
+            <div class="folder-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+            </div>
+          </div>
+          <div class="creative-yt" onclick="playYT(this,'6HOSz8dJSSE')">
+            <div class="yt-thumb"><img src="images/led-display-thumb.jpg" alt="3D LED Display" loading="lazy"><div class="yt-play"><div class="yt-play-btn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div></div></div>
+          </div>
+          <h4>3D LED Display System</h4>
+          <p>Dynamic volumetric light display using custom circuits and optical principles. LED matrix, control circuitry, and display patterns all built from scratch.</p>
+          <ul class="small-proj-tech"><li>Circuit Design</li><li> · </li><li>Embedded</li><li> · </li><li>Soldering</li></ul>
+        </div>
+
+        <!-- Leave Me Alone -->
+        <div class="small-proj">
+          <div class="small-proj-top">
+            <div class="folder-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+            </div>
+          </div>
+          <div class="creative-yt" onclick="playYT(this,'bOlg8nyzlww')">
+            <div class="yt-thumb"><img src="images/leave-me-alone-thumb.jpg" alt="Leave Me Alone Machine" loading="lazy"><div class="yt-play"><div class="yt-play-btn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div></div></div>
+          </div>
+          <h4>The &ldquo;Leave Me Alone&rdquo; Machine</h4>
+          <p>Electromechanical device that turns itself off in various comedic ways. Servo mechanisms, 3D-printed components, and precision actuation design.</p>
+          <ul class="small-proj-tech"><li>Robotics</li><li> · </li><li>3D Printing</li><li> · </li><li>AutoCAD</li></ul>
+        </div>
+
+        <!-- Placeholder / future -->
+        <div class="small-proj" style="opacity:0.5;cursor:default">
+          <div class="small-proj-top">
+            <div class="folder-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+            </div>
+          </div>
+          <h4>More Coming Soon</h4>
+          <p>Additional projects in progress. Check back or reach out directly.</p>
+          <ul class="small-proj-tech"><li>In progress</li></ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="section-heading reveal">
+      <span class="num">04.</span>
+      <h2>Education &amp; Background</h2>
+    </div>
+
+    <div class="edu-items">
+      <div class="edu-item reveal">
+        <h3>George Mason University &mdash; Fairfax, VA</h3>
+        <p class="edu-sub">B.S. Mechanical Engineering, Concentration in Aerospace &nbsp;&middot;&nbsp; Expected May 2027</p>
+        <p>Minor: Aviation Flight Training and Management</p>
+        <p style="margin-top:0.3rem">Presidential Academic Scholarship</p>
+        <p class="cw"><strong style="color:var(--slate-light)">Coursework:</strong> Thermodynamics, Solid Mechanics, Dynamics, Statics, Differential Equations, Air Transportation System Engineering, Human Factors</p>
+      </div>
+
+      <div class="edu-item reveal d1">
+        <h3>Aviation &mdash; Private Pilot Certificate</h3>
+        <p class="edu-sub">Single-Engine &amp; Multi-Engine Rated &nbsp;&middot;&nbsp; Licensed Summer 2023</p>
+        <p>Licensed to fly single and multi-engine aircraft. Trained at multiple airports across Illinois and Virginia.</p>
+        <div class="photo-grid" style="margin-top:1rem">
+          <div class="photo-item" onclick="openLbSingle(this)">
+            <img src="images/pilot-cessna.jpg" alt="First solo flight, Cessna 172" loading="lazy">
+            <div class="cap">First solo flight, Cessna 172</div>
+          </div>
+          <div class="photo-item" onclick="openLbSingle(this)">
+            <img src="images/pilot-multiengine.jpg" alt="Multi-engine rated, 2023" loading="lazy">
+            <div class="cap">Multi-engine rated, 2023</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="edu-item reveal d2">
+        <h3>Division I Athlete &amp; Leadership</h3>
+        <p class="edu-sub">George Mason University Men&rsquo;s Volleyball &nbsp;&middot;&nbsp; #17</p>
+        <p>Competed at the Division I level. Served as President of Athletes in Action, leading community service initiatives and mental health outreach for student-athletes.</p>
+        <div class="photo-grid" style="margin-top:1rem">
+          <div class="photo-item" onclick="openLbSingle(this)">
+            <img src="images/volleyball-spike.jpg" alt="Derek spiking at the net for George Mason" loading="lazy">
+            <div class="cap">D1 Volleyball, #17</div>
+          </div>
+          <div class="photo-item" onclick="openLbSingle(this)">
+            <img src="images/volleyball-team.jpg" alt="George Mason Men's Volleyball team" loading="lazy">
+            <div class="cap">George Mason Men&rsquo;s Volleyball</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <p class="contact-overline"><span class="num">05.</span>What&rsquo;s Next?</p>
+    <h2>Get In Touch</h2>
+    <p>I&rsquo;m actively looking for a summer 2026 mechanical engineering internship. Whether you have an opportunity, a question, or just want to connect &mdash; my inbox is open.</p>
+    <div class="contact-links">
+      <a href="mailto:dnagel@gmu.edu" class="btn btn-primary">Say Hello</a>
+      <a href="tel:8476244222" class="btn btn-secondary">&#9742; (847) 624-4222</a>
+      <a href="https://www.linkedin.com/in/derek-nagel-002b86334" target="_blank" class="btn btn-secondary">LinkedIn</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>Designed &amp; Built by Derek Nagel</p>
+  <p style="margin-top:0.3rem"><a href="mailto:dnagel@gmu.edu">dnagel@gmu.edu</a> &nbsp;&bull;&nbsp; George Mason University &nbsp;&bull;&nbsp; <a href="Derek_Nagel_Resume.pdf" target="_blank">Resume</a></p>
+</footer>
+
+<script>
+// ===== REDUCED MOTION =====
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+// ===== UNIFIED SCROLL HANDLER =====
+const progress = document.getElementById('scrollProgress');
+const nav = document.getElementById('nav');
+const btt = document.getElementById('btt');
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-menu a[href^="#"]');
+
+let scrollRaf = null;
+window.addEventListener('scroll', () => {
+  if (scrollRaf) return;
+  scrollRaf = requestAnimationFrame(() => {
+    scrollRaf = null;
+    const y = window.scrollY;
+    const max = document.body.scrollHeight - window.innerHeight;
+    if (progress) progress.style.width = (y / max * 100) + '%';
+    if (nav) nav.classList.toggle('scrolled', y > 60);
+    if (btt) btt.classList.toggle('visible', y > 500);
+
+    let cur = '';
+    sections.forEach(s => { if (y >= s.offsetTop - 140) cur = s.id; });
+    navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + cur));
+  });
+}, { passive: true });
+
+// ===== SCROLL REVEAL =====
+const revealObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    e.target.classList.add('vis');
+    revealObs.unobserve(e.target);
+  });
+}, { threshold: 0.06 });
+
+document.querySelectorAll('.reveal').forEach(el => {
+  const r = el.getBoundingClientRect();
+  if (r.top < 0) {
+    el.classList.add('vis');
+  } else {
+    revealObs.observe(el);
+  }
+});
+
+// ===== EXP TABS =====
+document.querySelectorAll('.exp-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.exp-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.exp-panel').forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    const panel = document.getElementById('panel-' + tab.dataset.panel);
+    if (panel) panel.classList.add('active');
+  });
+});
+
+// ===== SMOOTH NAV SCROLL =====
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+  });
+});
+
+// ===== LIGHTBOX =====
+const lb = document.getElementById('lb');
+const lbImg = document.getElementById('lbImg');
+const lbCap = document.getElementById('lbCap');
+let lbImages = [], lbIdx = 0;
+
+function openLb(el) {
+  const gallery = el.closest('.gallery-grid') || el.closest('.photo-grid') || el.parentElement;
+  const imgs = Array.from(gallery.querySelectorAll('img'));
+  const clicked = el.querySelector('img') || el;
+  lbImages = imgs; lbIdx = imgs.indexOf(clicked);
+  if (lbIdx < 0) lbIdx = 0;
+  showLb();
+}
+function openLbSingle(el) {
+  const img = el.querySelector('img');
+  lbImages = [img]; lbIdx = 0;
+  showLb();
+}
+function showLb() {
+  if (!lb) return;
+  lb.classList.add('on');
+  lbImg.src = lbImages[lbIdx].src;
+  lbCap.textContent = lbImages[lbIdx].alt || '';
+}
+function closeLb() { if (lb) lb.classList.remove('on'); }
+function navLb(dir) { lbIdx = (lbIdx + dir + lbImages.length) % lbImages.length; showLb(); }
+if (lb) {
+  lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
+  document.addEventListener('keydown', e => {
+    if (!lb.classList.contains('on')) return;
+    if (e.key === 'ArrowLeft') navLb(-1);
+    if (e.key === 'ArrowRight') navLb(1);
+    if (e.key === 'Escape') closeLb();
+  });
+}
+
+// ===== YOUTUBE =====
+function playYT(card, videoId) {
+  const thumb = card.querySelector('.yt-thumb');
+  if (!thumb) return;
+  const iframe = document.createElement('iframe');
+  iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`;
+  iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+  iframe.allowFullscreen = true;
+  iframe.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;border:none;border-radius:inherit';
+  thumb.style.position = 'relative';
+  thumb.innerHTML = '';
+  thumb.appendChild(iframe);
+  card.classList.add('playing');
+  const dot = card.querySelector('.yt-dot');
+  if (dot) dot.style.background = '#22c55e';
+}
+
+// ===== STAT COUNTERS =====
+const easeOutExpo = t => t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
+const counterObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    e.target.querySelectorAll('.stat-num[data-target]').forEach(el => {
+      const target = +el.dataset.target;
+      const suffix = el.dataset.suffix || '';
+      const dur = 1600; let start = null;
+      const tick = ts => {
+        if (!start) start = ts;
+        const p = Math.min((ts - start) / dur, 1);
+        el.textContent = Math.round(easeOutExpo(p) * target).toLocaleString() + suffix;
+        if (p < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    });
+    counterObs.unobserve(e.target);
+  });
+}, { threshold: 0.3 });
+document.querySelectorAll('.stats-row').forEach(el => counterObs.observe(el));
+
+// ===== CHARGE TO LAUNCH =====
+(function() {
+  const car = document.querySelector('.wireframe-car');
+  if (!car) return;
+  const teslaSection = car.closest('.tesla-section');
+  const runway = document.querySelector('.charge-runway');
+  const gauge = document.querySelector('.charge-gauge');
+  if (!teslaSection || !runway || !gauge) return;
+
+  // Reduced motion: skip scrollytelling, use simple auto drive-off
+  if (reducedMotion) {
+    let driven = false;
+    window.addEventListener('scroll', () => {
+      if (driven) return;
+      if (!teslaSection.classList.contains('vis')) return;
+      if (teslaSection.getBoundingClientRect().bottom < 0) {
+        driven = true;
+        car.classList.add('drive-off');
+        setTimeout(() => {
+          car.classList.remove('drive-off');
+          car.classList.add('drive-back');
+          void car.offsetWidth;
+          car.classList.add('arriving');
+          car.addEventListener('transitionend', function onBack(e) {
+            if (e.propertyName !== 'transform') return;
+            car.removeEventListener('transitionend', onBack);
+            car.classList.remove('drive-back', 'arriving');
+            driven = false;
+          });
+        }, 3000);
+      }
+    }, { passive: true });
+    return;
+  }
+
+  // --- Refs ---
+  const cells = gauge.querySelectorAll('.battery-cell');
+  const pctNum = gauge.querySelector('.charge-pct-num');
+  const label = gauge.querySelector('.charge-label');
+  const hintArrow = gauge.querySelector('.charge-hint-arrow');
+  const burstText = gauge.querySelector('.charge-burst-text');
+  let chargeComplete = false;
+  let chargeActivated = false;
+
+  // --- Set runway height for scroll runway ---
+  // Extra dead zone at the start so the car is visible at 0% before charging begins
+  var deadZone = 0;
+  var chargeRange = 0;
+  function setRunwayHeight() {
+    if (chargeComplete) return;
+    const sectionH = teslaSection.offsetHeight;
+    deadZone = window.innerHeight * 0.6;
+    chargeRange = window.innerHeight * 1.5;
+    // Add an extra 1500px bottom buffer so they can't momentum-scroll past the runway before the freeze takes effect!
+    runway.style.height = (sectionH + deadZone + chargeRange + 1500) + 'px';
+  }
+  setRunwayHeight();
+  window.addEventListener('resize', setRunwayHeight);
+
+  // --- Calculate charge progress from scroll position ---
+  function getChargeProgress() {
+    const scrolled = -runway.getBoundingClientRect().top;
+    const effectiveScrolled = scrolled - deadZone;
+    if (effectiveScrolled <= 0) return 0;
+    return Math.max(0, Math.min(1, effectiveScrolled / chargeRange));
+  }
+
+  // --- Update battery visuals ---
+  function updateCharge(p) {
+    const pct = p >= 0.98 ? 100 : Math.round(p * 100);
+    pctNum.textContent = pct;
+
+    // Fill cells left to right
+    const filled = p * 16;
+    cells.forEach((cell, i) => {
+      if (i < Math.floor(filled)) {
+        cell.classList.add('charged');
+        cell.classList.remove('charging');
+        cell.style.removeProperty('--fill');
+      } else if (i < Math.ceil(filled) && filled % 1 > 0) {
+        cell.classList.remove('charged');
+        cell.classList.add('charging');
+        cell.style.setProperty('--fill', ((filled % 1) * 100) + '%');
+      } else {
+        cell.classList.remove('charged', 'charging');
+        cell.style.removeProperty('--fill');
+      }
+    });
+
+    // Car glow: opacity 0.22 -> 0.7, green drop-shadow intensifies
+    car.style.opacity = 0.22 + (p * 0.48);
+    const glow = p * 14;
+    const glowAlpha = p * 0.6;
+    car.querySelector('img').style.filter =
+      'invert(1) sepia(1) saturate(2) hue-rotate(120deg) drop-shadow(0 0 ' + glow + 'px rgba(100,255,218,' + glowAlpha + '))';
+
+    // Fade hint arrow out early
+    hintArrow.style.opacity = Math.max(0, 0.5 - p * 2);
+
+    // Update label at milestones
+    if (pct >= 100) {
+      label.textContent = 'FULLY CHARGED';
+      label.style.color = 'var(--green)';
+    } else if (pct >= 75) {
+      label.textContent = 'Almost there...';
+      label.style.color = '';
+    } else if (pct >= 50) {
+      label.textContent = 'Charging...';
+      label.style.color = '';
+    } else {
+      label.textContent = 'Scroll to charge';
+      label.style.color = '';
+    }
+  }
+
+  // --- Launch sequence at 100% ---
+  function triggerLaunch() {
+    if (chargeComplete) return;
+    chargeComplete = true;
+
+    // IMMEDIATELY freeze scrolling to prevent momentum overshoot
+    document.documentElement.style.overflow = 'hidden';
+
+    setTimeout(() => {
+      // Clear inline glow styles
+      car.style.opacity = '';
+      car.querySelector('img').style.filter = '';
+
+      // Drive off from its natural position (1.8s animation)
+      car.classList.add('drive-off');
+
+      // Un-dim content and hide gauge after car is mostly off screen
+      setTimeout(() => {
+        teslaSection.classList.remove('charging');
+      }, 1200);
+
+      // Wait for drive-off animation to fully complete (1.8s), then collapse
+      setTimeout(() => {
+        runway.classList.add('charge-complete');
+        runway.style.height = '';
+
+        // Scroll to maintain exact visual location (15vh sticky offset)
+        const targetScrollTop = teslaSection.getBoundingClientRect().top + window.scrollY - (window.innerHeight * 0.15);
+        window.scrollTo({ top: targetScrollTop, behavior: 'instant' });
+
+        // Release scroll freeze
+        document.documentElement.style.overflow = '';
+
+        // Safety net: correct position after a frame
+        requestAnimationFrame(() => {
+          const corrected = teslaSection.getBoundingClientRect().top + window.scrollY - (window.innerHeight * 0.15);
+          if (Math.abs(window.scrollY - corrected) > 5) {
+            window.scrollTo({ top: corrected, behavior: 'instant' });
+          }
+        });
+
+        // Car returns after 0.8 seconds
+        setTimeout(() => {
+          car.classList.remove('drive-off');
+          car.classList.add('drive-back');
+          void car.offsetWidth;
+          car.classList.add('arriving');
+          car.addEventListener('transitionend', function onBack(e) {
+            if (e.propertyName !== 'transform') return;
+            car.removeEventListener('transitionend', onBack);
+            car.classList.remove('drive-back', 'arriving');
+          });
+        }, 800);
+      }, 2000);
+    }, 400);
+  }
+
+  // --- Activate charging when the car gets into the center of the frame ---
+  const chargeObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting && !chargeComplete && !chargeActivated) {
+        chargeActivated = true;
+        teslaSection.classList.add('charging');
+      }
+    });
+  }, { rootMargin: '-40% 0px -40% 0px' });
+  chargeObs.observe(car);
+
+  // --- Scroll-driven charge progress ---
+  let chargeRaf = null;
+  window.addEventListener('scroll', () => {
+    if (chargeRaf || chargeComplete) return;
+    chargeRaf = requestAnimationFrame(() => {
+      chargeRaf = null;
+      if (!chargeActivated) return;
+      const p = getChargeProgress();
+      updateCharge(p);
+      if (p >= 0.98) triggerLaunch();
+    });
+  }, { passive: true });
+
+  // --- Handle page loaded already past the section ---
+  if (runway.getBoundingClientRect().bottom < 0) {
+    chargeComplete = true;
+    gauge.style.display = 'none';
+    runway.classList.add('charge-complete');
+    runway.style.height = '';
+  }
+})();
+
+// ===== HAMBURGER MENU =====
+(function() {
+  const burger = document.getElementById('navBurger');
+  const menu = document.getElementById('navMenu');
+  const backdrop = document.getElementById('navBackdrop');
+  if (!burger || !menu) return;
+
+  function toggleMenu() {
+    burger.classList.toggle('open');
+    menu.classList.toggle('open');
+    backdrop.classList.toggle('open');
+  }
+  function closeMenu() {
+    burger.classList.remove('open');
+    menu.classList.remove('open');
+    backdrop.classList.remove('open');
+  }
+
+  burger.addEventListener('click', toggleMenu);
+  backdrop.addEventListener('click', closeMenu);
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+  window.addEventListener('scroll', () => { if (menu.classList.contains('open')) closeMenu(); }, { passive: true });
+})();
+
+// ===== SLIDESHOW =====
+document.querySelectorAll('.slideshow').forEach(ss => {
+  const track = ss.querySelector('.slideshow-track');
+  const slides = ss.querySelectorAll('.slideshow-slide');
+  const dotsContainer = ss.querySelector('[id$="-dots"]');
+  let current = 0;
+  let autoTimer = null;
+  const AUTO_MS = 5000;
+
+  // Create dots
+  slides.forEach((_, i) => {
+    const dot = document.createElement('button');
+    dot.className = 'slideshow-dot' + (i === 0 ? ' active' : '');
+    dot.setAttribute('aria-label', 'Slide ' + (i + 1));
+    dot.addEventListener('click', e => { e.stopPropagation(); goTo(i); });
+    dotsContainer.appendChild(dot);
+  });
+
+  function goTo(idx) {
+    current = ((idx % slides.length) + slides.length) % slides.length;
+    track.style.transform = 'translateX(-' + (current * 100) + '%)';
+    dotsContainer.querySelectorAll('.slideshow-dot').forEach((d, i) => {
+      d.classList.toggle('active', i === current);
+    });
+    resetAuto();
+  }
+
+  function resetAuto() {
+    clearInterval(autoTimer);
+    autoTimer = setInterval(() => goTo(current + 1), AUTO_MS);
+  }
+
+  // Pause auto-advance on hover
+  ss.addEventListener('mouseenter', () => clearInterval(autoTimer));
+  ss.addEventListener('mouseleave', resetAuto);
+
+  // Touch swipe support
+  let touchStartX = 0;
+  let touchDeltaX = 0;
+  let isSwiping = false;
+
+  ss.addEventListener('touchstart', e => {
+    touchStartX = e.touches[0].clientX;
+    touchDeltaX = 0;
+    isSwiping = true;
+    track.style.transition = 'none';
+    clearInterval(autoTimer);
+  }, { passive: true });
+
+  ss.addEventListener('touchmove', e => {
+    if (!isSwiping) return;
+    touchDeltaX = e.touches[0].clientX - touchStartX;
+    const offset = -(current * 100) + (touchDeltaX / ss.offsetWidth) * 100;
+    track.style.transform = 'translateX(' + offset + '%)';
+  }, { passive: true });
+
+  ss.addEventListener('touchend', () => {
+    if (!isSwiping) return;
+    isSwiping = false;
+    track.style.transition = '';
+    const threshold = ss.offsetWidth * 0.2;
+    if (touchDeltaX < -threshold) {
+      goTo(current + 1);
+    } else if (touchDeltaX > threshold) {
+      goTo(current - 1);
+    } else {
+      goTo(current);
+    }
+  });
+
+  // Keyboard support
+  ss.setAttribute('tabindex', '0');
+  ss.addEventListener('keydown', e => {
+    if (e.key === 'ArrowLeft') { e.preventDefault(); goTo(current - 1); }
+    if (e.key === 'ArrowRight') { e.preventDefault(); goTo(current + 1); }
+  });
+
+  // Expose nav function
+  ss._goTo = goTo;
+  ss._getCurrent = () => current;
+  resetAuto();
+});
+
+function slideshowNav(id, dir) {
+  const ss = document.getElementById(id);
+  if (ss && ss._goTo) ss._goTo(ss._getCurrent() + dir);
+}
+
+function openLbStack(wrap) {
+  const img = wrap.querySelector('img');
+  lbImages = [img];
+  lbIdx = 0;
+  showLb();
+}
+
+function openLbFromSlide(slide) {
+  const ss = slide.closest('.slideshow');
+  const imgs = Array.from(ss.querySelectorAll('.slideshow-slide img'));
+  const clicked = slide.querySelector('img');
+  lbImages = imgs;
+  lbIdx = imgs.indexOf(clicked);
+  if (lbIdx < 0) lbIdx = 0;
+  showLb();
+}
+</script>
+</body>
+</html>
