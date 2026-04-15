@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&amp;family=Inter:wght@300;400;600&amp;display=swap');
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#0a192f"/>
+
+  <!-- Top green bar -->
+  <rect x="0" y="0" width="1200" height="3" fill="#64ffda"/>
+
+  <!-- DN Logo top left -->
+  <rect x="60" y="48" width="76" height="76" rx="10" fill="none" stroke="#64ffda" stroke-width="2"/>
+  <text x="98" y="104" font-family="'Space Mono', monospace" font-size="36" font-weight="700" fill="#64ffda" text-anchor="middle">DN</text>
+
+  <!-- DEREK NAGEL top right -->
+  <text x="1140" y="84" font-family="'Space Mono', monospace" font-size="14" fill="#8892b0" text-anchor="end" letter-spacing="4">DEREK NAGEL</text>
+
+  <!-- Thin rule -->
+  <line x1="60" y1="152" x2="1140" y2="152" stroke="#233554" stroke-width="1"/>
+
+  <!-- "Come" — huge -->
+  <text x="60" y="290" font-family="'Space Mono', monospace" font-size="140" font-weight="700" fill="#e6f1ff" letter-spacing="-5">Come</text>
+
+  <!-- "check out" — green, medium -->
+  <text x="60" y="395" font-family="'Space Mono', monospace" font-size="90" font-weight="700" fill="#64ffda" letter-spacing="-3">check out</text>
+
+  <!-- "what I've been working on" — light, small -->
+  <text x="62" y="465" font-family="'Inter', sans-serif" font-size="34" font-weight="300" fill="#8892b0" letter-spacing="1">what I've been working on</text>
+
+  <!-- Bottom rule -->
+  <line x1="60" y1="530" x2="1140" y2="530" stroke="#233554" stroke-width="1"/>
+
+  <!-- Green accent block — bottom left -->
+  <rect x="60" y="556" width="32" height="4" rx="2" fill="#64ffda"/>
+
+  <!-- PORTFOLIO label -->
+  <text x="106" y="564" font-family="'Space Mono', monospace" font-size="12" fill="#233554" letter-spacing="3">PORTFOLIO</text>
+
+  <!-- URL bottom right -->
+  <text x="1140" y="564" font-family="'Space Mono', monospace" font-size="14" fill="#64ffda" text-anchor="end" opacity="0.7" letter-spacing="1">dereknagel.site</text>
+
+  <!-- Bottom green bar -->
+  <rect x="0" y="627" width="1200" height="3" fill="#64ffda"/>
+</svg>

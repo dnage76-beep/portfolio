@@ -7,8 +7,12 @@
 <meta name="description" content="Mechanical Engineering student at George Mason University. Tesla intern, licensed pilot, Division I athlete.">
 <meta name="author" content="Derek Nagel">
 <meta property="og:title" content="Derek Nagel — Mechanical Engineering Portfolio">
-<meta property="og:description" content="Mechanical Engineering student at George Mason University concentrating in Aerospace. Tesla intern, licensed pilot, Division I athlete.">
+<meta property="og:description" content="Come check out what I've been working on. See my work and see my r&eacute;sum&eacute;.">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://dereknagel.site">
+<meta property="og:image" content="https://dereknagel.site/og-image.svg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta name="theme-color" content="#0a192f">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect rx='12' width='100' height='100' fill='%230a192f'/><text x='50' y='68' font-family='monospace' font-size='48' font-weight='700' fill='%2364ffda' text-anchor='middle'>DN</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -237,6 +241,9 @@ section {
 }
 section:not(#hero) {
   min-height: unset;
+}
+#about {
+  padding: 120px 0 140px;
 }
 
 .section-heading {
@@ -734,63 +741,24 @@ section:not(#hero) {
   max-height: 300px;
 }
 
-/* Battery pack container */
+/* Tesla-style charge bar */
 .battery-pack {
-  display: flex;
-  align-items: center;
   width: clamp(240px, 55vw, 400px);
-  height: 44px;
-}
-.battery-terminal {
-  width: 6px;
-  height: 28px;
+  height: 12px;
   background: var(--navy-lighter);
-  border: 1px solid rgba(100, 255, 218, 0.2);
-}
-.battery-terminal-left {
-  border-radius: 3px 0 0 3px;
-  border-right: none;
-}
-.battery-terminal-right {
-  border-radius: 0 3px 3px 0;
-  border-left: none;
+  border-radius: 6px;
+  overflow: hidden;
   position: relative;
+  border: 1px solid rgba(100, 255, 218, 0.12);
 }
-.battery-terminal-right::after {
-  content: '';
-  position: absolute;
-  right: -5px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 5px;
-  height: 14px;
-  background: var(--navy-lighter);
-  border: 1px solid rgba(100, 255, 218, 0.2);
-  border-left: none;
-  border-radius: 0 2px 2px 0;
-}
-.battery-cells {
-  flex: 1;
-  display: flex;
-  gap: 2px;
-  padding: 5px;
-  background: var(--navy-light);
-  border: 1px solid rgba(100, 255, 218, 0.15);
+.charge-fill {
   height: 100%;
-  align-items: stretch;
-}
-.battery-cell {
-  flex: 1;
-  background: var(--navy-lighter);
-  border-radius: 1px;
-  transition: background 0.12s ease, box-shadow 0.12s ease;
-}
-.battery-cell.charged {
+  width: 0%;
   background: var(--green);
-  box-shadow: 0 0 6px rgba(100, 255, 218, 0.35);
-}
-.battery-cell.charging {
-  background: linear-gradient(to top, var(--green) var(--fill, 0%), var(--navy-lighter) var(--fill, 0%));
+  border-radius: 6px;
+  transition: width 0.1s linear;
+  box-shadow: 0 0 10px rgba(100, 255, 218, 0.3), 0 0 20px rgba(100, 255, 218, 0.15);
+  will-change: width;
 }
 
 /* Percentage display */
@@ -1204,6 +1172,35 @@ footer a:hover { text-decoration: underline; }
 .yt-card iframe {
   position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;
 }
+/* Expand button for videos */
+.yt-expand {
+  position: absolute; top: 8px; right: 8px; z-index: 5;
+  width: 32px; height: 32px; border-radius: 4px;
+  background: rgba(10,25,47,0.8); border: 1px solid rgba(100,255,218,0.3);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; opacity: 0; transition: opacity 0.2s ease;
+  color: var(--green);
+}
+.yt-expand svg { width: 16px; height: 16px; }
+.yt-card:hover .yt-expand,
+.creative-yt:hover .yt-expand { opacity: 1; }
+.yt-expand:hover { background: rgba(100,255,218,0.15); }
+/* Video modal overlay */
+.video-modal {
+  position: fixed; inset: 0; z-index: 9999;
+  background: rgba(0,0,0,0.92);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+}
+.video-modal iframe {
+  width: 90vw; height: 50.625vw; max-width: 1200px; max-height: 675px;
+  border: none; border-radius: 6px;
+}
+.video-modal-close {
+  position: absolute; top: 20px; right: 24px;
+  color: white; font-size: 2rem; cursor: pointer;
+  background: none; border: none; font-family: var(--font-sans);
+}
 
 /* ====== STATS ROW ====== */
 .stats-row {
@@ -1401,8 +1398,7 @@ footer a:hover { text-decoration: underline; }
   .exp-tab { border-left: none; border-bottom: 2px solid transparent; margin-left: 0; margin-bottom: -2px; }
   .exp-tab.active { border-left: none; border-bottom-color: var(--green); }
   .exp-panels { padding: 1.5rem 0 0; }
-  .battery-pack { height: 36px; }
-  .battery-cells { gap: 2px; padding: 4px; }
+  .battery-pack { height: 10px; }
   .charge-pct { font-size: clamp(1.4rem, 8vw, 2.2rem); }
 }
 
@@ -1489,7 +1485,7 @@ footer a:hover { text-decoration: underline; }
       </p>
       <div class="hero-cta">
         <a href="#projects" class="btn btn-primary">See my work</a>
-        <a href="Derek_Nagel_Resume.pdf" target="_blank" class="btn btn-secondary">Resume &rarr;</a>
+        <a href="Derek_Nagel_Resume.pdf" target="_blank" class="btn btn-secondary">See my r&eacute;sum&eacute; &rarr;</a>
       </div>
     </div>
     <a href="#about" class="scroll-hint" aria-label="Scroll down">
@@ -1606,14 +1602,7 @@ footer a:hover { text-decoration: underline; }
       <!-- Charge gauge: sits in normal flow right below the wireframe car -->
       <div class="charge-gauge" aria-hidden="true">
         <div class="battery-pack">
-          <div class="battery-terminal battery-terminal-left"></div>
-          <div class="battery-cells">
-            <div class="battery-cell"></div><div class="battery-cell"></div><div class="battery-cell"></div><div class="battery-cell"></div>
-            <div class="battery-cell"></div><div class="battery-cell"></div><div class="battery-cell"></div><div class="battery-cell"></div>
-            <div class="battery-cell"></div><div class="battery-cell"></div><div class="battery-cell"></div><div class="battery-cell"></div>
-            <div class="battery-cell"></div><div class="battery-cell"></div><div class="battery-cell"></div><div class="battery-cell"></div>
-          </div>
-          <div class="battery-terminal battery-terminal-right"></div>
+          <div class="charge-fill"></div>
         </div>
         <div class="charge-pct"><span class="charge-pct-num">0</span><span class="charge-pct-sign">%</span></div>
         <div class="charge-label">Scroll to charge</div>
@@ -1688,10 +1677,12 @@ footer a:hover { text-decoration: underline; }
       <div class="video-grid" id="teslaVideos" style="margin-top:12px">
         <div class="yt-card" onclick="playYT(this,'VotSTxkuPA8')">
           <div class="yt-thumb"><img src="https://img.youtube.com/vi/VotSTxkuPA8/hqdefault.jpg" alt="Drivetrain timelapse" loading="lazy"><div class="yt-play"><div class="yt-play-btn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div></div></div>
+          <button class="yt-expand" onclick="event.stopPropagation();expandYT('VotSTxkuPA8')" title="Expand video"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></button>
           <div class="yt-label"><div class="yt-dot"></div><span>Drivetrain Install Timelapse</span></div>
         </div>
         <div class="yt-card" onclick="playYT(this,'UaJRdCN-7l0')">
           <div class="yt-thumb"><img src="https://img.youtube.com/vi/UaJRdCN-7l0/hqdefault.jpg" alt="First drive" loading="lazy"><div class="yt-play"><div class="yt-play-btn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div></div></div>
+          <button class="yt-expand" onclick="event.stopPropagation();expandYT('UaJRdCN-7l0')" title="Expand video"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></button>
           <div class="yt-label"><div class="yt-dot"></div><span>First Drive After Rebuild</span></div>
         </div>
       </div>
@@ -1733,6 +1724,7 @@ footer a:hover { text-decoration: underline; }
           </div>
           <div class="creative-yt" onclick="playYT(this,'6HOSz8dJSSE')">
             <div class="yt-thumb"><img src="images/led-display-thumb.jpg" alt="3D LED Display" loading="lazy"><div class="yt-play"><div class="yt-play-btn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div></div></div>
+            <button class="yt-expand" onclick="event.stopPropagation();expandYT('6HOSz8dJSSE')" title="Expand video"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></button>
           </div>
           <h4>3D LED Display System</h4>
           <p>Dynamic volumetric light display using custom circuits and optical principles. LED matrix, control circuitry, and display patterns all built from scratch.</p>
@@ -1748,6 +1740,7 @@ footer a:hover { text-decoration: underline; }
           </div>
           <div class="creative-yt" onclick="playYT(this,'bOlg8nyzlww')">
             <div class="yt-thumb"><img src="images/leave-me-alone-thumb.jpg" alt="Leave Me Alone Machine" loading="lazy"><div class="yt-play"><div class="yt-play-btn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div></div></div>
+            <button class="yt-expand" onclick="event.stopPropagation();expandYT('bOlg8nyzlww')" title="Expand video"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></button>
           </div>
           <h4>The &ldquo;Leave Me Alone&rdquo; Machine</h4>
           <p>Electromechanical device that turns itself off in various comedic ways. Servo mechanisms, 3D-printed components, and precision actuation design.</p>
@@ -1836,7 +1829,7 @@ footer a:hover { text-decoration: underline; }
 
 <footer>
   <p>Designed &amp; Built by Derek Nagel</p>
-  <p style="margin-top:0.3rem"><a href="mailto:dnagel@gmu.edu">dnagel@gmu.edu</a> &nbsp;&bull;&nbsp; George Mason University &nbsp;&bull;&nbsp; <a href="Derek_Nagel_Resume.pdf" target="_blank">Resume</a></p>
+  <p style="margin-top:0.3rem"><a href="mailto:dnagel@gmu.edu">dnagel@gmu.edu</a> &nbsp;&bull;&nbsp; George Mason University &nbsp;&bull;&nbsp; <a href="Derek_Nagel_Resume.pdf" target="_blank">R&eacute;sum&eacute;</a></p>
 </footer>
 
 <script>
@@ -1958,6 +1951,21 @@ function playYT(card, videoId) {
   if (dot) dot.style.background = '#22c55e';
 }
 
+function expandYT(videoId) {
+  const modal = document.createElement('div');
+  modal.className = 'video-modal';
+  modal.innerHTML = `<button class="video-modal-close">&times;</button><iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+  document.body.appendChild(modal);
+  modal.addEventListener('click', function(e) {
+    if (e.target === modal || e.target.classList.contains('video-modal-close')) {
+      modal.remove();
+    }
+  });
+  document.addEventListener('keydown', function esc(e) {
+    if (e.key === 'Escape') { modal.remove(); document.removeEventListener('keydown', esc); }
+  });
+}
+
 // ===== STAT COUNTERS =====
 const easeOutExpo = t => t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
 const counterObs = new IntersectionObserver(entries => {
@@ -2016,7 +2024,7 @@ document.querySelectorAll('.stats-row').forEach(el => counterObs.observe(el));
   }
 
   // --- Refs ---
-  const cells = gauge.querySelectorAll('.battery-cell');
+  const chargeFill = gauge.querySelector('.charge-fill');
   const pctNum = gauge.querySelector('.charge-pct-num');
   const label = gauge.querySelector('.charge-label');
   const hintArrow = gauge.querySelector('.charge-hint-arrow');
@@ -2031,10 +2039,9 @@ document.querySelectorAll('.stats-row').forEach(el => counterObs.observe(el));
   function setRunwayHeight() {
     if (chargeComplete) return;
     const sectionH = teslaSection.offsetHeight;
-    deadZone = window.innerHeight * 0.6;
-    chargeRange = window.innerHeight * 1.5;
-    // Add an extra 1500px bottom buffer so they can't momentum-scroll past the runway before the freeze takes effect!
-    runway.style.height = (sectionH + deadZone + chargeRange + 1500) + 'px';
+    deadZone = window.innerHeight * 0.3;
+    chargeRange = window.innerHeight * 0.8;
+    runway.style.height = (sectionH + deadZone + chargeRange + 600) + 'px';
   }
   setRunwayHeight();
   window.addEventListener('resize', setRunwayHeight);
@@ -2052,22 +2059,8 @@ document.querySelectorAll('.stats-row').forEach(el => counterObs.observe(el));
     const pct = p >= 0.98 ? 100 : Math.round(p * 100);
     pctNum.textContent = pct;
 
-    // Fill cells left to right
-    const filled = p * 16;
-    cells.forEach((cell, i) => {
-      if (i < Math.floor(filled)) {
-        cell.classList.add('charged');
-        cell.classList.remove('charging');
-        cell.style.removeProperty('--fill');
-      } else if (i < Math.ceil(filled) && filled % 1 > 0) {
-        cell.classList.remove('charged');
-        cell.classList.add('charging');
-        cell.style.setProperty('--fill', ((filled % 1) * 100) + '%');
-      } else {
-        cell.classList.remove('charged', 'charging');
-        cell.style.removeProperty('--fill');
-      }
-    });
+    // Fill the bar smoothly
+    chargeFill.style.width = pct + '%';
 
     // Car glow: opacity 0.22 -> 0.7, green drop-shadow intensifies
     car.style.opacity = 0.22 + (p * 0.48);
@@ -2100,43 +2093,50 @@ document.querySelectorAll('.stats-row').forEach(el => counterObs.observe(el));
     if (chargeComplete) return;
     chargeComplete = true;
 
-    // IMMEDIATELY freeze scrolling to prevent momentum overshoot
-    document.documentElement.style.overflow = 'hidden';
+    // Freeze scrolling -- works on both Safari and Chrome
+    var scrollY = window.scrollY;
+    document.body.style.position = 'fixed';
+    document.body.style.top = '-' + scrollY + 'px';
+    document.body.style.left = '0';
+    document.body.style.right = '0';
 
     setTimeout(() => {
       // Clear inline glow styles
       car.style.opacity = '';
       car.querySelector('img').style.filter = '';
 
-      // Drive off from its natural position (1.8s animation)
+      // Drive off
       car.classList.add('drive-off');
 
-      // Un-dim content and hide gauge after car is mostly off screen
+      // Un-dim content and hide gauge
       setTimeout(() => {
         teslaSection.classList.remove('charging');
-      }, 1200);
+      }, 800);
 
-      // Wait for drive-off animation to fully complete (1.8s), then collapse
+      // Collapse runway and release scroll
       setTimeout(() => {
         runway.classList.add('charge-complete');
         runway.style.height = '';
 
-        // Scroll to maintain exact visual location (15vh sticky offset)
-        const targetScrollTop = teslaSection.getBoundingClientRect().top + window.scrollY - (window.innerHeight * 0.15);
+        // Release scroll freeze
+        document.body.style.position = '';
+        document.body.style.top = '';
+        document.body.style.left = '';
+        document.body.style.right = '';
+
+        // Restore scroll position to Tesla section
+        var targetScrollTop = teslaSection.getBoundingClientRect().top + window.scrollY - (window.innerHeight * 0.15);
         window.scrollTo({ top: targetScrollTop, behavior: 'instant' });
 
-        // Release scroll freeze
-        document.documentElement.style.overflow = '';
-
-        // Safety net: correct position after a frame
+        // Safety net
         requestAnimationFrame(() => {
-          const corrected = teslaSection.getBoundingClientRect().top + window.scrollY - (window.innerHeight * 0.15);
+          var corrected = teslaSection.getBoundingClientRect().top + window.scrollY - (window.innerHeight * 0.15);
           if (Math.abs(window.scrollY - corrected) > 5) {
             window.scrollTo({ top: corrected, behavior: 'instant' });
           }
         });
 
-        // Car returns after 0.8 seconds
+        // Car returns
         setTimeout(() => {
           car.classList.remove('drive-off');
           car.classList.add('drive-back');
@@ -2147,9 +2147,9 @@ document.querySelectorAll('.stats-row').forEach(el => counterObs.observe(el));
             car.removeEventListener('transitionend', onBack);
             car.classList.remove('drive-back', 'arriving');
           });
-        }, 800);
-      }, 2000);
-    }, 400);
+        }, 600);
+      }, 1400);
+    }, 200);
   }
 
   // --- Activate charging when the car gets into the center of the frame ---
