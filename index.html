@@ -1226,6 +1226,64 @@ footer a:hover { text-decoration: underline; }
   margin-top: 0.2rem;
 }
 
+/* ====== TESLA HERO PHOTO ====== */
+.tesla-hero-photo {
+  position: relative;
+  border-radius: 6px;
+  overflow: hidden;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+.tesla-hero-photo img {
+  width: 100%;
+  height: 480px;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  filter: grayscale(10%);
+  transition: filter 0.3s ease, transform 0.3s ease;
+}
+.tesla-hero-photo:hover img {
+  filter: none;
+  transform: scale(1.01);
+}
+.tesla-hero-cap {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 1.2rem 1.4rem;
+  background: linear-gradient(to top, rgba(2,12,27,0.9) 0%, transparent 100%);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--slate-light);
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+}
+.tesla-hero-photo:hover .tesla-hero-cap { transform: translateY(0); }
+
+.view-all-photos-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+  background: none;
+  border: 1px solid var(--navy-lighter);
+  color: var(--slate);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+.view-all-photos-btn:hover {
+  border-color: var(--green);
+  color: var(--green);
+}
+.view-all-photos-btn[aria-expanded="true"] {
+  color: var(--green);
+  border-color: var(--green);
+}
+
 /* ====== SLIDESHOW ====== */
 .slideshow {
   position: relative;
@@ -1673,7 +1731,20 @@ footer a:hover { text-decoration: underline; }
 
     <!-- Gallery slideshow + videos for Tesla -->
     <div class="reveal" style="margin-top:-1rem;margin-bottom:4rem">
-      <div class="slideshow" id="teslaSlideshow">
+      <!-- Hero photo: you with the battery pack -->
+      <div class="tesla-hero-photo" onclick="openLbFromSlide(this)" data-src="images/tesla-1.jpg" data-cap="Battery pack open — 85 kWh, 16 modules">
+        <img src="images/tesla-1.jpg" alt="Battery pack open — 85 kWh, 16 modules" loading="lazy">
+        <div class="tesla-hero-cap">Battery pack open — 85 kWh, 16 modules</div>
+      </div>
+
+      <!-- Expand button -->
+      <button class="view-all-photos-btn" onclick="toggleTeslaSlideshow(this)" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        View all photos
+      </button>
+
+      <!-- Slideshow (hidden by default) -->
+      <div class="slideshow" id="teslaSlideshow" style="display:none;margin-top:0.75rem">
         <div class="slideshow-track">
           <div class="slideshow-slide" onclick="openLbFromSlide(this)">
             <img src="images/tesla-1.jpg" alt="Battery pack open — 85 kWh, 16 modules" loading="lazy">
@@ -1976,6 +2047,25 @@ function playYT(card, videoId) {
   card.classList.add('playing');
   const dot = card.querySelector('.yt-dot');
   if (dot) dot.style.background = '#22c55e';
+}
+
+function toggleTeslaSlideshow(btn) {
+  const slideshow = document.getElementById('teslaSlideshow');
+  const expanded = btn.getAttribute('aria-expanded') === 'true';
+  if (expanded) {
+    slideshow.style.display = 'none';
+    btn.setAttribute('aria-expanded', 'false');
+    btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M4 6h16M4 12h16M4 18h16"/></svg> View all photos';
+  } else {
+    slideshow.style.display = 'block';
+    btn.setAttribute('aria-expanded', 'true');
+    btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M18 6L6 18M6 6l12 12"/></svg> Hide photos';
+    // Init dots if first open
+    const dots = document.getElementById('teslaSlideshow-dots');
+    if (!dots.children.length) {
+      slideshowNav('teslaSlideshow', 0);
+    }
+  }
 }
 
 function expandYT(videoId) {
