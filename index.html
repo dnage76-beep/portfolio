@@ -1400,6 +1400,33 @@ footer a:hover { text-decoration: underline; }
   .exp-panels { padding: 1.5rem 0 0; }
   .battery-pack { height: 10px; }
   .charge-pct { font-size: clamp(1.4rem, 8vw, 2.2rem); }
+
+  /* Disable scrolljacking on mobile */
+  .charge-runway { height: auto !important; overflow: visible; }
+  .charge-runway .tesla-section { position: relative !important; top: 0 !important; }
+  .charge-gauge { display: none !important; }
+  .wireframe-car { display: none !important; }
+  .tesla-section.charging { padding-top: 0; max-height: none; overflow: visible; }
+
+  /* Hero adjustments */
+  #hero { min-height: 85vh; }
+  .hero-name { font-size: clamp(2rem, 10vw, 3rem); }
+  .hero-tagline { font-size: clamp(1.2rem, 5vw, 1.8rem); }
+  .hero-cta { flex-direction: column; gap: 0.75rem; }
+  .hero-cta .btn { text-align: center; justify-content: center; }
+  .scroll-hint { display: none; }
+
+  /* About section */
+  #about { padding: 80px 0 100px; }
+  .about-photo { order: -1; margin-bottom: 1rem; }
+  .about-photo-inner { max-width: 160px; margin: 0 auto; }
+
+  /* Contact buttons stack */
+  .contact-links { flex-direction: column; gap: 0.75rem; }
+  .contact-links .btn { text-align: center; justify-content: center; }
+
+  /* Stats row fix */
+  .stats-row { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
 }
 
 /* ====== REDUCED MOTION ====== */
@@ -1990,6 +2017,9 @@ document.querySelectorAll('.stats-row').forEach(el => counterObs.observe(el));
 
 // ===== CHARGE TO LAUNCH =====
 (function() {
+  // Skip scrolljacking entirely on mobile
+  if (window.innerWidth <= 640) return;
+
   const car = document.querySelector('.wireframe-car');
   if (!car) return;
   const teslaSection = car.closest('.tesla-section');
