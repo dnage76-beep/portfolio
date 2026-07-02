@@ -1,2462 +1,662 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Derek Nagel</title>
-<meta name="description" content="Mechanical Engineering student at George Mason University (Aerospace concentration). ME Intern at Astronics CSC, licensed pilot (single &amp; multi-engine), Division I volleyball athlete.">
-<meta name="author" content="Derek Nagel">
-<meta property="og:title" content="Derek Nagel — Mechanical Engineering Portfolio">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Derek Nagel — Mechanical Engineer</title>
+<meta name="description" content="Mechanical Engineering student at George Mason University (Aerospace). ME Intern at Astronics CSC, licensed pilot, Division I volleyball athlete. Portfolio of built things.">
+<meta property="og:title" content="Derek Nagel — Mechanical Engineer">
 <meta property="og:description" content="Aerospace intern work at Astronics, a rebuilt 260k-mile Tesla Model S, an ADS-B aircraft tracker, and more.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://dereknagel.site">
 <meta property="og:image" content="https://dereknagel.site/og-image.svg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta name="theme-color" content="#0a192f">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect rx='12' width='100' height='100' fill='%230a192f'/><text x='50' y='68' font-family='monospace' font-size='48' font-weight='700' fill='%2364ffda' text-anchor='middle'>DN</text></svg>">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-<noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"></noscript>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 fill=%27%23ee4700%27/%3E%3Ctext x=%2716%27 y=%2722%27 font-family=%27monospace%27 font-size=%2714%27 font-weight=%27700%27 fill=%27%23faf7f2%27 text-anchor=%27middle%27%3EDN%3C/text%3E%3C/svg%3E">
+<link rel="preload" href="fonts/bricolage.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/plex-sans.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/overpass-mono.woff2" as="font" type="font/woff2" crossorigin>
 <style>
+/* ================= ENGINEERING RELEASE PACKAGE — design-v3 =================
+   Paper, ink, one accent. Drawing furniture: zones, figures, revision table,
+   title block, approval stamp. No external requests. No framework.        */
 
-/* ====== RESET + ROOT ====== */
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+@font-face{font-family:'Bricolage';src:url('fonts/bricolage.woff2') format('woff2-variations');font-weight:200 800;font-display:swap}
+@font-face{font-family:'Plex';src:url('fonts/plex-sans.woff2') format('woff2-variations');font-weight:100 700;font-display:swap}
+@font-face{font-family:'OMono';src:url('fonts/overpass-mono.woff2') format('woff2-variations');font-weight:300 700;font-display:swap}
 
-:root {
-  --navy:        #0a192f;
-  --navy-light:  #112240;
-  --navy-lighter:#233554;
-  --slate:       #8892b0;
-  --slate-light: #a8b2d8;
-  --slate-bright:#ccd6f6;
-  --white:       #e6f1ff;
-  --green:       #64ffda;
-  --green-tint:  rgba(100,255,218,0.07);
-  --green-glow:  rgba(100,255,218,0.15);
-  --font-mono:   'Space Mono', monospace;
-  --font-sans:   'Inter', -apple-system, sans-serif;
-  --nav-height:  70px;
-  --border:      rgba(100,255,218,0.1);
-  --transition:  all 0.25s cubic-bezier(0.645,0.045,0.355,1);
+:root{
+  --paper:#faf7f2;
+  --paper-2:#f3efe7;
+  --ink:#16130e;
+  --ink-60:#5d5850;
+  --ink-30:#b9b2a6;
+  --line:#d8d1c4;
+  --line-soft:#e9e4d9;
+  --orange:#ee4700;
+  --orange-ink:#c93b00;
+  --serif-note:italic 400 1rem/1.5 'Plex';
+  --mono:'OMono',ui-monospace,monospace;
+  --pad:clamp(1.25rem,4vw,4rem);
 }
-
-html {
-  scroll-behavior: smooth;
-  scrollbar-width: thin;
-  scrollbar-color: var(--navy-lighter) var(--navy);
+*{margin:0;padding:0;box-sizing:border-box}
+::selection{background:var(--orange);color:var(--paper)}
+html{scroll-behavior:smooth;scroll-padding-top:4.5rem}
+body{
+  font:400 1.02rem/1.68 'Plex',system-ui,sans-serif;
+  color:var(--ink);
+  background:var(--paper);
+  -webkit-font-smoothing:antialiased;
 }
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: var(--navy); }
-::-webkit-scrollbar-thumb { background: var(--navy-lighter); border-radius: 3px; }
-
-body {
-  font-family: var(--font-sans);
-  background: var(--navy);
-  color: var(--slate);
-  line-height: 1.6;
-  overflow-x: hidden;
-  counter-reset: section;
+body::before{
+  content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:
+    linear-gradient(var(--line-soft) 1px,transparent 1px) 0 0/100% 32px,
+    linear-gradient(90deg,var(--line-soft) 1px,transparent 1px) 0 0/32px 100%;
 }
 
-/* ====== SCROLL PROGRESS ====== */
-.scroll-progress {
-  position: fixed; top: 0; left: 0; height: 2px; z-index: 9999;
-  background: var(--green); width: 0%;
-  pointer-events: none;
-  box-shadow: 0 0 8px var(--green);
-  will-change: width;
+/* ---- skip link ---- */
+.skip{position:absolute;left:-999px;top:0;background:var(--ink);color:var(--paper);padding:.6rem 1rem;z-index:99;font-family:var(--mono)}
+.skip:focus{left:0}
+
+/* ---- reading progress: thin orange rule ---- */
+@supports (animation-timeline: scroll()){
+  .progress{position:fixed;top:0;left:0;right:0;height:3px;background:var(--orange);transform-origin:left;scale:0 1;animation:grow linear both;animation-timeline:scroll(root);z-index:60}
+  @keyframes grow{to{scale:1 1}}
 }
 
-/* ====== NAV ====== */
-nav {
-  position: fixed; top: 0; width: 100%; z-index: 100;
-  height: var(--nav-height);
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 0 3rem;
-  background: rgba(10,25,47,0); backdrop-filter: blur(0);
-  transition: var(--transition);
+/* ---- drawing border / zones ---- */
+.sheet{max-width:1140px;margin:0 auto;border-left:1px solid var(--line);border-right:1px solid var(--line);background:transparent;position:relative}
+.zonebar{
+  position:sticky;top:0;z-index:50;display:flex;justify-content:space-between;align-items:center;
+  border-bottom:1px solid var(--line);background:var(--paper);padding:.55rem var(--pad);
+  font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-60)
 }
-nav.scrolled {
-  background: rgba(10,25,47,0.9);
-  backdrop-filter: blur(20px);
-  box-shadow: 0 4px 30px rgba(2,12,27,0.7);
-}
-/* Hamburger menu button */
-.nav-burger {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 5px;
-  width: 30px;
-  height: 30px;
-  cursor: pointer;
-  background: none;
-  border: none;
-  padding: 2px;
-  z-index: 102;
-}
-.nav-burger span {
-  display: block;
-  width: 100%;
-  height: 2px;
-  background: var(--green);
-  border-radius: 2px;
-  transition: var(--transition);
-}
-.nav-burger.open span:nth-child(1) {
-  transform: translateY(7px) rotate(45deg);
-}
-.nav-burger.open span:nth-child(2) {
-  opacity: 0;
-}
-.nav-burger.open span:nth-child(3) {
-  transform: translateY(-7px) rotate(-45deg);
+.zonebar b{color:var(--ink);font-weight:600}
+.zonebar nav{display:flex;gap:1.4rem}
+.zonebar nav a{color:var(--ink-60);text-decoration:none;transition:color .15s}
+.zonebar nav a:hover,.zonebar nav a:focus-visible{color:var(--orange)}
+.zonebar .no{color:var(--orange-ink);font-weight:600}
+@media(max-width:760px){.zonebar nav{display:none}}
+
+/* ---- registration mark ---- */
+.reg{position:absolute;width:18px;height:18px;pointer-events:none;opacity:.55}
+.reg::before,.reg::after{content:"";position:absolute;background:var(--ink-30)}
+.reg::before{left:50%;top:0;bottom:0;width:1px}
+.reg::after{top:50%;left:0;right:0;height:1px}
+
+/* ---- generic section furniture ---- */
+section{padding:clamp(3.5rem,8vw,6.5rem) var(--pad);border-bottom:1px solid var(--line);position:relative}
+.sht{font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--orange-ink);display:flex;gap:1.2rem;margin-bottom:1.1rem}
+.sht span{color:var(--ink-60)}
+h2{font:800 clamp(1.7rem,3.6vw,2.5rem)/1.08 'Bricolage';letter-spacing:-.015em;margin-bottom:1.6rem}
+.note{font:var(--serif-note);color:var(--ink-60)}
+
+/* ---- reveal on scroll (CSS only, guarded) ---- */
+@supports (animation-timeline: view()){
+  .rv{animation:fadeup linear both;animation-timeline:view();animation-range:entry 0% entry 26%}
+  @keyframes fadeup{from{opacity:0;translate:0 26px}to{opacity:1;translate:none}}
 }
 
-/* Mobile menu overlay */
-.nav-menu {
-  position: fixed;
-  top: 0; right: -100%;
-  width: min(75vw, 320px);
-  height: 100vh;
-  background: var(--navy-light);
-  z-index: 101;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 1.5rem;
-  transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: -10px 0 30px rgba(2,12,27,0.7);
+/* =============================== HERO =============================== */
+.hero{padding-top:clamp(3rem,7vw,5.5rem);border-bottom:1px solid var(--line)}
+.hero .id{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-60);display:flex;flex-wrap:wrap;gap:.4rem 1.6rem;margin-bottom:2rem}
+.hero .id .dot{color:var(--orange)}
+.hero h1{
+  font:800 clamp(3.2rem,10.5vw,7.2rem)/0.98 'Bricolage';
+  letter-spacing:-.03em;text-transform:uppercase;max-width:12ch;
 }
-.nav-menu.open {
-  right: 0;
-}
-.nav-menu-backdrop {
-  position: fixed;
-  inset: 0;
-  background: rgba(10,25,47,0.7);
-  backdrop-filter: blur(4px);
-  z-index: 100;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
-}
-.nav-menu-backdrop.open {
-  opacity: 1;
-  pointer-events: auto;
-}
-.nav-menu a {
-  font-family: var(--font-mono);
-  font-size: 0.9rem;
-  color: var(--slate-light);
-  text-decoration: none;
-  padding: 0.6rem 1.2rem;
-  border-radius: 4px;
-  transition: var(--transition);
-  text-align: center;
-}
-.nav-menu a .num {
-  display: block;
-  color: var(--green);
-  font-size: 0.72rem;
-  margin-bottom: 0.3rem;
-}
-.nav-menu a:hover {
-  color: var(--green);
-  background: var(--green-tint);
-}
-.nav-menu .nav-resume-mobile {
-  color: var(--green);
-  border: 1px solid var(--green);
-  padding: 0.7rem 2rem;
-  border-radius: 4px;
-  margin-top: 1rem;
-}
-.nav-resume {
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  color: var(--green);
-  border: 1px solid var(--green);
-  padding: 0.55rem 1rem;
-  border-radius: 4px;
-  text-decoration: none;
-  margin-left: 0.5rem;
-  transition: var(--transition);
-}
-.nav-resume:hover { background: var(--green-tint); }
+.hero h1 .ln{display:block}
+.hero h1 em{font-style:normal;color:var(--orange)}
+.hero .sub{max-width:52ch;margin:2.1rem 0 0;font-size:1.08rem;color:var(--ink-60)}
+.hero .sub strong{color:var(--ink);font-weight:600}
+/* load stagger */
+.hero .id,.hero .sub,.dindex{opacity:0;translate:0 14px;animation:in .45s cubic-bezier(.2,.7,.2,1) forwards}
+.hero .sub{animation-delay:.08s}.dindex{animation-delay:.14s}
+@keyframes in{to{opacity:1;translate:none}}
 
-/* ====== SIDEBAR SOCIALS ====== */
-.sidebar {
-  position: fixed;
-  bottom: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1.2rem;
+/* drawing index = nav table */
+.dindex{margin-top:3.2rem;border-top:2px solid var(--ink)}
+.dindex a{
+  display:grid;grid-template-columns:5.5rem 1fr auto;gap:1rem;align-items:baseline;
+  padding:.8rem .2rem;border-bottom:1px solid var(--line);color:var(--ink);text-decoration:none;
+  transition:background .15s,padding-left .2s
 }
-.sidebar::after {
-  content: '';
-  width: 1px;
-  height: 90px;
-  background: var(--slate);
-  display: block;
-}
-.sidebar-left { left: 2.5rem; }
-.sidebar-right { right: 2.5rem; }
-.sidebar-right a {
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.15em;
-  color: var(--slate);
-  text-decoration: none;
-  writing-mode: vertical-rl;
-  transition: var(--transition);
-}
-.sidebar-right a:hover { color: var(--green); transform: translateY(-3px); }
-.sidebar-left a {
-  color: var(--slate);
-  transition: var(--transition);
-  display: flex;
-}
-.sidebar-left a:hover { color: var(--green); transform: translateY(-3px); }
-.sidebar-left svg { width: 18px; height: 18px; }
+.dindex a:hover,.dindex a:focus-visible{background:var(--paper-2);padding-left:.8rem}
+.dindex a:hover .arr{translate:6px 0;color:var(--orange)}
+.dindex .num{font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;color:var(--orange-ink)}
+.dindex .ttl{font:600 1.02rem 'Bricolage';letter-spacing:.01em}
+.dindex .arr{font-family:var(--mono);color:var(--ink-30);transition:translate .2s,color .2s}
 
-/* ====== MAIN CONTENT ====== */
-main {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 0 6rem;
+/* approval stamp */
+.stamp{
+  position:absolute;right:calc(var(--pad) - .6rem);top:clamp(2.4rem,6vw,4.6rem);rotate:7deg;
+  border:2.5px solid var(--orange);color:var(--orange);border-radius:6px;
+  font-family:var(--mono);font-weight:700;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;
+  padding:.5rem .9rem;opacity:.82;user-select:none;
+  mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.75' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .82 .18'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)'/%3E%3C/svg%3E");
+  mask-size:120px;
 }
+.stamp small{display:block;font-weight:400;letter-spacing:.14em;font-size:.6rem;margin-top:.15rem}
+@media(max-width:900px){.stamp{display:none}}
 
-/* ====== SECTION COMMON ====== */
-section {
-  padding: 100px 0;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+/* =============================== ABOUT =============================== */
+.about{display:grid;grid-template-columns:1.5fr 1fr;gap:clamp(2rem,5vw,4.5rem);align-items:start}
+.about .txt p+p{margin-top:1rem}
+.about .txt a{color:var(--ink);text-decoration:underline;text-decoration-color:var(--orange);text-underline-offset:3px;text-decoration-thickness:2px}
+.about .txt a:hover{color:var(--orange-ink)}
+.kit{margin-top:1.8rem;display:flex;flex-wrap:wrap;gap:.45rem}
+.kit li{list-style:none;font-family:var(--mono);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--line);padding:.32rem .6rem;border-radius:2px;color:var(--ink-60);background:var(--paper)}
+.fig{position:relative}
+.fig img{width:100%;height:auto;display:block;border:1px solid var(--line)}
+.fig figcaption{font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-60);margin-top:.6rem;display:flex;justify-content:space-between;gap:1rem}
+.fig figcaption b{color:var(--orange-ink);font-weight:600}
+.fig .dim{position:absolute;left:-1.4rem;top:0;bottom:0;width:1px;background:var(--ink-30);display:none}
+@media(min-width:900px){
+  .fig .dim{display:block}
+  .fig .dim::before,.fig .dim::after{content:"";position:absolute;left:-4px;width:9px;height:1px;background:var(--ink-30)}
+  .fig .dim::before{top:0}.fig .dim::after{bottom:0}
 }
-section:not(#hero) {
-  min-height: unset;
-}
-#about {
-  padding: 120px 0 140px;
-}
+@media(max-width:820px){.about{grid-template-columns:1fr}}
 
-.section-heading {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 2.5rem;
-  white-space: nowrap;
+/* =============================== PROJECTS =============================== */
+.figure{border:1px solid var(--line);background:var(--paper);margin-top:2rem;display:grid;grid-template-columns:1.05fr 1fr}
+.figure .media{border-right:1px solid var(--line);position:relative;min-height:280px}
+.figure .media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.figure .body{padding:clamp(1.2rem,2.6vw,2rem)}
+.figure h3{font:700 clamp(1.2rem,2.2vw,1.55rem)/1.15 'Bricolage';letter-spacing:-.01em;margin:.35rem 0 .8rem}
+.figure .fno{font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--orange-ink)}
+.figure p{color:var(--ink-60);font-size:.98rem}
+.figure .spec{margin-top:1.1rem;display:flex;flex-wrap:wrap;gap:.4rem}
+.figure .spec li{list-style:none;font-family:var(--mono);font-size:.65rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-60);border-bottom:1px solid var(--line);padding:.15rem .1rem}
+.figure .spec li+li::before{content:"/";margin-right:.5rem;color:var(--ink-30)}
+.figure .links{margin-top:1.2rem;display:flex;gap:1.4rem;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase}
+.figure .links a{color:var(--ink);text-decoration:none;border-bottom:2px solid var(--orange);padding-bottom:2px}
+.figure .links a:hover{color:var(--orange-ink)}
+@media(max-width:820px){.figure{grid-template-columns:1fr}.figure .media{border-right:0;border-bottom:1px solid var(--line);min-height:220px}}
+
+/* gallery strip inside featured figure */
+.strip{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line)}
+.strip button{border:0;border-right:1px solid var(--line);background:none;padding:0;cursor:pointer;aspect-ratio:4/3;overflow:hidden}
+.strip button:last-child{border-right:0}
+.strip img{width:100%;height:100%;object-fit:cover;transition:scale .25s}
+.strip button:hover img{scale:1.06}
+.strip button:focus-visible{outline:2px solid var(--orange);outline-offset:-2px}
+
+/* video slots: click-to-load (no third-party until interaction) */
+.yt{position:relative;aspect-ratio:16/9;background:var(--ink);cursor:pointer;border:0;padding:0;width:100%;overflow:hidden}
+.yt picture,.yt img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.85}
+.yt .play{position:absolute;inset:0;display:grid;place-items:center}
+.yt .play span{width:58px;height:58px;border-radius:50%;background:var(--orange);display:grid;place-items:center;transition:scale .2s}
+.yt:hover .play span{scale:1.1}
+.yt svg{width:22px;height:22px;fill:var(--paper);translate:2px 0}
+.yt iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vidrow{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border-top:1px solid var(--line)}
+@media(max-width:640px){.vidrow{grid-template-columns:1fr}}
+
+/* small figures grid */
+.figgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.4rem;margin-top:1.4rem}
+.figgrid .figure{grid-template-columns:1fr;margin-top:0}
+.figgrid .media{min-height:190px;border-right:0;border-bottom:1px solid var(--line)}
+
+/* lightbox */
+dialog.lb{border:0;padding:0;background:transparent;max-width:min(92vw,980px)}
+dialog.lb::backdrop{background:rgba(22,19,14,.82)}
+dialog.lb img{width:100%;height:auto;display:block;border:1px solid var(--line)}
+dialog.lb{opacity:1;transition:opacity .25s}
+@starting-style{dialog.lb[open]{opacity:0}}
+
+/* =============================== EXPERIENCE: REVISION TABLE =============================== */
+.revtable{border:1px solid var(--line);border-top:2px solid var(--ink);background:var(--paper)}
+.revhead{display:grid;grid-template-columns:4.5rem 7.5rem 1fr 9rem;font-family:var(--mono);font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-60);border-bottom:1px solid var(--line)}
+.revhead div{padding:.55rem .9rem;border-right:1px solid var(--line-soft)}
+.revhead div:last-child{border-right:0}
+details.rev{border-bottom:1px solid var(--line)}
+details.rev:last-child{border-bottom:0}
+details.rev summary{
+  display:grid;grid-template-columns:4.5rem 7.5rem 1fr 9rem;align-items:baseline;cursor:pointer;list-style:none;
+  transition:background .15s
 }
-.section-heading h2 {
-  font-family: var(--font-sans);
-  font-size: 1.65rem;
-  font-weight: 600;
-  color: var(--slate-bright);
-  white-space: nowrap;
-}
-.section-heading .num {
-  font-family: var(--font-mono);
-  font-size: 1.1rem;
-  color: var(--green);
-  font-weight: 400;
-}
-.section-heading::after {
-  content: '';
-  display: block;
-  width: 100%;
-  height: 1px;
-  background: var(--navy-lighter);
-  flex-shrink: 1;
+details.rev summary::-webkit-details-marker{display:none}
+details.rev summary:hover,details.rev summary:focus-visible{background:var(--paper-2)}
+details.rev summary>div{padding:.9rem;border-right:1px solid var(--line-soft);min-width:0}
+details.rev summary>div:last-child{border-right:0}
+.rev .r-no{font-family:var(--mono);font-size:.78rem;font-weight:700;color:var(--orange-ink)}
+.rev .r-date{font-family:var(--mono);font-size:.72rem;color:var(--ink-60)}
+.rev .r-desc b{font:600 1.02rem 'Bricolage'}
+.rev .r-desc span{color:var(--ink-60);font-size:.9rem;display:block}
+.rev .r-by{font-family:var(--mono);font-size:.72rem;color:var(--ink-60);text-align:right}
+.rev .r-by::after{content:"+";color:var(--orange);font-weight:700;margin-left:.6rem;display:inline-block;transition:rotate .2s}
+details[open].rev .r-by::after{rotate:45deg}
+.rev .detail{padding:.4rem 1rem 1.3rem calc(4.5rem + .9rem);color:var(--ink-60);font-size:.95rem}
+.rev .detail ul{margin-left:1.1rem}
+.rev .detail li{margin:.45rem 0}
+.rev .detail li::marker{content:"— ";color:var(--orange)}
+@media(max-width:760px){
+  .revhead{display:none}
+  details.rev summary{grid-template-columns:1fr;gap:.1rem}
+  details.rev summary>div{padding:.35rem 1rem;border-right:0}
+  details.rev summary>div:first-child{padding-top:1rem}
+  .rev .r-by{text-align:left;padding-bottom:1rem}
+  .rev .detail{padding:0 1rem 1.2rem}
 }
 
-/* ====== HERO ====== */
-#hero {
-  padding-top: var(--nav-height);
-  position: relative;
-}
-.hero-inner {
-  max-width: 800px;
-}
-.hero-greeting {
-  font-family: var(--font-mono);
-  font-size: 1rem;
-  color: var(--green);
-  margin-bottom: 1.2rem;
-  opacity: 0;
-  animation: fadeUp 0.5s ease 0.1s both;
-}
-.hero-name {
-  font-size: clamp(2.6rem, 7vw, 5rem);
-  font-weight: 700;
-  color: var(--slate-bright);
-  line-height: 1.1;
-  letter-spacing: -1px;
-  margin-bottom: 0.4rem;
-  opacity: 0;
-  animation: fadeUp 0.5s ease 0.2s both;
-}
-.hero-tagline {
-  font-size: clamp(1.6rem, 4.5vw, 3rem);
-  font-weight: 600;
-  color: var(--slate);
-  line-height: 1.2;
-  letter-spacing: -0.5px;
-  margin-bottom: 1.6rem;
-  opacity: 0;
-  animation: fadeUp 0.5s ease 0.3s both;
-}
-.hero-desc {
-  max-width: 520px;
-  font-size: 1rem;
-  color: var(--slate);
-  line-height: 1.75;
-  margin-bottom: 2.5rem;
-  opacity: 0;
-  animation: fadeUp 0.5s ease 0.4s both;
-}
-.hero-desc a {
-  color: var(--green);
-  text-decoration: none;
-}
-.hero-desc a:hover { text-decoration: underline; }
-.hero-cta {
-  display: flex; gap: 1rem; flex-wrap: wrap;
-  opacity: 0;
-  animation: fadeUp 0.5s ease 0.5s both;
-}
-.btn {
-  font-family: var(--font-mono);
-  font-size: 0.82rem;
-  padding: 0.85rem 1.6rem;
-  border-radius: 4px;
-  text-decoration: none;
-  transition: var(--transition);
-  display: inline-flex; align-items: center; gap: 0.5rem;
-}
-.btn-primary {
-  color: var(--green);
-  border: 1px solid var(--green);
-  background: transparent;
-}
-.btn-primary:hover { background: var(--green-tint); transform: translate(-2px,-2px); box-shadow: 4px 4px 0 var(--green); }
-.btn-secondary {
-  color: var(--slate-bright);
-  border: 1px solid var(--navy-lighter);
-  background: transparent;
-}
-.btn-secondary:hover { border-color: var(--green); color: var(--green); transform: translate(-2px,-2px); box-shadow: 4px 4px 0 var(--navy-lighter); }
+/* =============================== QUALIFICATIONS =============================== */
+.quals{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.4rem}
+.qual{border:1px solid var(--line);background:var(--paper);padding:1.5rem}
+.qual .qno{font-family:var(--mono);font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--orange-ink)}
+.qual h3{font:700 1.25rem/1.2 'Bricolage';margin:.5rem 0 .6rem}
+.qual p{color:var(--ink-60);font-size:.94rem}
+.qual .ph{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-top:1rem}
+.qual .ph img{width:100%;aspect-ratio:4/3;object-fit:cover;border:1px solid var(--line);display:block}
+.qual .cap{font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-60);margin-top:.35rem}
 
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to   { opacity: 1; transform: translateY(0); }
+/* =============================== TITLE BLOCK / CONTACT =============================== */
+.contactlede{max-width:56ch;color:var(--ink-60);margin-bottom:2.2rem}
+.tblock{border:2px solid var(--ink);display:grid;grid-template-columns:2fr 1fr 1fr;background:var(--paper)}
+.tb{padding:.85rem 1rem;border-right:1px solid var(--line);border-bottom:1px solid var(--line);min-width:0}
+.tb:nth-child(3n){border-right:0}
+.tb .lab{font-family:var(--mono);font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-60);display:block;margin-bottom:.25rem}
+.tb .val{font:600 .98rem 'Bricolage';word-break:break-word}
+.tb a{color:var(--ink);text-decoration:none;border-bottom:2px solid var(--orange)}
+.tb a:hover{color:var(--orange-ink)}
+.tb.title .val{font:800 1.5rem 'Bricolage';text-transform:uppercase;letter-spacing:-.01em}
+.tb.rev .val{color:var(--orange-ink)}
+@media(max-width:700px){.tblock{grid-template-columns:1fr 1fr}.tb:nth-child(3n){border-right:1px solid var(--line)}.tb:nth-child(2n){border-right:0}}
+footer{padding:1.1rem var(--pad) 2.6rem;font-family:var(--mono);font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-60);display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+footer a{color:var(--ink-60);text-decoration:none}
+footer a:hover{color:var(--orange)}
+
+/* ---- reduced motion ---- */
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-delay:0ms!important;transition-duration:.01ms!important}
+  html{scroll-behavior:auto}
+  .hero .id,.hero .sub,.dindex{opacity:1;translate:none}
 }
 
-/* Scroll hint */
-.scroll-hint {
-  position: absolute;
-  bottom: 2.5rem;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-  opacity: 0;
-  animation: fadeUp 0.6s ease 1.2s both;
-  cursor: pointer;
-  text-decoration: none;
+/* ---- print: a real document ---- */
+@media print{
+  body{background:#fff;font-size:10pt}
+  .zonebar,.progress,.stamp,.yt,.strip,.skip{display:none!important}
+  section{border:0;padding:1rem 0;break-inside:avoid}
+  a{color:#000;text-decoration:none}
+  .tb a::after{content:" (" attr(href) ")";font-size:8pt;color:#444}
+  .figure,.qual,.revtable{border-color:#999}
 }
-.scroll-hint-mouse {
-  width: 24px;
-  height: 40px;
-  border: 2px solid rgba(100,255,218,0.4);
-  border-radius: 12px;
-  position: relative;
-  transition: border-color 0.3s ease;
-}
-.scroll-hint:hover .scroll-hint-mouse { border-color: var(--green); }
-.scroll-hint-wheel {
-  width: 3px;
-  height: 8px;
-  background: var(--green);
-  border-radius: 2px;
-  position: absolute;
-  top: 6px;
-  left: 50%;
-  transform: translateX(-50%) translateY(14px);
-  animation: scrollWheel 2s ease-in-out infinite;
-}
-@keyframes scrollWheel {
-  0% { opacity: 1; transform: translateX(-50%) translateY(14px); }
-  60% { opacity: 0; transform: translateX(-50%) translateY(0); }
-  61% { opacity: 0; transform: translateX(-50%) translateY(14px); }
-  100% { opacity: 1; transform: translateX(-50%) translateY(14px); }
-}
-
-/* ====== ABOUT ====== */
-.about-grid {
-  display: grid;
-  grid-template-columns: 3fr 2fr;
-  gap: 3rem;
-  align-items: start;
-}
-.about-text p {
-  font-size: 0.95rem;
-  line-height: 1.8;
-  margin-bottom: 1rem;
-  color: var(--slate);
-}
-.about-text a { color: var(--green); text-decoration: none; }
-.about-text a:hover { text-decoration: underline; }
-.skills-list {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.4rem 1rem;
-  list-style: none;
-  margin-top: 1rem;
-}
-.skills-list li {
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  color: var(--slate);
-  display: flex; align-items: center; gap: 0.5rem;
-}
-.skills-list li::before {
-  content: '▸';
-  color: var(--green);
-  font-size: 0.7rem;
-  flex-shrink: 0;
-}
-.about-photo {
-  position: relative;
-}
-.about-photo-inner {
-  position: relative;
-  width: 100%;
-  max-width: 260px;
-  border-radius: 6px;
-  cursor: default;
-}
-.about-photo-inner::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 6px;
-  background: var(--green);
-  opacity: 0.05;
-  transition: var(--transition);
-}
-.about-photo-inner:hover::after { opacity: 0; }
-.about-photo-inner img {
-  width: 100%;
-  border-radius: 6px;
-  display: block;
-  filter: grayscale(10%);
-  transition: var(--transition);
-}
-.about-photo-inner:hover img { filter: none; }
-.about-photo-border {
-  position: absolute;
-  top: 14px; left: 14px;
-  width: 100%; max-width: 260px;
-  height: calc(100% - 0px);
-  border: 2px solid var(--green);
-  border-radius: 6px;
-  z-index: -1;
-  transition: var(--transition);
-}
-.about-photo-inner:hover ~ .about-photo-border {
-  top: 8px; left: 8px;
-}
-
-/* ====== EXPERIENCE ====== */
-.exp-layout {
-  display: flex;
-  gap: 0;
-}
-.exp-tabs {
-  flex-shrink: 0;
-  width: 140px;
-  display: flex;
-  flex-direction: column;
-  border-left: 2px solid var(--navy-lighter);
-}
-.exp-tab {
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  color: var(--slate);
-  padding: 0.85rem 1.2rem;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  text-align: left;
-  transition: var(--transition);
-  border-left: 2px solid transparent;
-  margin-left: -2px;
-  white-space: nowrap;
-}
-.exp-tab:hover {
-  color: var(--green);
-  background: var(--green-tint);
-}
-.exp-tab.active {
-  color: var(--green);
-  border-left-color: var(--green);
-  background: var(--green-tint);
-}
-.exp-panels {
-  flex: 1;
-  padding: 0 0 0 2rem;
-  min-height: 240px;
-}
-.exp-panel { display: none; }
-.exp-panel.active { display: block; }
-.exp-panel h3 {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: var(--slate-bright);
-  margin-bottom: 0.15rem;
-}
-.exp-panel h3 .company {
-  color: var(--green);
-}
-.exp-panel .exp-date {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--slate);
-  margin-bottom: 1.1rem;
-  display: flex; align-items: center; gap: 0.5rem;
-}
-.exp-panel .exp-date .logo-inline {
-  width: 20px; height: 20px; object-fit: contain;
-  border-radius: 3px; background: #fff;
-  padding: 2px;
-}
-.exp-panel .exp-date .logo-inline.logo-inline-wide {
-  width: auto; height: 18px; padding: 3px 6px;
-}
-.exp-panel ul { list-style: none; }
-.exp-panel li {
-  font-size: 0.9rem;
-  color: var(--slate);
-  line-height: 1.7;
-  padding: 0.25rem 0;
-  display: flex; gap: 0.8rem;
-}
-.exp-panel li::before {
-  content: '▸';
-  color: var(--green);
-  flex-shrink: 0;
-  margin-top: 2px;
-}
-
-/* ====== PROJECTS ====== */
-.featured-project {
-  display: grid;
-  grid-template-columns: 3fr 2fr;
-  gap: 2rem;
-  align-items: start;
-  margin-bottom: 3rem;
-  position: relative;
-}
-.featured-project.flip {
-  direction: rtl;
-}
-.featured-project.flip > * {
-  direction: ltr;
-}
-.proj-img-wrap {
-  position: relative;
-  border-radius: 6px;
-  overflow: hidden;
-}
-/* overlay only on Plane Pointer placeholder */
-.proj-img-wrap.with-overlay::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: var(--navy);
-  opacity: 0.25;
-  transition: var(--transition);
-  border-radius: 6px;
-}
-.proj-img-wrap.with-overlay:hover::after { opacity: 0.05; }
-/* Stacked image column */
-.proj-img-stack {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-.proj-img-top {
-  position: relative;
-  border-radius: 6px;
-  overflow: hidden;
-  cursor: pointer;
-}
-.proj-img-top img {
-  width: 100%;
-  height: 280px;
-  object-fit: cover;
-  object-position: center 60%;
-  display: block;
-  border-radius: 6px;
-  transition: var(--transition);
-  filter: grayscale(10%);
-}
-.proj-img-top:hover img { filter: none; transform: scale(1.02); }
-.proj-img-top::after {
-  content: '';
-  position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(10,25,47,0.4) 0%, transparent 60%);
-  border-radius: 6px;
-  pointer-events: none;
-}
-
-/* Tesla section wrapper with wireframe car */
-.tesla-section {
-  position: relative;
-  overflow: hidden;
-  margin-bottom: 3rem;
-  transition: padding-top 0.8s ease-out, max-height 0.8s ease-out;
-}
-
-/* Wireframe car container */
-.wireframe-car {
-  position: relative;
-  width: 70%;
-  max-width: 500px;
-  margin: 1.5rem auto 0;
-  pointer-events: none;
-  z-index: 0;
-  opacity: 0;
-  transform: translateX(0);
-  transition: opacity 0.8s ease;
-}
-.tesla-section.vis .wireframe-car {
-  opacity: 0.22;
-}
-.wireframe-car.drive-off {
-  opacity: 0 !important;
-  transform: translateX(120vw);
-  transition: transform 1.8s cubic-bezier(0.4, 0, 0.9, 1), opacity 1.6s ease 0.3s;
-}
-.wireframe-car img {
-  width: 100%;
-  display: block;
-  filter: invert(1) sepia(1) saturate(2) hue-rotate(120deg);
-}
-
-/* Wireframe return */
-.wireframe-car.drive-back {
-  opacity: 0;
-  transform: translateX(-60vw);
-  transition: none;
-}
-.wireframe-car.drive-back.arriving {
-  opacity: 0.22;
-  transform: translateX(0);
-  transition: transform 0.8s cubic-bezier(0, 0, 0.2, 1), opacity 0.5s ease;
-}
-.tesla-section .featured-project {
-  position: relative;
-  z-index: 1;
-  margin-bottom: 0;
-}
-.proj-tech-wide {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  justify-content: center;
-  gap: 0;
-  list-style: none;
-  padding: 1rem 0;
-  margin: 0;
-  border-top: 1px solid var(--navy-lighter);
-  border-bottom: 1px solid var(--navy-lighter);
-}
-
-/* ====== CHARGE TO LAUNCH ====== */
-.charge-runway {
-  position: relative;
-  overflow: clip;
-}
-.charge-runway .tesla-section {
-  position: sticky;
-  top: 15vh;
-  overflow: visible;
-  z-index: 2;
-}
-.charge-runway.charge-complete {
-  overflow: visible;
-}
-.charge-runway.charge-complete .tesla-section {
-  position: relative;
-  top: 0;
-}
-
-/* During charging, maintain the car's natural placement */
-.tesla-section.charging {
-  padding-top: 2rem;
-  max-height: 100vh;
-  overflow: clip;
-}
-
-/* During charging, brighten the car */
-.tesla-section.charging .wireframe-car {
-  z-index: 2;
-}
-
-/* During charging, hide the project content completely */
-.tesla-section.charging .featured-project,
-.tesla-section.charging .proj-tech-wide {
-  opacity: 0;
-  filter: blur(4px);
-  transition: opacity 0.3s ease, filter 0.3s ease;
-}
-/* Restore on charge complete */
-.tesla-section .featured-project,
-.tesla-section .proj-tech-wide {
-  transition: opacity 0.8s ease, filter 0.8s ease;
-}
-
-/* Battery gauge: in normal flow below the car, hidden until charge */
-.charge-gauge {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-  position: relative;
-  z-index: 2;
-  padding: 1rem 0 1.5rem;
-  opacity: 0;
-  max-height: 0;
-  overflow: hidden;
-  transition: opacity 0.4s ease, max-height 0.4s ease;
-}
-.tesla-section.charging .charge-gauge {
-  opacity: 1;
-  max-height: 300px;
-}
-
-/* Tesla-style charge bar */
-.battery-pack {
-  width: clamp(240px, 55vw, 400px);
-  height: 12px;
-  background: var(--navy-lighter);
-  border-radius: 6px;
-  overflow: hidden;
-  position: relative;
-  border: 1px solid rgba(100, 255, 218, 0.12);
-}
-.charge-fill {
-  height: 100%;
-  width: 0%;
-  background: var(--green);
-  border-radius: 6px;
-  transition: width 0.1s linear;
-  box-shadow: 0 0 10px rgba(100, 255, 218, 0.3), 0 0 20px rgba(100, 255, 218, 0.15);
-  will-change: width;
-}
-
-/* Percentage display */
-.charge-pct {
-  font-family: var(--font-mono);
-  font-size: clamp(1.8rem, 5vw, 3rem);
-  font-weight: 700;
-  color: var(--green);
-  line-height: 1;
-  text-shadow: 0 0 20px rgba(100, 255, 218, 0.25);
-}
-.charge-pct-sign {
-  font-size: 0.6em;
-  opacity: 0.7;
-}
-
-/* Label */
-.charge-label {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--slate);
-  text-transform: uppercase;
-  letter-spacing: 2px;
-}
-
-/* Scroll hint arrow */
-.charge-hint-arrow {
-  color: var(--green);
-  opacity: 0.5;
-  animation: chargeArrowBounce 1.5s ease-in-out infinite;
-}
-@keyframes chargeArrowBounce {
-  0%, 100% { transform: translateY(0); opacity: 0.5; }
-  50% { transform: translateY(8px); opacity: 0.9; }
-}
-
-/* "CHARGED" burst -- overlays the whole tesla-section */
-.charge-burst {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 20;
-  pointer-events: none;
-}
-.charge-burst-text {
-  font-family: var(--font-mono);
-  font-size: clamp(2rem, 6vw, 3.5rem);
-  font-weight: 700;
-  color: var(--green);
-  letter-spacing: 6px;
-  text-shadow: 0 0 40px var(--green), 0 0 80px rgba(100, 255, 218, 0.4);
-  opacity: 0;
-  transform: scale(0.8);
-}
-.charge-burst-text.flash {
-  animation: burstFlash 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-@keyframes burstFlash {
-  0%   { opacity: 0; transform: scale(0.8); }
-  30%  { opacity: 1; transform: scale(1.1); }
-  70%  { opacity: 1; transform: scale(1.05); }
-  100% { opacity: 0; transform: scale(1.2); }
-}
-
-.proj-img-wrap img {
-  width: 100%;
-  height: 300px;
-  object-fit: cover;
-  display: block;
-  border-radius: 6px;
-  transition: var(--transition);
-}
-.proj-content {
-  position: relative;
-  z-index: 2;
-}
-.featured-project:nth-child(even) .proj-content {
-  padding: 0;
-}
-.proj-label {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  color: var(--green);
-  margin-bottom: 0.6rem;
-}
-.proj-title {
-  font-size: 1.3rem;
-  font-weight: 700;
-  color: var(--slate-bright);
-  margin-bottom: 1rem;
-  line-height: 1.2;
-}
-.proj-desc-card {
-  background: var(--navy-light);
-  border-radius: 4px;
-  padding: 1.1rem 1.3rem;
-  font-size: 0.88rem;
-  line-height: 1.75;
-  color: var(--slate);
-  margin-bottom: 1rem;
-  box-shadow: 0 10px 30px rgba(2,12,27,0.7);
-}
-.proj-tech {
-  display: flex; flex-wrap: wrap; gap: 0.6rem;
-  list-style: none;
-  margin-bottom: 0.75rem;
-}
-.proj-tech li {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  color: var(--slate);
-}
-.proj-video-link {
-  display: inline-flex; align-items: center; gap: 0.5rem;
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--green);
-  text-decoration: none;
-  margin-top: 0.25rem;
-  transition: var(--transition);
-  opacity: 0.8;
-}
-.proj-video-link:hover { opacity: 1; gap: 0.7rem; }
-
-/* Other small projects */
-.other-projects-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
-  margin-top: 2.5rem;
-}
-.small-proj {
-  background: var(--navy-light);
-  border-radius: 6px;
-  padding: 1.8rem 1.5rem;
-  display: flex; flex-direction: column;
-  transition: var(--transition);
-  cursor: default;
-  border: 1px solid transparent;
-}
-.small-proj:hover {
-  transform: translateY(-5px);
-  border-color: var(--border);
-  box-shadow: 0 10px 30px rgba(2,12,27,0.5);
-}
-.small-proj-top {
-  display: flex; justify-content: space-between; align-items: flex-start;
-  margin-bottom: 1.2rem;
-}
-.folder-icon svg { width: 36px; height: 36px; color: var(--green); }
-.small-proj-links { display: flex; gap: 0.75rem; }
-.small-proj-links a { color: var(--slate); transition: var(--transition); display: flex; }
-.small-proj-links a:hover { color: var(--green); }
-.small-proj-links svg { width: 18px; height: 18px; }
-.small-proj h4 {
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: var(--slate-bright);
-  margin-bottom: 0.5rem;
-}
-.small-proj p {
-  font-size: 0.82rem;
-  color: var(--slate);
-  line-height: 1.65;
-  flex: 1;
-  margin-bottom: 1rem;
-}
-.small-proj-tech {
-  display: flex; flex-wrap: wrap; gap: 0.5rem;
-  list-style: none;
-}
-.small-proj-tech li {
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  color: var(--slate);
-}
-
-/* ====== EDUCATION ====== */
-.edu-items { display: flex; flex-direction: column; gap: 1.5rem; }
-.edu-item {
-  background: var(--navy-light);
-  border-radius: 6px;
-  padding: 1.5rem 1.8rem;
-  border: 1px solid transparent;
-  transition: var(--transition);
-}
-.edu-item:hover {
-  border-color: var(--border);
-  transform: translateX(4px);
-}
-.edu-item h3 {
-  font-size: 1.05rem;
-  font-weight: 600;
-  color: var(--slate-bright);
-  margin-bottom: 0.25rem;
-}
-.edu-item .edu-sub {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--green);
-  margin-bottom: 0.6rem;
-}
-.edu-item p {
-  font-size: 0.87rem;
-  color: var(--slate);
-  line-height: 1.65;
-}
-.edu-item .cw {
-  margin-top: 0.5rem;
-  font-size: 0.82rem;
-  color: var(--slate);
-  border-top: 1px solid var(--navy-lighter);
-  padding-top: 0.5rem;
-}
-
-/* ====== AVIATION PHOTOS ====== */
-.photo-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  margin-top: 1.5rem;
-}
-.photo-item {
-  position: relative;
-  border-radius: 6px;
-  overflow: hidden;
-  cursor: pointer;
-}
-.photo-item img {
-  width: 100%;
-  height: 220px;
-  object-fit: cover;
-  display: block;
-  transition: var(--transition);
-  filter: grayscale(15%);
-}
-.photo-item:hover img { filter: none; transform: scale(1.03); }
-.photo-item .cap {
-  position: absolute; bottom: 0; left: 0; right: 0;
-  padding: 0.7rem 0.9rem;
-  background: linear-gradient(to top, rgba(10,25,47,0.9) 0%, transparent 100%);
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  color: var(--slate-light);
-  opacity: 0;
-  transition: var(--transition);
-}
-.photo-item:hover .cap { opacity: 1; }
-
-/* ====== CONTACT ====== */
-#contact {
-  text-align: center;
-  max-width: 560px;
-  margin: 0 auto;
-  padding: 80px 0 160px;
-}
-.contact-overline {
-  font-family: var(--font-mono);
-  font-size: 0.85rem;
-  color: var(--green);
-  margin-bottom: 1.2rem;
-}
-.contact-overline .num { margin-right: 0.3rem; }
-#contact h2 {
-  font-size: clamp(2rem, 5vw, 3rem);
-  font-weight: 700;
-  color: var(--slate-bright);
-  margin-bottom: 1.2rem;
-  line-height: 1.1;
-}
-#contact p {
-  font-size: 0.95rem;
-  color: var(--slate);
-  line-height: 1.8;
-  margin-bottom: 2.5rem;
-}
-.contact-links {
-  display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap;
-  margin-bottom: 1rem;
-}
-
-/* ====== FOOTER ====== */
-footer {
-  text-align: center;
-  padding: 1.5rem;
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  color: var(--slate);
-  line-height: 1.8;
-}
-footer a { color: var(--green); text-decoration: none; }
-footer a:hover { text-decoration: underline; }
-
-/* ====== LIGHTBOX ====== */
-.lb {
-  display: none; position: fixed; inset: 0;
-  background: rgba(2,12,27,0.95); backdrop-filter: blur(12px);
-  z-index: 9999; align-items: center; justify-content: center;
-  cursor: zoom-out;
-}
-.lb.on { display: flex; }
-.lb img {
-  max-width: 90vw; max-height: 85vh;
-  border-radius: 4px;
-  box-shadow: 0 20px 80px rgba(0,0,0,0.8);
-  animation: lbIn 0.3s ease;
-}
-@keyframes lbIn {
-  from { opacity: 0; transform: scale(0.92); }
-  to   { opacity: 1; transform: scale(1); }
-}
-.lb-cap {
-  position: fixed; bottom: 1.5rem; left: 50%; transform: translateX(-50%);
-  font-family: var(--font-mono); font-size: 0.75rem;
-  color: var(--slate); text-align: center; pointer-events: none;
-}
-.lb-x {
-  position: fixed; top: 1.2rem; right: 1.5rem;
-  font-family: var(--font-mono); font-size: 1rem;
-  color: var(--slate-light); background: none; border: 1px solid var(--navy-lighter);
-  width: 38px; height: 38px; border-radius: 4px; cursor: pointer;
-  display: flex; align-items: center; justify-content: center;
-  transition: var(--transition);
-}
-.lb-x:hover { color: var(--green); border-color: var(--green); }
-.lb-nav {
-  position: fixed; top: 50%; transform: translateY(-50%);
-  font-family: var(--font-mono); font-size: 1.4rem;
-  color: var(--slate); background: none;
-  border: 1px solid var(--navy-lighter); width: 42px; height: 42px;
-  border-radius: 4px; cursor: pointer;
-  display: flex; align-items: center; justify-content: center;
-  transition: var(--transition);
-}
-.lb-nav:hover { color: var(--green); border-color: var(--green); }
-.lb-prev { left: 1.5rem; }
-.lb-next { right: 1.5rem; }
-
-/* ====== SCROLL REVEAL ====== */
-.reveal {
-  opacity: 0;
-  transform: translateY(20px) translateZ(0);
-  transition: opacity 0.5s ease, transform 0.5s ease;
-  will-change: opacity, transform;
-}
-.reveal.vis { opacity: 1; transform: translateY(0) translateZ(0); will-change: auto; }
-.reveal.d1 { transition-delay: 0.1s; }
-.reveal.d2 { transition-delay: 0.2s; }
-.reveal.d3 { transition-delay: 0.3s; }
-
-/* ====== BACK TO TOP ====== */
-.btt {
-  position: fixed; bottom: 2rem; right: 4.5rem; z-index: 99;
-  font-family: var(--font-mono); font-size: 0.7rem;
-  color: var(--green); border: 1px solid var(--green);
-  background: transparent;
-  width: 40px; height: 40px; border-radius: 4px;
-  cursor: pointer; display: flex; align-items: center; justify-content: center;
-  opacity: 0; pointer-events: none;
-  transition: var(--transition);
-}
-.btt.visible { opacity: 1; pointer-events: all; }
-.btt:hover { background: var(--green-tint); transform: translateY(-3px); }
-.btt svg { width: 18px; height: 18px; }
-
-/* ====== VIDEO CARDS ====== */
-.video-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  margin-top: 1.2rem;
-}
-.yt-card {
-  position: relative; border-radius: 6px; overflow: hidden;
-  background: #000; border: 1px solid var(--navy-lighter);
-  cursor: pointer; transition: var(--transition);
-}
-.yt-card:hover { border-color: var(--green); }
-.yt-thumb { position: relative; padding-top: 56.25%; }
-.yt-thumb img {
-  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-  object-fit: cover; transition: var(--transition); filter: brightness(0.8);
-}
-.yt-card:hover .yt-thumb img { filter: brightness(0.6); }
-.yt-play {
-  position: absolute; inset: 0;
-  display: flex; align-items: center; justify-content: center;
-}
-.yt-play-btn {
-  width: 52px; height: 52px; border-radius: 50%;
-  background: rgba(255,0,0,0.9);
-  display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-  transition: var(--transition);
-}
-.yt-card:hover .yt-play-btn { transform: scale(1.1); }
-.yt-play-btn svg { width: 22px; height: 22px; color: white; margin-left: 3px; }
-.yt-label {
-  padding: 0.6rem 0.9rem;
-  background: var(--navy-light);
-  display: flex; align-items: center; gap: 0.5rem;
-  font-family: var(--font-mono); font-size: 0.72rem; color: var(--slate);
-}
-.yt-dot { width: 6px; height: 6px; border-radius: 50%; background: #ef4444; flex-shrink: 0; }
-.yt-card.playing .yt-dot { background: #22c55e; }
-.yt-card iframe {
-  position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;
-}
-/* Expand button for videos */
-.yt-expand {
-  position: absolute; top: 8px; right: 8px; z-index: 5;
-  width: 32px; height: 32px; border-radius: 4px;
-  background: rgba(10,25,47,0.8); border: 1px solid rgba(100,255,218,0.3);
-  display: flex; align-items: center; justify-content: center;
-  cursor: pointer; opacity: 0; transition: opacity 0.2s ease;
-  color: var(--green);
-}
-.yt-expand svg { width: 16px; height: 16px; }
-.yt-card:hover .yt-expand,
-.creative-yt:hover .yt-expand { opacity: 1; }
-.yt-expand:hover { background: rgba(100,255,218,0.15); }
-/* Video modal overlay */
-.video-modal {
-  position: fixed; inset: 0; z-index: 9999;
-  background: rgba(0,0,0,0.92);
-  display: flex; align-items: center; justify-content: center;
-  cursor: pointer;
-}
-.video-modal iframe {
-  width: 90vw; height: 50.625vw; max-width: 1200px; max-height: 675px;
-  border: none; border-radius: 6px;
-}
-.video-modal-close {
-  position: absolute; top: 20px; right: 24px;
-  color: white; font-size: 2rem; cursor: pointer;
-  background: none; border: none; font-family: var(--font-sans);
-}
-
-/* ====== STATS ROW ====== */
-.stats-row {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 0;
-  padding: 1rem 0;
-  border-top: 1px solid var(--navy-lighter);
-  border-bottom: 1px solid var(--navy-lighter);
-  margin-bottom: 1.2rem;
-}
-.stat {
-  text-align: center;
-}
-.stat-num {
-  font-family: var(--font-mono);
-  font-size: clamp(1rem, 2.5vw, 1.4rem); font-weight: 700;
-  color: var(--green);
-}
-.stat-lbl {
-  font-size: 0.7rem; color: var(--slate);
-  text-transform: uppercase; letter-spacing: 1px;
-  margin-top: 0.2rem;
-}
-
-/* ====== TESLA HERO PHOTO ====== */
-.tesla-hero-photo {
-  position: relative;
-  border-radius: 6px;
-  overflow: hidden;
-  cursor: pointer;
-  margin-top: 1rem;
-}
-.tesla-hero-photo img {
-  width: 100%;
-  height: 480px;
-  object-fit: cover;
-  object-position: center top;
-  display: block;
-  filter: grayscale(10%);
-  transition: filter 0.3s ease, transform 0.3s ease;
-}
-.tesla-hero-photo:hover img {
-  filter: none;
-  transform: scale(1.01);
-}
-.tesla-hero-cap {
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  padding: 1.2rem 1.4rem;
-  background: linear-gradient(to top, rgba(2,12,27,0.9) 0%, transparent 100%);
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  color: var(--slate-light);
-  transform: translateY(100%);
-  transition: transform 0.3s ease;
-}
-.tesla-hero-photo:hover .tesla-hero-cap { transform: translateY(0); }
-
-.view-all-photos-btn {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-top: 0.75rem;
-  background: none;
-  border: 1px solid var(--navy-lighter);
-  color: var(--slate);
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: var(--transition);
-}
-.view-all-photos-btn:hover {
-  border-color: var(--green);
-  color: var(--green);
-}
-.view-all-photos-btn[aria-expanded="true"] {
-  color: var(--green);
-  border-color: var(--green);
-}
-
-/* ====== SLIDESHOW ====== */
-.slideshow {
-  position: relative;
-  border-radius: 6px;
-  overflow: hidden;
-  margin-top: 1rem;
-}
-.slideshow-track {
-  display: flex;
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: transform;
-}
-.slideshow-slide {
-  min-width: 100%;
-  position: relative;
-  cursor: pointer;
-}
-.slideshow-slide img {
-  width: 100%;
-  height: 420px;
-  object-fit: contain;
-  display: block;
-  filter: grayscale(15%);
-  transition: filter 0.3s ease;
-  background: var(--navy-light);
-}
-.slideshow-slide:hover img { filter: none; }
-.slideshow-slide .slide-cap {
-  position: absolute; bottom: 0; left: 0; right: 0;
-  padding: 1rem 1.2rem;
-  background: linear-gradient(to top, rgba(2,12,27,0.9) 0%, transparent 100%);
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--slate-light);
-  transform: translateY(100%);
-  transition: transform 0.3s ease;
-}
-.slideshow-slide:hover .slide-cap { transform: translateY(0); }
-.slideshow-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 36px; height: 36px;
-  border-radius: 4px;
-  border: 1px solid rgba(100,255,218,0.2);
-  background: rgba(10,25,47,0.7);
-  backdrop-filter: blur(8px);
-  color: var(--slate-light);
-  cursor: pointer;
-  display: flex; align-items: center; justify-content: center;
-  transition: var(--transition);
-  z-index: 3;
-}
-.slideshow-btn:hover {
-  border-color: var(--green);
-  color: var(--green);
-  background: rgba(10,25,47,0.9);
-}
-.slideshow-btn.prev { left: 0.75rem; }
-.slideshow-btn.next { right: 0.75rem; }
-.slideshow-dots {
-  display: flex; justify-content: center; gap: 0.5rem;
-  padding: 0.75rem 0 0;
-}
-.slideshow-dot {
-  width: 6px; height: 6px;
-  border-radius: 50%;
-  background: var(--navy-lighter);
-  border: none; cursor: pointer;
-  transition: var(--transition);
-  padding: 0;
-}
-.slideshow-dot.active {
-  background: var(--green);
-  box-shadow: 0 0 6px rgba(100,255,218,0.4);
-}
-.slideshow-dot:hover { background: var(--slate); }
-.slideshow-hint {
-  text-align: center;
-  font-family: var(--font-mono);
-  font-size: 0.65rem;
-  letter-spacing: 0.12em;
-  color: var(--slate);
-  opacity: 0.6;
-  padding: 0.5rem 0 0.25rem;
-}
-
-/* Legacy gallery for photo-grid items */
-.gal-item {
-  position: relative; overflow: hidden;
-  border-radius: 4px; cursor: pointer;
-}
-.gal-item img {
-  width: 100%; height: 230px; object-fit: cover;
-  transition: var(--transition);
-  filter: grayscale(15%);
-}
-.gal-item:hover img { transform: scale(1.04); filter: none; }
-.gal-item .cap {
-  position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(2,12,27,0.85) 0%, transparent 55%);
-  opacity: 0; transition: var(--transition);
-  display: flex; align-items: flex-end; padding: 0.8rem;
-}
-.gal-item:hover .cap { opacity: 1; }
-.gal-item .cap span {
-  font-family: var(--font-mono); font-size: 0.72rem; color: var(--slate-light);
-}
-
-/* Creative small video */
-.creative-yt {
-  position: relative; border-radius: 6px; overflow: hidden;
-  cursor: pointer; background: #000;
-  border: 1px solid var(--navy-lighter);
-  margin-bottom: 0.75rem;
-}
-.creative-yt .yt-thumb { position: relative; padding-top: 56.25%; }
-.creative-yt .yt-thumb img {
-  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-  object-fit: cover; transition: var(--transition); filter: brightness(0.8);
-}
-.creative-yt:hover .yt-thumb img { filter: brightness(0.5); }
-.creative-yt .yt-play { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
-.creative-yt .yt-play-btn {
-  width: 44px; height: 44px; border-radius: 50%;
-  background: rgba(255,0,0,0.9);
-  display: flex; align-items: center; justify-content: center;
-  transition: var(--transition);
-}
-.creative-yt:hover .yt-play-btn { transform: scale(1.1); }
-.creative-yt iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
-
-/* Pill tags */
-.pill {
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  color: var(--green);
-  background: var(--green-tint);
-  border: 1px solid rgba(100,255,218,0.15);
-  padding: 0.25rem 0.65rem;
-  border-radius: 3px;
-  transition: var(--transition);
-}
-.pill:hover { background: var(--green-glow); }
-
-/* ====== RESPONSIVE ====== */
-@media (max-width: 900px) {
-  main { padding: 0 3rem; }
-  .sidebar { display: none; }
-  .about-grid { grid-template-columns: 1fr; }
-  .about-photo-inner { max-width: 200px; }
-}
-@media (max-width: 700px) {
-  .featured-project { grid-template-columns: 1fr; gap: 1.5rem; }
-  .featured-project.flip { direction: ltr; }
-  .proj-content { padding: 1.5rem 0 0 0 !important; }
-  .other-projects-grid { grid-template-columns: 1fr 1fr; }
-  .video-grid { grid-template-columns: 1fr; }
-}
-@media (max-width: 640px) {
-  nav { padding: 0 1.5rem; }
-  main { padding: 0 1.5rem; }
-  section { padding: 70px 0; }
-  .other-projects-grid { grid-template-columns: 1fr; }
-  .photo-grid, .gallery-grid.g2 { grid-template-columns: 1fr; }
-  .stats-row { flex-direction: column; gap: 1rem; }
-  .proj-tech-wide { flex-wrap: wrap; justify-content: center; }
-  .exp-layout { flex-direction: column; }
-  .exp-tabs { flex-direction: row; width: 100%; border-left: none; border-bottom: 2px solid var(--navy-lighter); overflow-x: auto; }
-  .exp-tab { border-left: none; border-bottom: 2px solid transparent; margin-left: 0; margin-bottom: -2px; }
-  .exp-tab.active { border-left: none; border-bottom-color: var(--green); }
-  .exp-panels { padding: 1.5rem 0 0; }
-  .battery-pack { height: 10px; }
-  .charge-pct { font-size: clamp(1.4rem, 8vw, 2.2rem); }
-
-  /* Disable scrolljacking on mobile */
-  .charge-runway { height: auto !important; overflow: visible; }
-  .charge-runway .tesla-section { position: relative !important; top: 0 !important; }
-  .charge-gauge { display: none !important; }
-  .wireframe-car { display: none !important; }
-  .tesla-section.charging { padding-top: 0; max-height: none; overflow: visible; }
-
-  /* Hero adjustments */
-  #hero { min-height: 85vh; }
-  .hero-name { font-size: clamp(2rem, 10vw, 3rem); }
-  .hero-tagline { font-size: clamp(1.2rem, 5vw, 1.8rem); }
-  .hero-cta { flex-direction: column; gap: 0.75rem; }
-  .hero-cta .btn { text-align: center; justify-content: center; }
-  .scroll-hint { display: none; }
-
-  /* About section */
-  #about { padding: 80px 0 100px; }
-  .about-photo { order: -1; margin-bottom: 1rem; }
-  .about-photo-inner { max-width: 160px; margin: 0 auto; }
-
-  /* Contact buttons stack */
-  .contact-links { flex-direction: column; gap: 0.75rem; }
-  .contact-links .btn { text-align: center; justify-content: center; }
-
-  /* Stats row fix */
-  .stats-row { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
-}
-
-/* ====== REDUCED MOTION ====== */
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.001ms !important;
-    transition-duration: 0.001ms !important;
-  }
-  .reveal { opacity: 1; transform: none; }
-  .hero-greeting, .hero-name, .hero-tagline, .hero-desc, .hero-cta, .scroll-hint { opacity: 1; }
-  .charge-runway { height: auto !important; }
-  .charge-runway .tesla-section { position: relative !important; }
-  .charge-overlay { display: none !important; }
-}
-
 </style>
 </head>
 <body>
 
-<!-- SCROLL PROGRESS -->
-<div class="scroll-progress" id="scrollProgress"></div>
+<a class="skip" href="#main">Skip to content</a>
+<div class="progress" aria-hidden="true"></div>
 
-<!-- LIGHTBOX -->
-<div class="lb" id="lb">
-  <img id="lbImg" src="" alt="">
-  <p class="lb-cap" id="lbCap"></p>
-  <button class="lb-x" onclick="closeLb()">&times;</button>
-  <button class="lb-nav lb-prev" onclick="navLb(-1)">&#8249;</button>
-  <button class="lb-nav lb-next" onclick="navLb(1)">&#8250;</button>
-</div>
+<div class="sheet">
+  <div class="reg" style="left:-9px;top:-9px" aria-hidden="true"></div>
+  <div class="reg" style="right:-9px;top:-9px" aria-hidden="true"></div>
 
-<!-- NAV -->
-<nav id="nav">
-  <button class="nav-burger" id="navBurger" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
-  <a href="Derek_Nagel_Resume.pdf" target="_blank" class="nav-resume">Resume</a>
-</nav>
-<div class="nav-menu-backdrop" id="navBackdrop"></div>
-<div class="nav-menu" id="navMenu">
-  <a href="#about"><span class="num">01.</span>About</a>
-  <a href="#experience"><span class="num">02.</span>Experience</a>
-  <a href="#projects"><span class="num">03.</span>Projects</a>
-  <a href="#education"><span class="num">04.</span>Education</a>
-  <a href="#contact"><span class="num">05.</span>Contact</a>
-  <a href="Derek_Nagel_Resume.pdf" target="_blank" class="nav-resume-mobile">Resume</a>
-</div>
+  <header class="zonebar">
+    <span><b>DN</b> · DOC NO <span class="no">DN-2027</span></span>
+    <nav aria-label="Sections">
+      <a href="#about">01 About</a>
+      <a href="#projects">02 Built</a>
+      <a href="#experience">03 Experience</a>
+      <a href="#quals">04 Qualifications</a>
+      <a href="#contact">05 Contact</a>
+    </nav>
+    <span>REV <b>2026-07</b></span>
+  </header>
 
-<!-- LEFT SIDEBAR -->
-<div class="sidebar sidebar-left">
-  <a href="https://www.linkedin.com/in/derek-nagel-002b86334" target="_blank" aria-label="LinkedIn">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-  </a>
-  <a href="mailto:dnagel@gmu.edu" aria-label="Email">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-  </a>
-  <a href="tel:8476244222" aria-label="Phone">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.5 19.79 19.79 0 0 1 1.61 4.9 2 2 0 0 1 3.59 2.72h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.06 6.06l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-  </a>
-</div>
+  <main id="main">
 
-<!-- RIGHT SIDEBAR -->
-<div class="sidebar sidebar-right">
-  <a href="mailto:dnagel@gmu.edu">dnagel@gmu.edu</a>
-</div>
+  <!-- ============ 00 HERO ============ -->
+  <section class="hero" id="top">
+    <div class="stamp" aria-hidden="true">Released<small>For construction · 2026</small></div>
+    <p class="id">
+      <span>Nagel, Derek A.</span>
+      <span><span class="dot">●</span> Mechanical Engineering</span>
+      <span>George Mason University</span>
+      <span>Waukegan / Fairfax</span>
+    </p>
+    <h1>
+      <span class="ln">I build things</span>
+      <span class="ln">that have to <em>work.</em></span>
+    </h1>
+    <p class="sub">
+      ME intern at <strong>Astronics</strong> working on aerospace hardware. Rebuilt a
+      <strong>260,000-mile Tesla</strong> and put it back on the road. <strong>Private pilot</strong>,
+      single and multi-engine. D1 volleyball at GMU. Graduating <strong>May 2027</strong>.
+    </p>
 
-<!-- BACK TO TOP -->
-<button class="btt" id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
-</button>
-
-<!-- MAIN -->
-<main>
-
-  <!-- HERO -->
-  <section id="hero">
-    <div class="hero-inner">
-      <p class="hero-greeting">Hi, my name is</p>
-      <h1 class="hero-name">Derek Nagel.</h1>
-      <h2 class="hero-tagline">See what I've been working on.</h2>
-      <p class="hero-desc">
-        I&rsquo;m a Mechanical Engineering student at <a href="https://www.gmu.edu" target="_blank">George Mason University</a> concentrating in Aerospace. Scroll through to see what I&rsquo;ve been building, where I&rsquo;ve worked, and what&rsquo;s next.
-      </p>
-      <div class="hero-cta">
-        <a href="#about" class="btn btn-primary">See my work</a>
-        <a href="Derek_Nagel_Resume.pdf" target="_blank" class="btn btn-secondary">See my r&eacute;sum&eacute; &rarr;</a>
-      </div>
-    </div>
-    <a href="#about" class="scroll-hint" aria-label="Scroll down">
-      <div class="scroll-hint-mouse">
-        <div class="scroll-hint-wheel"></div>
-      </div>
-    </a>
+    <nav class="dindex" aria-label="Drawing index">
+      <a href="#about"><span class="num">SHT 01</span><span class="ttl">About — who is drawn here</span><span class="arr">-&gt;</span></a>
+      <a href="#projects"><span class="num">SHT 02</span><span class="ttl">Built — figures 01 through 05</span><span class="arr">-&gt;</span></a>
+      <a href="#experience"><span class="num">SHT 03</span><span class="ttl">Experience — revision history</span><span class="arr">-&gt;</span></a>
+      <a href="#quals"><span class="num">SHT 04</span><span class="ttl">Qualifications — education, flight, athletics</span><span class="arr">-&gt;</span></a>
+      <a href="#contact"><span class="num">SHT 05</span><span class="ttl">Contact — title block</span><span class="arr">-&gt;</span></a>
+    </nav>
   </section>
 
-  <!-- ABOUT -->
-  <section id="about">
-    <div class="section-heading reveal">
-      <span class="num">01.</span>
-      <h2>About Me</h2>
-    </div>
-    <div class="about-grid reveal">
-      <div class="about-text">
+  <!-- ============ 01 ABOUT ============ -->
+  <section id="about" class="rv">
+    <p class="sht">SHT 01 <span>/ GENERAL NOTES</span></p>
+    <h2>Hands-on problem solving, documented.</h2>
+    <div class="about">
+      <div class="txt">
         <p>
-          I&rsquo;m a Mechanical Engineering student at George Mason University with a concentration in Aerospace and a minor in Aviation Flight Training and Management. I&rsquo;m driven by hands-on problem solving&mdash;whether that&rsquo;s rebuilding a 260,000-mile Tesla battery pack, designing an ADS-B aircraft tracking system, or building custom electronics from scratch.
+          I'm a Mechanical Engineering student at <a href="https://www.gmu.edu" rel="noopener">George Mason University</a>
+          with a concentration in Aerospace and a minor in Aviation Flight Training and Management. I learn by
+          building: rebuilding a quarter-million-mile Tesla battery pack, designing an ADS-B aircraft tracker,
+          reverse-engineering a steering rack's CAN bus.
         </p>
         <p>
-          I&rsquo;m currently a Mechanical Engineering Intern at <a href="https://www.astronics.com" target="_blank">Astronics Connectivity Systems &amp; Certification</a> in Waukegan, IL, working on aerospace LRU design, structural modeling in SolidWorks, environmental qualification (HALT) testing, and manufacturing automation studies for in-flight connectivity systems. Before that I spent a summer at <a href="https://www.tesla.com" target="_blank">Tesla</a> as an Advisor, supporting EV delivery operations and shadowing manufacturing at the Elgin facility. I hold a Private Pilot certificate (single and multi-engine) and compete on George Mason&rsquo;s Division I Men&rsquo;s Volleyball team.
+          Right now I'm a Mechanical Engineering Intern at <a href="https://www.astronics.com" rel="noopener">Astronics
+          Connectivity Systems &amp; Certification</a> in Waukegan, IL: structural modeling in SolidWorks,
+          environmental qualification (HALT) testing, and manufacturing automation studies for in-flight
+          connectivity systems. Before that I spent a summer at Tesla as an Advisor, supporting EV delivery
+          operations and shadowing manufacturing at the Elgin facility.
         </p>
-        <p>Here are a few technologies and tools I work with:</p>
-        <ul class="skills-list">
-          <li>SolidWorks</li>
-          <li>MATLAB</li>
-          <li>Autodesk Inventor</li>
-          <li>Embedded Systems</li>
-          <li>Mechanical Design</li>
-          <li>3D Printing</li>
-          <li>HV Electrical Systems</li>
-          <li>Python &amp; Automation</li>
+        <p class="note">Tools are listed where they were actually used — see the figures.</p>
+        <ul class="kit" aria-label="Tools and technologies">
+          <li>SolidWorks</li><li>MATLAB</li><li>Autodesk Inventor</li><li>Python &amp; Automation</li>
+          <li>Embedded Systems</li><li>Mechanical Design</li><li>3D Printing</li><li>HV Electrical</li>
         </ul>
       </div>
-      <div class="about-photo">
-        <div class="about-photo-inner">
-          <img src="images/headshot.jpg" alt="Derek Nagel" loading="eager">
-        </div>
-        <div class="about-photo-border"></div>
-      </div>
+      <figure class="fig">
+        <span class="dim" aria-hidden="true"></span>
+        <picture>
+          <source srcset="img/headshot.avif" type="image/avif">
+          <source srcset="img/headshot.webp" type="image/webp">
+          <img src="images/headshot.jpg" alt="Derek Nagel" width="525" height="700" fetchpriority="high">
+        </picture>
+        <figcaption><span><b>FIG. 00</b> — Nagel, D.</span><span>SCALE: 1:1</span></figcaption>
+      </figure>
     </div>
   </section>
 
-  <!-- EXPERIENCE -->
-  <section id="experience">
-    <div class="section-heading reveal">
-      <span class="num">02.</span>
-      <h2>Where I&rsquo;ve Worked</h2>
-    </div>
-    <div class="exp-layout reveal">
-      <div class="exp-tabs">
-        <button class="exp-tab active" data-panel="astronics">Astronics</button>
-        <button class="exp-tab" data-panel="tesla">Tesla</button>
-        <button class="exp-tab" data-panel="pipeline">Pipeline VB</button>
-        <button class="exp-tab" data-panel="saltcreek">Salt Creek</button>
-      </div>
-      <div class="exp-panels">
-
-        <div class="exp-panel active" id="panel-astronics">
-          <h3>Mechanical Engineer Intern &nbsp;<span class="company">@ Astronics</span></h3>
-          <p class="exp-date">
-            <img src="images/astronics-logo.png" alt="Astronics Corporation" class="logo-inline logo-inline-wide">
-            May 2026 &ndash; Present &bull; Waukegan, IL
-          </p>
-          <ul>
-            <li>Mechanical engineering intern at Astronics Connectivity Systems &amp; Certification (ACSC), supporting aerospace LRU design for in-flight connectivity and entertainment systems on Airbus and Boeing aircraft</li>
-            <li>Converted a 4-MCU ARINC 600 tray assembly into a structural model in SolidWorks for modal analysis, working to qualification requirements under DO-160G and AS9100 QMS procedures</li>
-            <li>Led recovery of a Qualmark Typhoon 3.0 HALT environmental test chamber from an extended outage &mdash; root-caused the fault and returned accelerated-life testing to service</li>
-            <li>Built the capital justification for a proposed robotic riveting cell &mdash; process time studies, throughput modeling, and CAPEX/payback analysis, informed by vendor research at the AUTOMATE 2026 trade show</li>
-            <li>Designing production tooling and test fixtures in SolidWorks within AS9100 PLM/ERP-driven quality processes</li>
-          </ul>
-        </div>
-
-        <div class="exp-panel" id="panel-tesla">
-          <h3>Tesla Advisor &nbsp;<span class="company">@ Tesla</span></h3>
-          <p class="exp-date">
-            <img src="images/tesla-logo.png" alt="Tesla" class="logo-inline">
-            May 2025 &ndash; Sep 2025 &bull; Schaumburg, IL
-          </p>
-          <ul>
-            <li>Supported end-to-end EV delivery operations including vehicle staging, quality checks, and final inspection</li>
-            <li>Communicated technical EV systems (battery, drivetrain, charging, software) to customers, translating complex engineering concepts into clear explanations</li>
-            <li>Shadowed operations at Tesla&rsquo;s Elgin manufacturing facility, observing battery production, electric motor assembly, and manufacturing workflows</li>
-          </ul>
-        </div>
-
-        <div class="exp-panel" id="panel-pipeline">
-          <h3>Volleyball Coach &nbsp;<span class="company">@ Pipeline Volleyball</span></h3>
-          <p class="exp-date">
-            <img src="images/pipeline-logo.png" alt="Pipeline Volleyball" class="logo-inline" style="background:transparent;padding:0">
-            May 2024 &ndash; Aug 2024 &bull; Schaumburg, IL
-          </p>
-          <ul>
-            <li>Coached youth volleyball athletes on technique, positioning, and game strategy</li>
-            <li>Planned and led practices, drills, and scrimmages for players at varying skill levels</li>
-            <li>Developed communication and leadership skills through daily mentorship and team management</li>
-          </ul>
-        </div>
-
-        <div class="exp-panel" id="panel-saltcreek">
-          <h3>Event Coordinator &nbsp;<span class="company">@ Salt Creek Park District</span></h3>
-          <p class="exp-date">
-            <img src="images/salt-creek-logo.png" alt="Salt Creek Park District" class="logo-inline">
-            May 2023 &ndash; Aug 2023
-          </p>
-          <ul>
-            <li>Coordinated and executed community events, managing logistics, scheduling, and on-site operations</li>
-            <li>Collaborated with staff and vendors to ensure smooth event setup, execution, and teardown</li>
-            <li>Communicated with community members and stakeholders to promote programming and gather feedback</li>
-          </ul>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- PROJECTS -->
+  <!-- ============ 02 PROJECTS ============ -->
   <section id="projects">
-    <!-- FEATURED: Tesla -->
-    <div class="charge-runway">
-    <div class="tesla-section reveal" style="padding-top:2rem;">
-      <div class="section-heading reveal" style="margin-top:-2rem;">
-        <span class="num">03.</span>
-        <h2>Things I&rsquo;ve Built</h2>
-      </div>
-      <div class="wireframe-car" aria-hidden="true">
-        <img src="images/tesla-wireframe.png" alt="" loading="lazy">
-      </div>
-      <!-- Charge gauge: sits in normal flow right below the wireframe car -->
-      <div class="charge-gauge" aria-hidden="true">
-        <div class="battery-pack">
-          <div class="charge-fill"></div>
-        </div>
-        <div class="charge-pct"><span class="charge-pct-num">0</span><span class="charge-pct-sign">%</span></div>
-        <div class="charge-label">Scroll to charge</div>
-        <div class="charge-hint-arrow">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-        </div>
-        <div class="charge-burst"><div class="charge-burst-text">CHARGED</div></div>
-      </div>
-      <div class="featured-project">
-        <div class="proj-content">
-          <p class="proj-label">Featured Project</p>
-          <h3 class="proj-title">Tesla Model S P85 &mdash; Battery &amp; Drivetrain Rebuild</h3>
-          <div class="proj-desc-card">
-            Complete disassembly, refurbishment, and reassembly of the 85&nbsp;kWh high-voltage battery pack and drivetrain on a 2014 Model S with 260,000 miles. Individual module-level teardown, corrosion treatment, and rebuild with full HV safety protocols throughout. The car is back on the road.
-          </div>
-          <div class="stats-row">
-            <div class="stat"><div class="stat-num" data-target="260000">0</div><div class="stat-lbl">Miles</div></div>
-            <div class="stat"><div class="stat-num" data-target="16">0</div><div class="stat-lbl">Modules</div></div>
-            <div class="stat"><div class="stat-num" data-target="85" data-suffix=" kWh">0</div><div class="stat-lbl">Capacity</div></div>
-            <div class="stat"><div class="stat-num" data-target="400" data-suffix="V+">0</div><div class="stat-lbl">HV System</div></div>
-          </div>
-          <a href="#teslaVideos" class="proj-video-link" onclick="event.preventDefault(); document.getElementById('teslaVideos').scrollIntoView({behavior:'smooth'})">
-            <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M8 5v14l11-7z"/></svg>
-            Watch build videos
-          </a>
-        </div>
-        <div class="proj-img-stack">
-          <div class="proj-img-top" onclick="openLbStack(this)">
-            <img src="images/tesla-car.jpg" alt="2014 Tesla Model S P85" loading="lazy">
-          </div>
-        </div>
-      </div>
-      <ul class="proj-tech proj-tech-wide">
-        <li>HV Electrical</li><li>&nbsp;·&nbsp;</li>
-        <li>Mechanical Disassembly</li><li>&nbsp;·&nbsp;</li>
-        <li>Corrosion Treatment</li><li>&nbsp;·&nbsp;</li>
-        <li>Systems Integration</li>
-      </ul>
-    </div>
-    </div>
+    <p class="sht">SHT 02 <span>/ AS-BUILT FIGURES</span></p>
+    <h2 class="rv">Built. Not rendered — built.</h2>
 
-    <!-- Gallery slideshow + videos for Tesla -->
-    <div class="reveal" style="margin-top:-1rem;margin-bottom:4rem">
-      <!-- Hero photo: you with the battery pack -->
-      <div class="tesla-hero-photo" onclick="openLbFromSlide(this)" data-src="images/tesla-1.jpg" data-cap="Battery pack open — 85 kWh, 16 modules">
-        <img src="images/tesla-1.jpg" alt="Battery pack open — 85 kWh, 16 modules" loading="lazy">
-        <div class="tesla-hero-cap">Battery pack open — 85 kWh, 16 modules</div>
+    <!-- FIG 01: Tesla rebuild -->
+    <article class="figure rv">
+      <div class="media">
+        <picture>
+          <source srcset="img/tesla-car.avif" type="image/avif">
+          <source srcset="img/tesla-car.webp" type="image/webp">
+          <img src="images/tesla-car.jpg" alt="2014 Tesla Model S P85 back on the road after rebuild" loading="lazy">
+        </picture>
       </div>
-
-      <!-- Expand button -->
-      <button class="view-all-photos-btn" onclick="toggleTeslaSlideshow(this)" aria-expanded="false">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
-        View all photos
-      </button>
-
-      <!-- Slideshow (hidden by default) -->
-      <div class="slideshow" id="teslaSlideshow" style="display:none;margin-top:0.75rem">
-        <div class="slideshow-track">
-          <div class="slideshow-slide" onclick="openLbFromSlide(this)">
-            <img src="images/tesla-1.jpg" alt="Battery pack open — 85 kWh, 16 modules" loading="lazy">
-            <div class="slide-cap">Battery pack open — 85 kWh, 16 modules</div>
-          </div>
-          <div class="slideshow-slide" onclick="openLbFromSlide(this)">
-            <img src="images/tesla-4.jpg" alt="Corrosion treatment — all 16 modules staged" loading="lazy">
-            <div class="slide-cap">Corrosion treatment — all 16 modules staged</div>
-          </div>
-          <div class="slideshow-slide" onclick="openLbFromSlide(this)">
-            <img src="images/tesla-3.jpg" alt="Balancing cells and module testing" loading="lazy">
-            <div class="slide-cap">Balancing cells and module testing</div>
-          </div>
-          <div class="slideshow-slide" onclick="openLbFromSlide(this)">
-            <img src="images/tesla-2.jpg" alt="Drivetrain assembly" loading="lazy">
-            <div class="slide-cap">Drivetrain assembly</div>
-          </div>
-          <div class="slideshow-slide" onclick="openLbFromSlide(this)">
-            <img src="images/tesla-5.jpg" alt="Final product — back on the road" loading="lazy">
-            <div class="slide-cap">Final product — back on the road</div>
-          </div>
-        </div>
-        <button class="slideshow-btn prev" onclick="event.stopPropagation();slideshowNav('teslaSlideshow',-1)">&#8249;</button>
-        <button class="slideshow-btn next" onclick="event.stopPropagation();slideshowNav('teslaSlideshow',1)">&#8250;</button>
-        <div class="slideshow-dots" id="teslaSlideshow-dots"></div>
-        <p class="slideshow-hint">click any photo to expand</p>
+      <div class="body">
+        <p class="fno">FIG. 01 — FEATURED</p>
+        <h3>Tesla Model S P85 — battery &amp; drivetrain rebuild</h3>
+        <p>
+          Complete disassembly, refurbishment, and reassembly of the 85&nbsp;kWh high-voltage pack and drivetrain
+          on a 2014 Model S with 260,000 miles. Sixteen modules, 400V+, a custom corrosion treatment — and the
+          car is back on the road.
+        </p>
+        <ul class="spec"><li>HV Systems</li><li>Battery Architecture</li><li>Corrosion Treatment</li><li>3 years</li></ul>
       </div>
-      <div class="video-grid" id="teslaVideos" style="margin-top:12px">
-        <div class="yt-card" onclick="playYT(this,'VotSTxkuPA8')">
-          <div class="yt-thumb"><img src="https://img.youtube.com/vi/VotSTxkuPA8/hqdefault.jpg" alt="Drivetrain timelapse" loading="lazy"><div class="yt-play"><div class="yt-play-btn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div></div></div>
-          <button class="yt-expand" onclick="event.stopPropagation();expandYT('VotSTxkuPA8')" title="Expand video"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></button>
-          <div class="yt-label"><div class="yt-dot"></div><span>Drivetrain Install Timelapse</span></div>
-        </div>
-        <div class="yt-card" onclick="playYT(this,'UaJRdCN-7l0')">
-          <div class="yt-thumb"><img src="https://img.youtube.com/vi/UaJRdCN-7l0/hqdefault.jpg" alt="First drive" loading="lazy"><div class="yt-play"><div class="yt-play-btn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div></div></div>
-          <button class="yt-expand" onclick="event.stopPropagation();expandYT('UaJRdCN-7l0')" title="Expand video"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></button>
-          <div class="yt-label"><div class="yt-dot"></div><span>First Drive After Rebuild</span></div>
-        </div>
+      <div class="strip" style="grid-column:1/-1">
+        <button data-full="images/tesla-1.jpg" aria-label="Enlarge photo: pack opened">
+          <picture><source srcset="img/tesla-1.avif" type="image/avif"><source srcset="img/tesla-1.webp" type="image/webp"><img src="images/tesla-1.jpg" alt="Battery pack opened, modules exposed" loading="lazy"></picture>
+        </button>
+        <button data-full="images/tesla-2.jpg" aria-label="Enlarge photo: module detail">
+          <picture><source srcset="img/tesla-2.avif" type="image/avif"><source srcset="img/tesla-2.webp" type="image/webp"><img src="images/tesla-2.jpg" alt="Module detail during refurbishment" loading="lazy"></picture>
+        </button>
+        <button data-full="images/tesla-3.jpg" aria-label="Enlarge photo: corrosion treatment">
+          <picture><source srcset="img/tesla-3.avif" type="image/avif"><source srcset="img/tesla-3.webp" type="image/webp"><img src="images/tesla-3.jpg" alt="Corrosion treatment in progress" loading="lazy"></picture>
+        </button>
+        <button data-full="images/tesla-5.jpg" aria-label="Enlarge photo: reassembly">
+          <picture><source srcset="img/tesla-5.avif" type="image/avif"><source srcset="img/tesla-5.webp" type="image/webp"><img src="images/tesla-5.jpg" alt="Pack reassembly" loading="lazy"></picture>
+        </button>
       </div>
-    </div>
-
-    <!-- FEATURED: Plane Pointer -->
-    <div class="featured-project flip reveal">
-      <div class="proj-img-wrap">
-        <img src="images/plane-pointer.jpg" alt="Plane Pointer — automated aircraft tracking device" loading="lazy">
+      <div class="vidrow" style="grid-column:1/-1">
+        <button class="yt" data-yt="VotSTxkuPA8" aria-label="Play video: drivetrain removal timelapse">
+          <picture><source srcset="img/tesla-4.avif" type="image/avif"><source srcset="img/tesla-4.webp" type="image/webp"><img src="images/tesla-4.jpg" alt="" loading="lazy"></picture>
+          <span class="play"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span></span>
+        </button>
+        <button class="yt" data-yt="UaJRdCN-7l0" aria-label="Play video: first drive after rebuild">
+          <picture><source srcset="img/tesla-2.avif" type="image/avif"><source srcset="img/tesla-2.webp" type="image/webp"><img src="images/tesla-2.jpg" alt="" loading="lazy"></picture>
+          <span class="play"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span></span>
+        </button>
       </div>
-      <div class="proj-content">
-        <p class="proj-label">In Progress</p>
-        <h3 class="proj-title">Plane Pointer &mdash; Automated Aircraft Tracking System</h3>
-        <div class="proj-desc-card">
-          A 2-axis automated pointing system that physically tracks live aircraft in real time using ADS-B transponder data. Servo-driven azimuth &amp; elevation axes aim at the target while a companion display shows flight ID, GPS position, altitude, speed, and heading.
-        </div>
-        <ul class="proj-tech">
-          <li>Embedded Systems</li><li>&nbsp;·&nbsp;</li>
-          <li>Servo Control</li><li>&nbsp;·&nbsp;</li>
-          <li>ADS-B / RF</li><li>&nbsp;·&nbsp;</li>
-          <li>Mechanical Design</li>
-        </ul>
+    </article>
+
+    <!-- FIG 02: Plane Pointer -->
+    <article class="figure rv">
+      <div class="media">
+        <picture>
+          <source srcset="img/plane-pointer.avif" type="image/avif">
+          <source srcset="img/plane-pointer.webp" type="image/webp">
+          <img src="images/plane-pointer.jpg" alt="Plane Pointer two-axis aircraft tracking device" loading="lazy">
+        </picture>
       </div>
-    </div>
-
-    <!-- OTHER / CREATIVE PROJECTS -->
-    <div class="reveal" style="margin-top:1rem">
-      <p style="font-family:var(--font-mono);font-size:0.82rem;color:var(--slate-light);text-align:center;margin-bottom:1.5rem">
-        <span style="color:var(--green)">03.1</span> &nbsp; Creative &amp; Robotics
-      </p>
-      <div class="other-projects-grid">
-
-        <!-- LED Display -->
-        <div class="small-proj">
-          <div class="small-proj-top">
-            <div class="folder-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
-            </div>
-          </div>
-          <div class="creative-yt" onclick="playYT(this,'6HOSz8dJSSE')">
-            <div class="yt-thumb"><img src="images/led-display-thumb.jpg" alt="3D LED Display" loading="lazy"><div class="yt-play"><div class="yt-play-btn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div></div></div>
-            <button class="yt-expand" onclick="event.stopPropagation();expandYT('6HOSz8dJSSE')" title="Expand video"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></button>
-          </div>
-          <h4>3D LED Display System</h4>
-          <p>Dynamic volumetric light display using custom circuits and optical principles. LED matrix, control circuitry, and display patterns all built from scratch.</p>
-          <ul class="small-proj-tech"><li>Circuit Design</li><li> · </li><li>Embedded</li><li> · </li><li>Soldering</li></ul>
-        </div>
-
-        <!-- Leave Me Alone -->
-        <div class="small-proj">
-          <div class="small-proj-top">
-            <div class="folder-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
-            </div>
-          </div>
-          <div class="creative-yt" onclick="playYT(this,'bOlg8nyzlww')">
-            <div class="yt-thumb"><img src="images/leave-me-alone-thumb.jpg" alt="Leave Me Alone Machine" loading="lazy"><div class="yt-play"><div class="yt-play-btn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div></div></div>
-            <button class="yt-expand" onclick="event.stopPropagation();expandYT('bOlg8nyzlww')" title="Expand video"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></button>
-          </div>
-          <h4>The &ldquo;Leave Me Alone&rdquo; Machine</h4>
-          <p>Electromechanical device that turns itself off in various comedic ways. Servo mechanisms, 3D-printed components, and precision actuation design.</p>
-          <ul class="small-proj-tech"><li>Robotics</li><li> · </li><li>3D Printing</li><li> · </li><li>AutoCAD</li></ul>
-        </div>
-
-        <!-- Pre-AP Steering CAN Toolkit -->
-        <div class="small-proj">
-          <div class="small-proj-top">
-            <div class="folder-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
-            </div>
-            <div class="small-proj-links">
-              <a href="https://github.com/dnage76-beep/tesla-rack-control" target="_blank" rel="noopener" aria-label="GitHub repository">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="22" height="22" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-              </a>
-            </div>
-          </div>
-          <h4>Pre-AP Tesla Steering CAN Toolkit</h4>
-          <p>Reverse-engineered the CAN protocol of a 2013 Model S electric power-steering rack and built a Python bench-control toolkit &mdash; groundwork for retrofitting modern driver assistance onto pre-Autopilot Teslas.</p>
-          <ul class="small-proj-tech"><li>Python</li><li> · </li><li>CAN Bus</li><li> · </li><li>Reverse Engineering</li></ul>
-        </div>
-
+      <div class="body">
+        <p class="fno">FIG. 02 — IN PROGRESS</p>
+        <h3>Plane Pointer — ADS-B aircraft tracker</h3>
+        <p>
+          A 2-axis servo system that physically points at live aircraft overhead using ADS-B data, with a companion
+          display showing flight ID, position, altitude, speed, and heading. A pilot's desk toy that does real math.
+        </p>
+        <ul class="spec"><li>ADS-B</li><li>Servo Control</li><li>Embedded</li><li>3D Printing</li></ul>
       </div>
+    </article>
+
+    <div class="figgrid">
+      <!-- FIG 03: CAN toolkit -->
+      <article class="figure rv">
+        <div class="body">
+          <p class="fno">FIG. 03</p>
+          <h3>Pre-AP Tesla steering CAN toolkit</h3>
+          <p>
+            Reverse-engineered the CAN protocol of a 2013 Model S electric power-steering rack and built a Python
+            bench-control toolkit — groundwork for retrofitting modern driver assistance onto pre-Autopilot Teslas.
+          </p>
+          <ul class="spec"><li>Python</li><li>CAN Bus</li><li>Reverse Engineering</li></ul>
+          <p class="links"><a href="https://github.com/dnage76-beep/tesla-rack-control" rel="noopener">GitHub -&gt;</a></p>
+        </div>
+      </article>
+      <!-- FIG 04: LED -->
+      <article class="figure rv">
+        <div class="media">
+          <picture>
+            <source srcset="img/led-display-thumb.avif" type="image/avif">
+            <source srcset="img/led-display-thumb.webp" type="image/webp">
+            <img src="images/led-display-thumb.jpg" alt="3D LED display system" loading="lazy">
+          </picture>
+        </div>
+        <div class="body">
+          <p class="fno">FIG. 04</p>
+          <h3>3D LED display system</h3>
+          <p>Volumetric light display — matrix, control circuitry, and display patterns all built from scratch.</p>
+          <ul class="spec"><li>Circuit Design</li><li>Embedded</li><li>Soldering</li></ul>
+        </div>
+      </article>
+      <!-- FIG 05: Leave me alone -->
+      <article class="figure rv">
+        <div class="media">
+          <picture>
+            <source srcset="img/leave-me-alone-thumb.avif" type="image/avif">
+            <source srcset="img/leave-me-alone-thumb.webp" type="image/webp">
+            <img src="images/leave-me-alone-thumb.jpg" alt="The Leave Me Alone Machine" loading="lazy">
+          </picture>
+        </div>
+        <div class="body">
+          <p class="fno">FIG. 05</p>
+          <h3>The &ldquo;Leave Me Alone&rdquo; machine</h3>
+          <p>An electromechanical device whose sole function is switching itself off — in increasingly theatrical ways.</p>
+          <ul class="spec"><li>Robotics</li><li>3D Printing</li><li>Actuation</li></ul>
+        </div>
+      </article>
     </div>
   </section>
 
-  <!-- EDUCATION -->
-  <section id="education">
-    <div class="section-heading reveal">
-      <span class="num">04.</span>
-      <h2>Education &amp; Background</h2>
-    </div>
+  <!-- ============ 03 EXPERIENCE ============ -->
+  <section id="experience">
+    <p class="sht">SHT 03 <span>/ REVISION HISTORY</span></p>
+    <h2 class="rv">Experience, kept like a revision block.</h2>
+    <div class="revtable rv">
+      <div class="revhead" aria-hidden="true"><div>REV</div><div>DATE</div><div>DESCRIPTION</div><div>STATUS</div></div>
 
-    <div class="edu-items">
-      <div class="edu-item reveal">
-        <h3>George Mason University &mdash; Fairfax, VA</h3>
-        <p class="edu-sub">B.S. Mechanical Engineering, Concentration in Aerospace &nbsp;&middot;&nbsp; Expected May 2027</p>
-        <p>Minor: Aviation Flight Training and Management</p>
-        <p style="margin-top:0.3rem">Presidential Academic Scholarship</p>
-        <p class="cw"><strong style="color:var(--slate-light)">Coursework:</strong> Thermodynamics, Solid Mechanics, Dynamics, Statics, Differential Equations, Air Transportation System Engineering, Human Factors</p>
-      </div>
-
-      <div class="edu-item reveal d1">
-        <h3>Aviation &mdash; Private Pilot Certificate</h3>
-        <p class="edu-sub">Single-Engine &amp; Multi-Engine Rated &nbsp;&middot;&nbsp; Licensed Summer 2023</p>
-        <p>Licensed to fly single and multi-engine aircraft. Trained at multiple airports across Illinois and Virginia.</p>
-        <div class="photo-grid" style="margin-top:1rem">
-          <div class="photo-item" onclick="openLbSingle(this)">
-            <img src="images/pilot-cessna.jpg" alt="First solo flight, Cessna 172" loading="lazy">
-            <div class="cap">First solo flight, Cessna 172</div>
-          </div>
-          <div class="photo-item" onclick="openLbSingle(this)">
-            <img src="images/pilot-multiengine.jpg" alt="Multi-engine rated, 2023" loading="lazy">
-            <div class="cap">Multi-engine rated, 2023</div>
-          </div>
+      <details class="rev" open>
+        <summary>
+          <div class="r-no">D</div>
+          <div class="r-date">2026-05 → NOW</div>
+          <div class="r-desc"><b>Mechanical Engineering Intern — Astronics CSC</b><span>Waukegan, IL · aerospace in-flight connectivity</span></div>
+          <div class="r-by">CURRENT</div>
+        </summary>
+        <div class="detail">
+          <ul>
+            <li>Support aerospace LRU mechanical design for in-flight connectivity and entertainment hardware flying on Airbus and Boeing platforms, within AS9100 quality processes</li>
+            <li>Converted a 4-MCU ARINC 600 tray assembly into a SolidWorks structural model for modal analysis to DO-160G qualification requirements</li>
+            <li>Led recovery of a Qualmark Typhoon 3.0 HALT environmental test chamber from an extended outage; root-caused the fault and returned accelerated-life testing to service</li>
+            <li>Built the capital justification for a proposed robotic riveting cell: process time studies, throughput modeling, and CAPEX/payback analysis, informed by vendor research at AUTOMATE 2026</li>
+            <li>Design production tooling and test fixtures in SolidWorks</li>
+          </ul>
         </div>
-      </div>
+      </details>
 
-      <div class="edu-item reveal d2">
-        <h3>Division I Athlete &amp; Leadership</h3>
-        <p class="edu-sub">George Mason University Men&rsquo;s Volleyball &nbsp;&middot;&nbsp; #17</p>
-        <p>Competes at the Division I level for George Mason Men&rsquo;s Volleyball. Current President of Athletes in Action at GMU, leading community service initiatives and mental health outreach for student-athletes.</p>
-        <div class="photo-grid" style="margin-top:1rem">
-          <div class="photo-item" onclick="openLbSingle(this)">
-            <img src="images/volleyball-spike.jpg" alt="Derek spiking at the net for George Mason" loading="lazy">
-            <div class="cap">D1 Volleyball, #17</div>
-          </div>
-          <div class="photo-item" onclick="openLbSingle(this)">
-            <img src="images/volleyball-team.jpg" alt="George Mason Men's Volleyball team" loading="lazy">
-            <div class="cap">George Mason Men&rsquo;s Volleyball</div>
-          </div>
+      <details class="rev">
+        <summary>
+          <div class="r-no">C</div>
+          <div class="r-date">2025-05 → 2025-09</div>
+          <div class="r-desc"><b>Tesla Advisor — Tesla</b><span>Schaumburg, IL · EV delivery operations</span></div>
+          <div class="r-by">RELEASED</div>
+        </summary>
+        <div class="detail">
+          <ul>
+            <li>Supported end-to-end EV delivery operations: vehicle staging, quality checks, and final inspection</li>
+            <li>Walked customers through battery, drivetrain, charging, and software features in plain language</li>
+            <li>Shadowed operations at Tesla's Elgin manufacturing facility: battery production, electric motor components, and assembly-line processes</li>
+          </ul>
         </div>
-      </div>
+      </details>
+
+      <details class="rev">
+        <summary>
+          <div class="r-no">B</div>
+          <div class="r-date">2024-05 → 2024-08</div>
+          <div class="r-desc"><b>Volleyball Coach — Pipeline Volleyball</b><span>Schaumburg, IL</span></div>
+          <div class="r-by">RELEASED</div>
+        </summary>
+        <div class="detail">
+          <ul>
+            <li>Coached youth athletes on technique, positioning, and game strategy; planned and led practices for mixed skill levels</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="rev">
+        <summary>
+          <div class="r-no">A</div>
+          <div class="r-date">2023-05 → 2023-08</div>
+          <div class="r-desc"><b>Event Coordinator — Salt Creek Park District</b><span>Palatine area, IL</span></div>
+          <div class="r-by">RELEASED</div>
+        </summary>
+        <div class="detail">
+          <ul>
+            <li>Coordinated community events end to end: logistics, scheduling, vendors, and on-site operations</li>
+          </ul>
+        </div>
+      </details>
     </div>
   </section>
 
-  <!-- CONTACT -->
+  <!-- ============ 04 QUALIFICATIONS ============ -->
+  <section id="quals">
+    <p class="sht">SHT 04 <span>/ CERTIFICATIONS &amp; TRAINING</span></p>
+    <h2 class="rv">Qualifications on file.</h2>
+    <div class="quals">
+      <article class="qual rv">
+        <p class="qno">QUAL 01 / EDUCATION</p>
+        <h3>George Mason University</h3>
+        <p>B.S. Mechanical Engineering, Aerospace concentration · expected May 2027. Minor: Aviation Flight
+        Training and Management (completed). Presidential Academic Scholarship.</p>
+        <p style="margin-top:.7rem"><span class="cap">Coursework:</span></p>
+        <p style="font-size:.86rem">Thermodynamics · Solid Mechanics · Dynamics · Statics · Differential Equations · Air Transportation System Engineering · Human Factors</p>
+      </article>
+      <article class="qual rv">
+        <p class="qno">QUAL 02 / FLIGHT</p>
+        <h3>Private Pilot Certificate</h3>
+        <p>Airplane single-engine and multi-engine land, FAA. Licensed summer 2023; trained at airports across
+        Illinois and Virginia.</p>
+        <div class="ph">
+          <figure>
+            <picture><source srcset="img/pilot-cessna.avif" type="image/avif"><source srcset="img/pilot-cessna.webp" type="image/webp"><img src="images/pilot-cessna.jpg" alt="First solo flight in a Cessna 172" loading="lazy"></picture>
+            <p class="cap">First solo · C172</p>
+          </figure>
+          <figure>
+            <picture><source srcset="img/pilot-multiengine.avif" type="image/avif"><source srcset="img/pilot-multiengine.webp" type="image/webp"><img src="images/pilot-multiengine.jpg" alt="Multi-engine rating, 2023" loading="lazy"></picture>
+            <p class="cap">Multi-engine · 2023</p>
+          </figure>
+        </div>
+      </article>
+      <article class="qual rv">
+        <p class="qno">QUAL 03 / ATHLETICS &amp; LEADERSHIP</p>
+        <h3>D1 Volleyball · AIA President</h3>
+        <p>Competes for George Mason Men's Volleyball (#17). Current President of Athletes in Action at GMU, leading community service and mental-health outreach for student-athletes.</p>
+        <div class="ph">
+          <figure>
+            <picture><source srcset="img/volleyball-spike.avif" type="image/avif"><source srcset="img/volleyball-spike.webp" type="image/webp"><img src="images/volleyball-spike.jpg" alt="Derek attacking at the net for George Mason" loading="lazy"></picture>
+            <p class="cap">GMU MVB · #17</p>
+          </figure>
+          <figure>
+            <picture><source srcset="img/volleyball-team.avif" type="image/avif"><source srcset="img/volleyball-team.webp" type="image/webp"><img src="images/volleyball-team.jpg" alt="George Mason Men's Volleyball team" loading="lazy"></picture>
+            <p class="cap">Team · 2026</p>
+          </figure>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============ 05 CONTACT / TITLE BLOCK ============ -->
   <section id="contact">
-    <p class="contact-overline"><span class="num">05.</span>What&rsquo;s Next?</p>
-    <h2>Get In Touch</h2>
-    <p>I&rsquo;m currently interning at Astronics and always open to talking aerospace, EVs, aviation, or future opportunities. Whether you have a question or just want to connect &mdash; my inbox is open.</p>
-    <div class="contact-links">
-      <a href="mailto:dnagel@gmu.edu" class="btn btn-primary">Say Hello</a>
-      <a href="tel:8476244222" class="btn btn-secondary">&#9742; (847) 624-4222</a>
-      <a href="https://www.linkedin.com/in/derek-nagel-002b86334" target="_blank" class="btn btn-secondary">LinkedIn</a>
+    <p class="sht">SHT 05 <span>/ TITLE BLOCK</span></p>
+    <h2 class="rv">Get in touch.</h2>
+    <p class="contactlede rv">
+      Currently interning at Astronics and always open to talking aerospace, EVs, aviation, or what comes
+      after May 2027. Whether you have a question or just want to connect: the inbox is open.
+    </p>
+    <div class="tblock rv" aria-label="Contact title block">
+      <div class="tb title" style="grid-column:1/-1"><span class="lab">Title</span><span class="val">Derek Nagel — Mechanical Engineer</span></div>
+      <div class="tb"><span class="lab">Email</span><span class="val"><a href="mailto:dnagel@gmu.edu">dnagel@gmu.edu</a></span></div>
+      <div class="tb"><span class="lab">Phone</span><span class="val"><a href="tel:8476244222">(847) 624-4222</a></span></div>
+      <div class="tb"><span class="lab">LinkedIn</span><span class="val"><a href="https://www.linkedin.com/in/derek-nagel-002b86334" rel="noopener">derek-nagel</a></span></div>
+      <div class="tb"><span class="lab">Résumé</span><span class="val"><a href="Derek_Nagel_Resume.pdf">PDF, one page</a></span></div>
+      <div class="tb"><span class="lab">Drawn by</span><span class="val">D. Nagel</span></div>
+      <div class="tb"><span class="lab">Checked</span><span class="val">In service</span></div>
+      <div class="tb"><span class="lab">Scale</span><span class="val">NTS</span></div>
+      <div class="tb rev"><span class="lab">Rev</span><span class="val">2026-07</span></div>
+      <div class="tb"><span class="lab">Sheet</span><span class="val">1 of 1</span></div>
     </div>
   </section>
 
-</main>
+  </main>
 
-<footer>
-  <p>Designed &amp; Built by Derek Nagel</p>
-  <p style="margin-top:0.3rem"><a href="mailto:dnagel@gmu.edu">dnagel@gmu.edu</a> &nbsp;&bull;&nbsp; George Mason University &nbsp;&bull;&nbsp; <a href="Derek_Nagel_Resume.pdf" target="_blank">R&eacute;sum&eacute;</a></p>
-</footer>
+  <footer>
+    <span>© 2026 Derek Nagel · Palatine, IL / Fairfax, VA</span>
+    <span>Hand-built · no framework · <a href="#top">back to top ↑</a></span>
+  </footer>
+
+  <div class="reg" style="left:-9px;bottom:-9px" aria-hidden="true"></div>
+  <div class="reg" style="right:-9px;bottom:-9px" aria-hidden="true"></div>
+</div>
+
+<dialog class="lb" id="lb" aria-label="Enlarged photo">
+  <img id="lbimg" src="" alt="Enlarged project photo">
+</dialog>
 
 <script>
-// ===== REDUCED MOTION =====
-const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-// ===== UNIFIED SCROLL HANDLER =====
-const progress = document.getElementById('scrollProgress');
-const nav = document.getElementById('nav');
-const btt = document.getElementById('btt');
-const sections = document.querySelectorAll('section[id]');
-const navLinks = document.querySelectorAll('.nav-menu a[href^="#"]');
-
-let scrollRaf = null;
-window.addEventListener('scroll', () => {
-  if (scrollRaf) return;
-  scrollRaf = requestAnimationFrame(() => {
-    scrollRaf = null;
-    const y = window.scrollY;
-    const max = document.body.scrollHeight - window.innerHeight;
-    if (progress) progress.style.width = (y / max * 100) + '%';
-    if (nav) nav.classList.toggle('scrolled', y > 60);
-    if (btt) btt.classList.toggle('visible', y > 500);
-
-    let cur = '';
-    sections.forEach(s => { if (y >= s.offsetTop - 140) cur = s.id; });
-    navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + cur));
-  });
-}, { passive: true });
-
-// ===== SCROLL REVEAL =====
-const revealObs = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (!e.isIntersecting) return;
-    e.target.classList.add('vis');
-    revealObs.unobserve(e.target);
-  });
-}, { threshold: 0.06 });
-
-document.querySelectorAll('.reveal').forEach(el => {
-  const r = el.getBoundingClientRect();
-  if (r.top < 0) {
-    el.classList.add('vis');
-  } else {
-    revealObs.observe(el);
-  }
-});
-
-// ===== EXP TABS =====
-document.querySelectorAll('.exp-tab').forEach(tab => {
-  tab.addEventListener('click', () => {
-    document.querySelectorAll('.exp-tab').forEach(t => t.classList.remove('active'));
-    document.querySelectorAll('.exp-panel').forEach(p => p.classList.remove('active'));
-    tab.classList.add('active');
-    const panel = document.getElementById('panel-' + tab.dataset.panel);
-    if (panel) panel.classList.add('active');
-  });
-});
-
-// ===== SMOOTH NAV SCROLL =====
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', e => {
-    const t = document.querySelector(a.getAttribute('href'));
-    if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
-  });
-});
-
-// ===== LIGHTBOX =====
-const lb = document.getElementById('lb');
-const lbImg = document.getElementById('lbImg');
-const lbCap = document.getElementById('lbCap');
-let lbImages = [], lbIdx = 0;
-
-function openLb(el) {
-  const gallery = el.closest('.gallery-grid') || el.closest('.photo-grid') || el.parentElement;
-  const imgs = Array.from(gallery.querySelectorAll('img'));
-  const clicked = el.querySelector('img') || el;
-  lbImages = imgs; lbIdx = imgs.indexOf(clicked);
-  if (lbIdx < 0) lbIdx = 0;
-  showLb();
-}
-function openLbSingle(el) {
-  const img = el.querySelector('img');
-  lbImages = [img]; lbIdx = 0;
-  showLb();
-}
-function showLb() {
-  if (!lb) return;
-  lb.classList.add('on');
-  lbImg.src = lbImages[lbIdx].src;
-  lbCap.textContent = lbImages[lbIdx].alt || '';
-}
-function closeLb() { if (lb) lb.classList.remove('on'); }
-function navLb(dir) { lbIdx = (lbIdx + dir + lbImages.length) % lbImages.length; showLb(); }
-if (lb) {
-  lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
-  document.addEventListener('keydown', e => {
-    if (!lb.classList.contains('on')) return;
-    if (e.key === 'ArrowLeft') navLb(-1);
-    if (e.key === 'ArrowRight') navLb(1);
-    if (e.key === 'Escape') closeLb();
-  });
-}
-
-// ===== YOUTUBE =====
-function playYT(card, videoId) {
-  const thumb = card.querySelector('.yt-thumb');
-  if (!thumb) return;
-  const iframe = document.createElement('iframe');
-  iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`;
-  iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
-  iframe.allowFullscreen = true;
-  iframe.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;border:none;border-radius:inherit';
-  thumb.style.position = 'relative';
-  thumb.innerHTML = '';
-  thumb.appendChild(iframe);
-  card.classList.add('playing');
-  const dot = card.querySelector('.yt-dot');
-  if (dot) dot.style.background = '#22c55e';
-}
-
-function toggleTeslaSlideshow(btn) {
-  const slideshow = document.getElementById('teslaSlideshow');
-  const expanded = btn.getAttribute('aria-expanded') === 'true';
-  if (expanded) {
-    slideshow.style.display = 'none';
-    btn.setAttribute('aria-expanded', 'false');
-    btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M4 6h16M4 12h16M4 18h16"/></svg> View all photos';
-  } else {
-    slideshow.style.display = 'block';
-    btn.setAttribute('aria-expanded', 'true');
-    btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M18 6L6 18M6 6l12 12"/></svg> Hide photos';
-    // Init dots if first open
-    const dots = document.getElementById('teslaSlideshow-dots');
-    if (!dots.children.length) {
-      slideshowNav('teslaSlideshow', 0);
-    }
-  }
-}
-
-function expandYT(videoId) {
-  const modal = document.createElement('div');
-  modal.className = 'video-modal';
-  modal.innerHTML = `<button class="video-modal-close">&times;</button><iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
-  document.body.appendChild(modal);
-  modal.addEventListener('click', function(e) {
-    if (e.target === modal || e.target.classList.contains('video-modal-close')) {
-      modal.remove();
-    }
-  });
-  document.addEventListener('keydown', function esc(e) {
-    if (e.key === 'Escape') { modal.remove(); document.removeEventListener('keydown', esc); }
-  });
-}
-
-// ===== STAT COUNTERS =====
-const easeOutExpo = t => t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
-const counterObs = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (!e.isIntersecting) return;
-    e.target.querySelectorAll('.stat-num[data-target]').forEach(el => {
-      const target = +el.dataset.target;
-      const suffix = el.dataset.suffix || '';
-      const dur = 1600; let start = null;
-      const tick = ts => {
-        if (!start) start = ts;
-        const p = Math.min((ts - start) / dur, 1);
-        el.textContent = Math.round(easeOutExpo(p) * target).toLocaleString() + suffix;
-        if (p < 1) requestAnimationFrame(tick);
-      };
-      requestAnimationFrame(tick);
-    });
-    counterObs.unobserve(e.target);
-  });
-}, { threshold: 0.3 });
-document.querySelectorAll('.stats-row').forEach(el => counterObs.observe(el));
-
-// ===== CHARGE TO LAUNCH =====
-(function() {
-  // Skip scrolljacking entirely on mobile
-  if (window.innerWidth <= 640) return;
-
-  const car = document.querySelector('.wireframe-car');
-  if (!car) return;
-  const teslaSection = car.closest('.tesla-section');
-  const runway = document.querySelector('.charge-runway');
-  const gauge = document.querySelector('.charge-gauge');
-  if (!teslaSection || !runway || !gauge) return;
-
-  // Reduced motion: skip scrollytelling, use simple auto drive-off
-  if (reducedMotion) {
-    let driven = false;
-    window.addEventListener('scroll', () => {
-      if (driven) return;
-      if (!teslaSection.classList.contains('vis')) return;
-      if (teslaSection.getBoundingClientRect().bottom < 0) {
-        driven = true;
-        car.classList.add('drive-off');
-        setTimeout(() => {
-          car.classList.remove('drive-off');
-          car.classList.add('drive-back');
-          void car.offsetWidth;
-          car.classList.add('arriving');
-          car.addEventListener('transitionend', function onBack(e) {
-            if (e.propertyName !== 'transform') return;
-            car.removeEventListener('transitionend', onBack);
-            car.classList.remove('drive-back', 'arriving');
-            driven = false;
-          });
-        }, 3000);
-      }
-    }, { passive: true });
-    return;
-  }
-
-  // --- Refs ---
-  const chargeFill = gauge.querySelector('.charge-fill');
-  const pctNum = gauge.querySelector('.charge-pct-num');
-  const label = gauge.querySelector('.charge-label');
-  const hintArrow = gauge.querySelector('.charge-hint-arrow');
-  const burstText = gauge.querySelector('.charge-burst-text');
-  let chargeComplete = false;
-  let chargeActivated = false;
-
-  // --- Set runway height for scroll runway ---
-  // Extra dead zone at the start so the car is visible at 0% before charging begins
-  var deadZone = 0;
-  var chargeRange = 0;
-  function setRunwayHeight() {
-    if (chargeComplete) return;
-    const sectionH = teslaSection.offsetHeight;
-    deadZone = window.innerHeight * 0.3;
-    chargeRange = window.innerHeight * 0.8;
-    runway.style.height = (sectionH + deadZone + chargeRange + 600) + 'px';
-  }
-  setRunwayHeight();
-  window.addEventListener('resize', setRunwayHeight);
-
-  // --- Calculate charge progress from scroll position ---
-  function getChargeProgress() {
-    const scrolled = -runway.getBoundingClientRect().top;
-    const effectiveScrolled = scrolled - deadZone;
-    if (effectiveScrolled <= 0) return 0;
-    return Math.max(0, Math.min(1, effectiveScrolled / chargeRange));
-  }
-
-  // --- Update battery visuals ---
-  function updateCharge(p) {
-    const pct = p >= 0.98 ? 100 : Math.round(p * 100);
-    pctNum.textContent = pct;
-
-    // Fill the bar smoothly
-    chargeFill.style.width = pct + '%';
-
-    // Car glow: opacity 0.22 -> 0.7, green drop-shadow intensifies
-    car.style.opacity = 0.22 + (p * 0.48);
-    const glow = p * 14;
-    const glowAlpha = p * 0.6;
-    car.querySelector('img').style.filter =
-      'invert(1) sepia(1) saturate(2) hue-rotate(120deg) drop-shadow(0 0 ' + glow + 'px rgba(100,255,218,' + glowAlpha + '))';
-
-    // Fade hint arrow out early
-    hintArrow.style.opacity = Math.max(0, 0.5 - p * 2);
-
-    // Update label at milestones
-    if (pct >= 100) {
-      label.textContent = 'FULLY CHARGED';
-      label.style.color = 'var(--green)';
-    } else if (pct >= 75) {
-      label.textContent = 'Almost there...';
-      label.style.color = '';
-    } else if (pct >= 50) {
-      label.textContent = 'Charging...';
-      label.style.color = '';
-    } else {
-      label.textContent = 'Scroll to charge';
-      label.style.color = '';
-    }
-  }
-
-  // --- Launch sequence at 100% ---
-  function triggerLaunch() {
-    if (chargeComplete) return;
-    chargeComplete = true;
-
-    // Freeze scrolling -- works on both Safari and Chrome
-    var scrollY = window.scrollY;
-    document.body.style.position = 'fixed';
-    document.body.style.top = '-' + scrollY + 'px';
-    document.body.style.left = '0';
-    document.body.style.right = '0';
-
-    setTimeout(() => {
-      // Clear inline glow styles
-      car.style.opacity = '';
-      car.querySelector('img').style.filter = '';
-
-      // Drive off
-      car.classList.add('drive-off');
-
-      // Un-dim content and hide gauge
-      setTimeout(() => {
-        teslaSection.classList.remove('charging');
-      }, 800);
-
-      // Collapse runway and release scroll
-      setTimeout(() => {
-        runway.classList.add('charge-complete');
-        runway.style.height = '';
-
-        // Release scroll freeze
-        document.body.style.position = '';
-        document.body.style.top = '';
-        document.body.style.left = '';
-        document.body.style.right = '';
-
-        // Restore scroll position to Tesla section
-        var targetScrollTop = teslaSection.getBoundingClientRect().top + window.scrollY - (window.innerHeight * 0.15);
-        window.scrollTo({ top: targetScrollTop, behavior: 'instant' });
-
-        // Safety net
-        requestAnimationFrame(() => {
-          var corrected = teslaSection.getBoundingClientRect().top + window.scrollY - (window.innerHeight * 0.15);
-          if (Math.abs(window.scrollY - corrected) > 5) {
-            window.scrollTo({ top: corrected, behavior: 'instant' });
-          }
-        });
-
-        // Car returns
-        setTimeout(() => {
-          car.classList.remove('drive-off');
-          car.classList.add('drive-back');
-          void car.offsetWidth;
-          car.classList.add('arriving');
-          car.addEventListener('transitionend', function onBack(e) {
-            if (e.propertyName !== 'transform') return;
-            car.removeEventListener('transitionend', onBack);
-            car.classList.remove('drive-back', 'arriving');
-          });
-        }, 600);
-      }, 1400);
-    }, 200);
-  }
-
-  // --- Activate charging when the car gets into the center of the frame ---
-  const chargeObs = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting && !chargeComplete && !chargeActivated) {
-        chargeActivated = true;
-        teslaSection.classList.add('charging');
-      }
-    });
-  }, { rootMargin: '-40% 0px -40% 0px' });
-  chargeObs.observe(car);
-
-  // --- Scroll-driven charge progress ---
-  let chargeRaf = null;
-  window.addEventListener('scroll', () => {
-    if (chargeRaf || chargeComplete) return;
-    chargeRaf = requestAnimationFrame(() => {
-      chargeRaf = null;
-      if (!chargeActivated) return;
-      const p = getChargeProgress();
-      updateCharge(p);
-      if (p >= 0.98) triggerLaunch();
-    });
-  }, { passive: true });
-
-  // --- Handle page loaded already past the section ---
-  if (runway.getBoundingClientRect().bottom < 0) {
-    chargeComplete = true;
-    gauge.style.display = 'none';
-    runway.classList.add('charge-complete');
-    runway.style.height = '';
-  }
-})();
-
-// ===== HAMBURGER MENU =====
-(function() {
-  const burger = document.getElementById('navBurger');
-  const menu = document.getElementById('navMenu');
-  const backdrop = document.getElementById('navBackdrop');
-  if (!burger || !menu) return;
-
-  function toggleMenu() {
-    burger.classList.toggle('open');
-    menu.classList.toggle('open');
-    backdrop.classList.toggle('open');
-  }
-  function closeMenu() {
-    burger.classList.remove('open');
-    menu.classList.remove('open');
-    backdrop.classList.remove('open');
-  }
-
-  burger.addEventListener('click', toggleMenu);
-  backdrop.addEventListener('click', closeMenu);
-  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
-  window.addEventListener('scroll', () => { if (menu.classList.contains('open')) closeMenu(); }, { passive: true });
-})();
-
-// ===== SLIDESHOW =====
-document.querySelectorAll('.slideshow').forEach(ss => {
-  const track = ss.querySelector('.slideshow-track');
-  const slides = ss.querySelectorAll('.slideshow-slide');
-  const dotsContainer = ss.querySelector('[id$="-dots"]');
-  let current = 0;
-  let autoTimer = null;
-  const AUTO_MS = 5000;
-
-  // Create dots
-  slides.forEach((_, i) => {
-    const dot = document.createElement('button');
-    dot.className = 'slideshow-dot' + (i === 0 ? ' active' : '');
-    dot.setAttribute('aria-label', 'Slide ' + (i + 1));
-    dot.addEventListener('click', e => { e.stopPropagation(); goTo(i); });
-    dotsContainer.appendChild(dot);
-  });
-
-  function goTo(idx) {
-    current = ((idx % slides.length) + slides.length) % slides.length;
-    track.style.transform = 'translateX(-' + (current * 100) + '%)';
-    dotsContainer.querySelectorAll('.slideshow-dot').forEach((d, i) => {
-      d.classList.toggle('active', i === current);
-    });
-    resetAuto();
-  }
-
-  function resetAuto() {
-    clearInterval(autoTimer);
-    autoTimer = setInterval(() => goTo(current + 1), AUTO_MS);
-  }
-
-  // Pause auto-advance on hover
-  ss.addEventListener('mouseenter', () => clearInterval(autoTimer));
-  ss.addEventListener('mouseleave', resetAuto);
-
-  // Touch swipe support
-  let touchStartX = 0;
-  let touchDeltaX = 0;
-  let isSwiping = false;
-
-  ss.addEventListener('touchstart', e => {
-    touchStartX = e.touches[0].clientX;
-    touchDeltaX = 0;
-    isSwiping = true;
-    track.style.transition = 'none';
-    clearInterval(autoTimer);
-  }, { passive: true });
-
-  ss.addEventListener('touchmove', e => {
-    if (!isSwiping) return;
-    touchDeltaX = e.touches[0].clientX - touchStartX;
-    const offset = -(current * 100) + (touchDeltaX / ss.offsetWidth) * 100;
-    track.style.transform = 'translateX(' + offset + '%)';
-  }, { passive: true });
-
-  ss.addEventListener('touchend', () => {
-    if (!isSwiping) return;
-    isSwiping = false;
-    track.style.transition = '';
-    const threshold = ss.offsetWidth * 0.2;
-    if (touchDeltaX < -threshold) {
-      goTo(current + 1);
-    } else if (touchDeltaX > threshold) {
-      goTo(current - 1);
-    } else {
-      goTo(current);
-    }
-  });
-
-  // Keyboard support
-  ss.setAttribute('tabindex', '0');
-  ss.addEventListener('keydown', e => {
-    if (e.key === 'ArrowLeft') { e.preventDefault(); goTo(current - 1); }
-    if (e.key === 'ArrowRight') { e.preventDefault(); goTo(current + 1); }
-  });
-
-  // Expose nav function
-  ss._goTo = goTo;
-  ss._getCurrent = () => current;
-  resetAuto();
-});
-
-function slideshowNav(id, dir) {
-  const ss = document.getElementById(id);
-  if (ss && ss._goTo) ss._goTo(ss._getCurrent() + dir);
-}
-
-function openLbStack(wrap) {
-  const img = wrap.querySelector('img');
-  lbImages = [img];
-  lbIdx = 0;
-  showLb();
-}
-
-function openLbFromSlide(slide) {
-  const ss = slide.closest('.slideshow');
-  const imgs = Array.from(ss.querySelectorAll('.slideshow-slide img'));
-  const clicked = slide.querySelector('img');
-  lbImages = imgs;
-  lbIdx = imgs.indexOf(clicked);
-  if (lbIdx < 0) lbIdx = 0;
-  showLb();
-}
+// Lightbox — native <dialog>, closes on any click
+const lb=document.getElementById('lb'),lbimg=document.getElementById('lbimg');
+document.querySelectorAll('.strip button').forEach(b=>b.addEventListener('click',()=>{lbimg.src=b.dataset.full;lb.showModal()}));
+lb.addEventListener('click',()=>lb.close());
+// Click-to-load YouTube — zero third-party bytes until interaction
+document.querySelectorAll('.yt').forEach(b=>b.addEventListener('click',()=>{
+  const id=b.dataset.yt,f=document.createElement('iframe');
+  f.src='https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1';
+  f.allow='autoplay;encrypted-media;picture-in-picture';f.allowFullscreen=true;
+  b.replaceChildren(f);
+},{once:true}));
 </script>
 </body>
 </html>
