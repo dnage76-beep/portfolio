@@ -13,8 +13,8 @@
 <meta property="og:image" content="https://dereknagel.site/og-image.svg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta name="theme-color" content="#161009">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect rx='12' width='100' height='100' fill='%230a192f'/><text x='50' y='68' font-family='monospace' font-size='48' font-weight='700' fill='%2364ffda' text-anchor='middle'>DN</text></svg>">
+<meta name="theme-color" content="#14110c">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect rx='12' width='100' height='100' fill='%23ff5c26'/><text x='50' y='68' font-family='monospace' font-size='48' font-weight='700' fill='%2314110c' text-anchor='middle'>DN</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
@@ -25,13 +25,13 @@
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
-  --navy:        #161009;
-  --navy-light:  #211a11;
-  --navy-lighter:#3a2f21;
-  --slate:       #a89c8a;
-  --slate-light: #c2b5a0;
-  --slate-bright:#e9e0d0;
-  --white:       #f7f0e3;
+  --navy:        #14110c;
+  --navy-light:  #1f1a14;
+  --navy-lighter:#40352a;
+  --slate:       #a89f93;
+  --slate-light: #c6bcae;
+  --slate-bright:#ece5d8;
+  --white:       #f8f3e9;
   --green:       #ff5c26;
   --green-tint:  rgba(255,92,38,0.07);
   --green-glow:  rgba(255,92,38,0.15);
@@ -75,11 +75,11 @@ nav {
   height: var(--nav-height);
   display: flex; align-items: center; justify-content: space-between;
   padding: 0 3rem;
-  background: rgba(22,16,9,0); backdrop-filter: blur(0);
+  background: rgba(20,17,12,0); backdrop-filter: blur(0);
   transition: var(--transition);
 }
 nav.scrolled {
-  background: rgba(22,16,9,0.9);
+  background: rgba(20,17,12,0.9);
   backdrop-filter: blur(20px);
   box-shadow: 0 4px 30px rgba(10,5,1,0.7);
 }
@@ -137,7 +137,7 @@ nav.scrolled {
 .nav-menu-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(22,16,9,0.7);
+  background: rgba(20,17,12,0.7);
   backdrop-filter: blur(4px);
   z-index: 100;
   opacity: 0;
@@ -613,7 +613,7 @@ section:not(#hero) {
 .proj-img-top::after {
   content: '';
   position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(22,16,9,0.4) 0%, transparent 60%);
+  background: linear-gradient(to top, rgba(20,17,12,0.4) 0%, transparent 60%);
   border-radius: 6px;
   pointer-events: none;
 }
@@ -649,7 +649,7 @@ section:not(#hero) {
 .wireframe-car img {
   width: 100%;
   display: block;
-  filter: invert(1) sepia(1) saturate(2) hue-rotate(120deg);
+  filter: invert(1) sepia(1) saturate(2.4) hue-rotate(-28deg) brightness(1.05);
 }
 
 /* Wireframe return */
@@ -1007,7 +1007,7 @@ section:not(#hero) {
 .photo-item .cap {
   position: absolute; bottom: 0; left: 0; right: 0;
   padding: 0.7rem 0.9rem;
-  background: linear-gradient(to top, rgba(22,16,9,0.9) 0%, transparent 100%);
+  background: linear-gradient(to top, rgba(20,17,12,0.9) 0%, transparent 100%);
   font-family: var(--font-mono);
   font-size: 0.72rem;
   color: var(--slate-light);
@@ -1179,7 +1179,7 @@ footer a:hover { text-decoration: underline; }
 .yt-expand {
   position: absolute; top: 8px; right: 8px; z-index: 5;
   width: 32px; height: 32px; border-radius: 4px;
-  background: rgba(22,16,9,0.8); border: 1px solid rgba(255,92,38,0.3);
+  background: rgba(20,17,12,0.8); border: 1px solid rgba(255,92,38,0.3);
   display: flex; align-items: center; justify-content: center;
   cursor: pointer; opacity: 0; transition: opacity 0.2s ease;
   color: var(--green);
@@ -1332,7 +1332,7 @@ footer a:hover { text-decoration: underline; }
   width: 36px; height: 36px;
   border-radius: 4px;
   border: 1px solid rgba(255,92,38,0.2);
-  background: rgba(22,16,9,0.7);
+  background: rgba(20,17,12,0.7);
   backdrop-filter: blur(8px);
   color: var(--slate-light);
   cursor: pointer;
@@ -1343,7 +1343,7 @@ footer a:hover { text-decoration: underline; }
 .slideshow-btn:hover {
   border-color: var(--green);
   color: var(--green);
-  background: rgba(22,16,9,0.9);
+  background: rgba(20,17,12,0.9);
 }
 .slideshow-btn.prev { left: 0.75rem; }
 .slideshow-btn.next { right: 0.75rem; }
@@ -1503,6 +1503,18 @@ footer a:hover { text-decoration: underline; }
   .charge-overlay { display: none !important; }
 }
 
+
+::selection { background: var(--green); color: var(--navy); }
+body::after {
+  content: ""; position: fixed; inset: 0; z-index: 2000; pointer-events: none; opacity: .035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 160px;
+}
+.interlude { position: relative; margin: 5.5rem calc(50% - 50vw) 0; height: 46vh; min-height: 300px; overflow: hidden; }
+.interlude picture, .interlude img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 58%; }
+.interlude::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, #14110c 0%, rgba(20,17,12,0) 26%, rgba(20,17,12,0) 72%, #14110c 100%); }
+.interlude figcaption { position: absolute; right: 1.6rem; bottom: 1.1rem; z-index: 2; font-family: var(--font-mono); font-size: .66rem; letter-spacing: .12em; text-transform: uppercase; color: rgba(248,243,233,.8); }
+@media (max-width: 600px) { .interlude { height: 32vh; min-height: 220px; } }
 </style>
 </head>
 <body>
@@ -1565,7 +1577,7 @@ footer a:hover { text-decoration: underline; }
   <!-- HERO -->
   <section id="hero">
     <div class="hero-inner">
-      <p class="hero-greeting">Hi, my name is</p>
+      <p class="hero-greeting">Palatine, IL &#8644; Fairfax, VA</p>
       <h1 class="hero-name">Derek Nagel.</h1>
       <h2 class="hero-tagline">See what I've been working on.</h2>
       <p class="hero-desc">
@@ -1592,7 +1604,7 @@ footer a:hover { text-decoration: underline; }
     <div class="about-grid reveal">
       <div class="about-text">
         <p>
-          I&rsquo;m a Mechanical Engineering student at George Mason University with a concentration in Aerospace and a minor in Aviation Flight Training and Management. I&rsquo;m driven by hands-on problem solving&mdash;whether that&rsquo;s rebuilding a 260,000-mile Tesla battery pack, designing an ADS-B aircraft tracking system, or building custom electronics from scratch.
+          I&rsquo;m a Mechanical Engineering student at George Mason University with a concentration in Aerospace and a minor in Aviation Flight Training and Management. I learn by building: a 260,000-mile Tesla battery pack brought back to life, an ADS-B rig that points at passing aircraft, whatever custom electronics a project needs.
         </p>
         <p>
           I&rsquo;m currently a Mechanical Engineering Intern at <a href="https://www.astronics.com" target="_blank">Astronics Connectivity Systems &amp; Certification</a> in Waukegan, IL, working on aerospace LRU design, structural modeling in SolidWorks, environmental qualification (HALT) testing, and manufacturing automation studies for in-flight connectivity systems. Before that I spent a summer at <a href="https://www.tesla.com" target="_blank">Tesla</a> as an Advisor, supporting EV delivery operations and shadowing manufacturing at the Elgin facility. I hold a Private Pilot certificate (single and multi-engine) and compete on George Mason&rsquo;s Division I Men&rsquo;s Volleyball team.
@@ -1634,7 +1646,7 @@ footer a:hover { text-decoration: underline; }
       <div class="exp-panels">
 
         <div class="exp-panel active" id="panel-astronics">
-          <h3>Mechanical Engineer Intern &nbsp;<span class="company">@ Astronics</span></h3>
+          <h3>Mechanical Engineering Intern &nbsp;<span class="company">@ Astronics</span></h3>
           <p class="exp-date">
             <img src="images/astronics-logo.png" alt="Astronics Corporation" class="logo-inline logo-inline-wide">
             May 2026 &ndash; Present &bull; Waukegan, IL
@@ -1642,8 +1654,8 @@ footer a:hover { text-decoration: underline; }
           <ul>
             <li>Mechanical engineering intern at Astronics Connectivity Systems &amp; Certification (ACSC), supporting aerospace LRU design for in-flight connectivity and entertainment systems on Airbus and Boeing aircraft</li>
             <li>Converted a 4-MCU ARINC 600 tray assembly into a structural model in SolidWorks for modal analysis, working to qualification requirements under DO-160G and AS9100 QMS procedures</li>
-            <li>Led recovery of a Qualmark Typhoon 3.0 HALT environmental test chamber from an extended outage &mdash; root-caused the fault and returned accelerated-life testing to service</li>
-            <li>Built the capital justification for a proposed robotic riveting cell &mdash; process time studies, throughput modeling, and CAPEX/payback analysis, informed by vendor research at the AUTOMATE 2026 trade show</li>
+            <li>Led recovery of a Qualmark Typhoon 3.0 HALT environmental test chamber from an extended outage; root-caused the fault and returned accelerated-life testing to service</li>
+            <li>Built the capital justification for a proposed robotic riveting cell: process time studies, throughput modeling, and CAPEX/payback analysis, informed by vendor research at the AUTOMATE 2026 trade show</li>
             <li>Designing production tooling and test fixtures in SolidWorks within AS9100 PLM/ERP-driven quality processes</li>
           </ul>
         </div>
@@ -1735,7 +1747,7 @@ footer a:hover { text-decoration: underline; }
         </div>
         <div class="proj-img-stack">
           <div class="proj-img-top" onclick="openLbStack(this)">
-            <img src="images/tesla-car.jpg" alt="2014 Tesla Model S P85" loading="lazy">
+            <img src="images/tesla-5.jpg" alt="The rebuilt 2014 Model S P85, back on the road" loading="lazy">
           </div>
         </div>
       </div>
@@ -1751,9 +1763,9 @@ footer a:hover { text-decoration: underline; }
     <!-- Gallery slideshow + videos for Tesla -->
     <div class="reveal" style="margin-top:-1rem;margin-bottom:4rem">
       <!-- Hero photo: you with the battery pack -->
-      <div class="tesla-hero-photo" onclick="openLbFromSlide(this)" data-src="images/tesla-1.jpg" data-cap="Battery pack open — 85 kWh, 16 modules">
-        <img src="images/tesla-1.jpg" alt="Battery pack open — 85 kWh, 16 modules" loading="lazy">
-        <div class="tesla-hero-cap">Battery pack open — 85 kWh, 16 modules</div>
+      <div class="tesla-hero-photo" onclick="openLbFromSlide(this)" data-src="images/tesla-1.jpg" data-cap="Battery pack open · 85 kWh, 16 modules">
+        <img src="images/tesla-1.jpg" alt="Battery pack open · 85 kWh, 16 modules" loading="lazy">
+        <div class="tesla-hero-cap">Battery pack open · 85 kWh, 16 modules</div>
       </div>
 
       <!-- Expand button -->
@@ -1766,12 +1778,12 @@ footer a:hover { text-decoration: underline; }
       <div class="slideshow" id="teslaSlideshow" style="display:none;margin-top:0.75rem">
         <div class="slideshow-track">
           <div class="slideshow-slide" onclick="openLbFromSlide(this)">
-            <img src="images/tesla-1.jpg" alt="Battery pack open — 85 kWh, 16 modules" loading="lazy">
-            <div class="slide-cap">Battery pack open — 85 kWh, 16 modules</div>
+            <img src="images/tesla-1.jpg" alt="Battery pack open · 85 kWh, 16 modules" loading="lazy">
+            <div class="slide-cap">Battery pack open · 85 kWh, 16 modules</div>
           </div>
           <div class="slideshow-slide" onclick="openLbFromSlide(this)">
-            <img src="images/tesla-4.jpg" alt="Corrosion treatment — all 16 modules staged" loading="lazy">
-            <div class="slide-cap">Corrosion treatment — all 16 modules staged</div>
+            <img src="images/tesla-4.jpg" alt="Corrosion treatment · all 16 modules staged" loading="lazy">
+            <div class="slide-cap">Corrosion treatment · all 16 modules staged</div>
           </div>
           <div class="slideshow-slide" onclick="openLbFromSlide(this)">
             <img src="images/tesla-3.jpg" alt="Balancing cells and module testing" loading="lazy">
@@ -1782,8 +1794,8 @@ footer a:hover { text-decoration: underline; }
             <div class="slide-cap">Drivetrain assembly</div>
           </div>
           <div class="slideshow-slide" onclick="openLbFromSlide(this)">
-            <img src="images/tesla-5.jpg" alt="Final product — back on the road" loading="lazy">
-            <div class="slide-cap">Final product — back on the road</div>
+            <img src="images/tesla-5.jpg" alt="Final product · back on the road" loading="lazy">
+            <div class="slide-cap">Final product · back on the road</div>
           </div>
         </div>
         <button class="slideshow-btn prev" onclick="event.stopPropagation();slideshowNav('teslaSlideshow',-1)">&#8249;</button>
@@ -1827,42 +1839,8 @@ footer a:hover { text-decoration: underline; }
 
     <!-- OTHER / CREATIVE PROJECTS -->
     <div class="reveal" style="margin-top:1rem">
-      <p style="font-family:var(--font-mono);font-size:0.82rem;color:var(--slate-light);text-align:center;margin-bottom:1.5rem">
-        <span style="color:var(--green)">03.1</span> &nbsp; Creative &amp; Robotics
-      </p>
-      <div class="other-projects-grid">
 
-        <!-- LED Display -->
-        <div class="small-proj">
-          <div class="small-proj-top">
-            <div class="folder-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
-            </div>
-          </div>
-          <div class="creative-yt" onclick="playYT(this,'6HOSz8dJSSE')">
-            <div class="yt-thumb"><img src="images/led-display-thumb.jpg" alt="3D LED Display" loading="lazy"><div class="yt-play"><div class="yt-play-btn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div></div></div>
-            <button class="yt-expand" onclick="event.stopPropagation();expandYT('6HOSz8dJSSE')" title="Expand video"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></button>
-          </div>
-          <h4>3D LED Display System</h4>
-          <p>Dynamic volumetric light display using custom circuits and optical principles. LED matrix, control circuitry, and display patterns all built from scratch.</p>
-          <ul class="small-proj-tech"><li>Circuit Design</li><li> · </li><li>Embedded</li><li> · </li><li>Soldering</li></ul>
-        </div>
-
-        <!-- Leave Me Alone -->
-        <div class="small-proj">
-          <div class="small-proj-top">
-            <div class="folder-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
-            </div>
-          </div>
-          <div class="creative-yt" onclick="playYT(this,'bOlg8nyzlww')">
-            <div class="yt-thumb"><img src="images/leave-me-alone-thumb.jpg" alt="Leave Me Alone Machine" loading="lazy"><div class="yt-play"><div class="yt-play-btn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div></div></div>
-            <button class="yt-expand" onclick="event.stopPropagation();expandYT('bOlg8nyzlww')" title="Expand video"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></button>
-          </div>
-          <h4>The &ldquo;Leave Me Alone&rdquo; Machine</h4>
-          <p>Electromechanical device that turns itself off in various comedic ways. Servo mechanisms, 3D-printed components, and precision actuation design.</p>
-          <ul class="small-proj-tech"><li>Robotics</li><li> · </li><li>3D Printing</li><li> · </li><li>AutoCAD</li></ul>
-        </div>
+      <div class="other-projects-grid" style="grid-template-columns:minmax(0,480px);justify-content:center">
 
         <!-- Pre-AP Steering CAN Toolkit -->
         <div class="small-proj">
@@ -1877,7 +1855,7 @@ footer a:hover { text-decoration: underline; }
             </div>
           </div>
           <h4>Pre-AP Tesla Steering CAN Toolkit</h4>
-          <p>Reverse-engineered the CAN protocol of a 2013 Model S electric power-steering rack and built a Python bench-control toolkit &mdash; groundwork for retrofitting modern driver assistance onto pre-Autopilot Teslas.</p>
+          <p>Reverse-engineered the CAN protocol of a 2013 Model S electric power-steering rack and built a Python bench-control toolkit, groundwork for retrofitting modern driver assistance onto pre-Autopilot Teslas.</p>
           <ul class="small-proj-tech"><li>Python</li><li> · </li><li>CAN Bus</li><li> · </li><li>Reverse Engineering</li></ul>
         </div>
 
@@ -1936,10 +1914,19 @@ footer a:hover { text-decoration: underline; }
   </section>
 
   <!-- CONTACT -->
+  <figure class="interlude" aria-label="Shenandoah Valley at sunset">
+    <picture>
+      <source srcset="images/shenandoah.avif" type="image/avif">
+      <source srcset="images/shenandoah.webp" type="image/webp">
+      <img src="images/shenandoah.jpg" alt="Sunset over the Shenandoah Valley ridgelines" loading="lazy">
+    </picture>
+    <figcaption>Shenandoah Valley, Virginia &middot; Spring 2024</figcaption>
+  </figure>
+
   <section id="contact">
     <p class="contact-overline"><span class="num">05.</span>What&rsquo;s Next?</p>
     <h2>Get In Touch</h2>
-    <p>I&rsquo;m currently interning at Astronics and always open to talking aerospace, EVs, aviation, or future opportunities. Whether you have a question or just want to connect &mdash; my inbox is open.</p>
+    <p>I&rsquo;m at Astronics for the summer and always up for talking aerospace, EVs, or aviation. If something here caught your eye, email is the fastest way to reach me.</p>
     <div class="contact-links">
       <a href="mailto:dnagel@gmu.edu" class="btn btn-primary">Say Hello</a>
       <a href="tel:8476244222" class="btn btn-secondary">&#9742; (847) 624-4222</a>
@@ -1950,7 +1937,8 @@ footer a:hover { text-decoration: underline; }
 </main>
 
 <footer>
-  <p>Designed &amp; Built by Derek Nagel</p>
+  <p>Designed &amp; built by Derek Nagel</p>
+  <p style="font-family:var(--font-mono);font-size:0.68rem;color:var(--slate);margin-top:0.35rem;letter-spacing:0.08em">first solo: Cessna 172 &middot; N159DV</p>
   <p style="margin-top:0.3rem"><a href="mailto:dnagel@gmu.edu">dnagel@gmu.edu</a> &nbsp;&bull;&nbsp; George Mason University &nbsp;&bull;&nbsp; <a href="Derek_Nagel_Resume.pdf" target="_blank">R&eacute;sum&eacute;</a></p>
 </footer>
 
@@ -2211,7 +2199,7 @@ document.querySelectorAll('.stats-row').forEach(el => counterObs.observe(el));
     const glow = p * 14;
     const glowAlpha = p * 0.6;
     car.querySelector('img').style.filter =
-      'invert(1) sepia(1) saturate(2) hue-rotate(120deg) drop-shadow(0 0 ' + glow + 'px rgba(255,92,38,' + glowAlpha + '))';
+      'invert(1) sepia(1) saturate(2.4) hue-rotate(-28deg) brightness(1.05) drop-shadow(0 0 ' + glow + 'px rgba(255,92,38,' + glowAlpha + '))';
 
     // Fade hint arrow out early
     hintArrow.style.opacity = Math.max(0, 0.5 - p * 2);
