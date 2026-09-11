@@ -2,7 +2,7 @@
 
 Personal site for Derek Nagel, mechanical engineering student at George Mason University.
 
-Live at [dereknagel.com](https://dereknagel.com).
+Live at [dereknagel.site](https://dereknagel.site).
 
 ## Stack
 
@@ -27,4 +27,4 @@ No dependencies. Open `index.html` in a browser, or serve the directory:
 python3 -m http.server 8000
 ```
 
-Deploys automatically from `main` via Vercel.
+Deploys automatically from `design-v3` via Vercel — that is the production branch, not `main`.
