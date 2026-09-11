@@ -27,4 +27,4 @@ No dependencies. Open `index.html` in a browser, or serve the directory:
 python3 -m http.server 8000
 ```
 
-Deploys automatically from `design-v3` via Vercel — that is the production branch, not `main`.
+Deploys automatically from `main` via Vercel. Work lands on `design-v3` first; pushing `design-v3` only builds a preview, so production requires a push to `main`.
